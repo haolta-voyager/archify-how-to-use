@@ -62,20 +62,55 @@ $A = "$HOME\.claude\skills\archify\bin\archify.mjs"
 node $A doctor
 ```
 
+Đủ 18 lệnh theo `archify --help` (v3.2.0). Mình đã chạy thử từng lệnh trên máy này.
+
+`<loại>` là một trong: `architecture`, `workflow`, `sequence`, `dataflow`, `lifecycle`, `erd`, `tree`, `class`, `timeline`, `waterfall`, `explainer`.
+
+### Cài đặt và khám phá
+
 | Lệnh | Tác dụng |
 | --- | --- |
-| `doctor` | Kiểm tra cài đặt |
-| `demo <thư-mục>` | Tạo sơ đồ demo |
-| `guide "<mô tả>"` | Gợi ý loại sơ đồ phù hợp |
-| `examples` | Liệt kê ví dụ có sẵn (trong `...\skills\archify\examples\`) |
-| `validate <loại> <file.json>` | Chỉ kiểm tra file nguồn |
-| `preview <loại> <file.json> <out.html>` | Xem trước, tự cập nhật khi sửa file |
-| `finalize <loại> <file.json> <out.html> --json` | Kiểm tra đầy đủ và xuất bản cuối |
-| `deliver <loại> <file.json> <out.html> --open` | Validate, render rồi mở |
-| `compare architecture <cũ.json> <mới.json> <out.html>` | So sánh kiến trúc trước và sau |
-| `check <out.html>` | Kiểm tra lại file HTML đã xuất |
+| `doctor` | Kiểm tra cài đặt, renderer, schema của mọi loại |
+| `demo [thư-mục]` | Tạo một sơ đồ demo |
+| `examples` | In đường dẫn các file HTML ví dụ có sẵn |
+| `guide ["<mô tả>"] [--json] [--lang en\|zh]` | Gợi ý loại sơ đồ, kèm điều nên có và một prompt mẫu để copy |
+| `brands ["<tên/alias/domain/nhóm>"] [--json]` | Tra cứu logo có sẵn (postgresql, redis, kubernetes, openai…) |
+| `brands capture <url> [--json]` | Lấy logo từ một website để gắn vào node (có truy cập mạng) |
 
-Tuỳ chọn hay dùng: `--quality showcase` (chặt, mặc định khi Claude soạn), `--quality standard` (cho sơ đồ dày), `--repo-root <path>` (sơ đồ dựa trên code thật).
+### Tạo sơ đồ
+
+| Lệnh | Tác dụng |
+| --- | --- |
+| `finalize <loại> <in.json> <out.html> [--json]` | **Lệnh chính:** validate, deliver, check, browser-check rồi xuất bản cuối |
+| `deliver <loại> <in.json> [out.html] [--json] [--open]` | Validate, render an toàn kèm biên nhận `.delivery.json`; `--open` để mở luôn |
+| `render <loại> <in.json> [out.html]` | Chỉ render ra HTML, không có biên nhận nên không qua được `check --require-provenance` |
+| `preview <loại> <in.json> [out.html] [--no-open]` | Chạy server `127.0.0.1`, theo dõi file nguồn và tự render lại khi bạn sửa (không dùng cho `explainer`) |
+| `compare architecture <cũ.json> <mới.json> [out.html] [--receipt path] [--json]` | So sánh hai phiên bản kiến trúc (Architecture Delta) |
+| `patch explainer <trang.html> <panel-id> <panel.md> <out.html> [--json]` | Thay một panel `## … {#panel-id}` trong trang explainer, giữ nguyên phần còn lại |
+| `migrate workflow <cũ.json> <mới.json> --to-schema 2 [--output x.html] [--json]` | Chuyển workflow từ schema v1 sang v2. Lưu ý: nếu layout cũ vi phạm luật v2 thì bị từ chối (`workflow/route-preset-conflict`), khi đó phải sửa file trước |
+
+### Kiểm tra
+
+| Lệnh | Tác dụng |
+| --- | --- |
+| `validate <loại> <in.json> [--json] [--layout-json]` | Chỉ kiểm tra file nguồn; `--layout-json` in layout (chỉ cho `architecture`, `workflow`) |
+| `inspect <loại> <in.json>` | In JSON layout đã tính: toạ độ, kích thước node (chỉ hỗ trợ `architecture`) |
+| `check <out.html> [--json] [--require-provenance]` | Kiểm tra lại HTML đã xuất; `--require-provenance` đòi biên nhận từ `deliver` hoặc `finalize` |
+| `browser-check <out.html> [--json\|--summary] [--require-provenance] [--out-dir dir]` | Mở bằng Chrome headless, kiểm tra tràn khung, độ dễ đọc, theme sáng/tối |
+| `visual-check <out.html> [--json\|--summary] [--require-provenance] [--out-dir dir]` | Như `browser-check` và chụp thêm ảnh PNG (1440×900, 2048×1320, sáng/tối) để review bằng mắt |
+
+### Tuỳ chọn dùng chung
+
+| Tuỳ chọn | Áp dụng cho | Ý nghĩa |
+| --- | --- | --- |
+| `--quality showcase\|standard` | render, deliver, finalize, preview, validate, compare, patch | `showcase` chặt (mặc định khi Claude soạn); `standard` cho sơ đồ dày |
+| `--repo-root <path>` | hầu hết lệnh tạo sơ đồ | Sơ đồ dựa trên code thật, dẫn nguồn tới file và dòng trong repo |
+| `--json` | hầu hết lệnh | In kết quả dạng JSON |
+| `--out-dir <dir>` | finalize, browser-check, visual-check | Nơi ghi biên nhận và ảnh chụp (HTML vẫn ở đường dẫn output) |
+| `--browser-check` | finalize | Bật bước kiểm tra trong trình duyệt cho explainer (mặc định explainer không chạy bước này) |
+| `--receipt <path>` | finalize, compare | Đổi vị trí file biên nhận |
+| `--candidate-sha256 <hex>` | finalize | Chỉ xuất nếu file nguồn đúng hash này (chống sửa giữa chừng) |
+| `--writing warn\|strict\|off` | validate, deliver, finalize, patch (explainer) | Mức nghiêm của kiểm tra văn phong |
 
 Ví dụ render một mẫu có sẵn:
 

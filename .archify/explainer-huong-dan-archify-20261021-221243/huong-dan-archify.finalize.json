@@ -5,16 +5,16 @@
   "status": "pass",
   "type": "explainer",
   "quality": "showcase",
-  "startedAt": "2026-10-21T15:13:14.728Z",
+  "startedAt": "2026-10-21T15:57:11.275Z",
   "specification": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
-    "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
-    "bytes": 6527
+    "sha256": "810be825d185d813f1939267428c6f82425a32a822a0d51bb17b3eefc0faf2b6",
+    "bytes": 8090
   },
   "artifact": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
-    "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
-    "bytes": 552146
+    "sha256": "242161edc7d04918c76df54a6178469552ab31207dab851a84be0025cabc6f12",
+    "bytes": 570572
   },
   "stages": {
     "browser-check": {
@@ -42,8 +42,8 @@
         "ok": true,
         "command": "validate",
         "specification": {
-          "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
-          "bytes": 6527
+          "sha256": "810be825d185d813f1939267428c6f82425a32a822a0d51bb17b3eefc0faf2b6",
+          "bytes": 8090
         },
         "validation": {
           "checksPassed": 4,
@@ -58,7 +58,7 @@
     "deliver": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 1924,
+      "durationMs": 1379,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
@@ -72,14 +72,14 @@
       ],
       "receipt": {
         "schemaVersion": 1,
-        "receiptId": "3f73b8d0-d8ab-4085-91ba-4c2c34cac680",
+        "receiptId": "53c75fbf-46da-43ce-a03f-b76173eb5467",
         "ok": true,
         "command": "deliver",
         "type": "explainer",
         "input": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
         "output": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
         "explainer": {
-          "preparedSha256": "9ea781158c5d15b412220cc36ce0e7326b902d435f27726f1aab421aa6c85947",
+          "preparedSha256": "00dfa38b0c3e05f3fa50d780163c6e949b654a97d195854396a7d8438b7efe9e",
           "dependencies": [
             {
               "kind": "diagram-spec",
@@ -91,12 +91,12 @@
           ]
         },
         "specification": {
-          "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
-          "bytes": 6527
+          "sha256": "810be825d185d813f1939267428c6f82425a32a822a0d51bb17b3eefc0faf2b6",
+          "bytes": 8090
         },
         "artifact": {
-          "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
-          "bytes": 552146
+          "sha256": "242161edc7d04918c76df54a6178469552ab31207dab851a84be0025cabc6f12",
+          "bytes": 570572
         },
         "validation": {
           "checksPassed": 4,
@@ -122,7 +122,7 @@
     "check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 702,
+      "durationMs": 461,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
@@ -135,15 +135,15 @@
         "file": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
         "family": "explainer",
         "artifact": {
-          "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
-          "bytes": 552146
+          "sha256": "242161edc7d04918c76df54a6178469552ab31207dab851a84be0025cabc6f12",
+          "bytes": 570572
         },
         "checks": [
           {
             "name": "explainer_structure",
             "ok": true,
             "details": [
-              "71 unique DOM IDs"
+              "82 unique DOM IDs"
             ]
           },
           {
@@ -180,7 +180,7 @@
               "id": "usage-flow",
               "receipt": {
                 "ok": true,
-                "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\archify-explainer-check-Y4kvit\\child.html",
+                "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\archify-explainer-check-x9hSmw\\child.html",
                 "artifact": {
                   "sha256": "3c619ea8397079e2aa6b07cfe8fb1a017eb373b38dc00a6ec23a39779f1b8088",
                   "bytes": 814426
@@ -307,7 +307,7 @@
         },
         "diagnostics": [],
         "provenance": "current",
-        "deliveryReceiptId": "3f73b8d0-d8ab-4085-91ba-4c2c34cac680"
+        "deliveryReceiptId": "53c75fbf-46da-43ce-a03f-b76173eb5467"
       }
     }
   },
@@ -321,17 +321,16 @@
     "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.finalize-summary.json"
   },
   "visualReview": "not-requested",
-  "finishedAt": "2026-10-21T15:13:18.261Z",
-  "durationMs": 3532,
+  "finishedAt": "2026-10-21T15:57:13.752Z",
+  "durationMs": 2476,
   "update": {
-    "status": "unavailable",
-    "installedVersion": null,
-    "availableVersion": null,
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
     "releaseNotes": null,
-    "checkedAt": null,
-    "source": null,
+    "checkedAt": "2026-10-21T15:13:50.194Z",
+    "source": "cache",
     "noticeRequired": false,
-    "noticeText": null,
-    "reason": "timeout"
+    "noticeText": null
   }
 }

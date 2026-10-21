@@ -10,7 +10,7 @@ Bạn chỉ cần **mô tả bằng lời cho Claude**: skill Archify tự soạ
 @answer scope="Archify v3.2.0 · Claude Code trên Windows 11 · Node v22.23.4"
 @meta locale=en
 @source readme title="Archify README trên GitHub" url=https://github.com/tt-a1i/archify
-@source skill title="SKILL.md của skill Archify" url=https://github.com/tt-a1i/archify/blob/main/SKILL.md
+@source skill title="SKILL.md của skill Archify" url=https://github.com/tt-a1i/archify/blob/main/archify/SKILL.md
 @source gallery title="Archify gallery" url=https://archify.si/gallery.html
 
 ## Từ yêu cầu tới file HTML diễn ra thế nào? {#flow}
@@ -68,18 +68,36 @@ node $A doctor
 node $A guide "mô tả tình huống của bạn"
 ```
 
-| Lệnh | Tác dụng |
-| --- | --- |
-| `doctor` | Kiểm tra cài đặt và các renderer |
-| `demo <thư-mục>` | Tạo một sơ đồ demo |
-| `guide "<mô tả>"` | Gợi ý loại sơ đồ phù hợp |
-| `examples` | Liệt kê các file ví dụ có sẵn |
-| `validate <loại> <file.json>` | Chỉ kiểm tra file nguồn |
-| `preview <loại> <file.json> <out.html>` | Xem trước trực tiếp, tự cập nhật khi sửa |
-| `finalize <loại> <file.json> <out.html> --json` | Kiểm tra đầy đủ và xuất bản cuối |
-| `compare architecture <cũ.json> <mới.json>` | So sánh kiến trúc trước và sau |
+| Lệnh | Tác dụng | Nhóm |
+| --- | --- | --- |
+| `doctor` | Kiểm tra cài đặt và các renderer | Khám phá |
+| `demo [thư-mục]` | Tạo một sơ đồ demo | Khám phá |
+| `examples` | In đường dẫn các file ví dụ có sẵn | Khám phá |
+| `guide "<mô tả>"` | Gợi ý loại sơ đồ kèm prompt mẫu | Khám phá |
+| `brands [tên]` | Tra cứu logo có sẵn | Khám phá |
+| `brands capture <url>` | Lấy logo từ một website | Khám phá |
+| `finalize <loại> <in.json> <out.html>` | Lệnh chính: kiểm tra đầy đủ rồi xuất {good:Nên dùng} | Tạo |
+| `deliver <loại> <in.json> [out.html]` | Render an toàn kèm biên nhận; `--open` để mở | Tạo |
+| `render <loại> <in.json> [out.html]` | Chỉ render, không có biên nhận {caution:Không kiểm tra} | Tạo |
+| `preview <loại> <in.json> [out.html]` | Server cục bộ, tự render lại khi sửa file | Tạo |
+| `compare architecture <cũ.json> <mới.json>` | So sánh kiến trúc trước và sau | Tạo |
+| `patch explainer <trang.html> <panel-id> <panel.md> <out.html>` | Thay một panel của trang explainer | Tạo |
+| `migrate workflow <cũ.json> <mới.json> --to-schema 2` | Chuyển workflow từ schema v1 sang v2 | Tạo |
+| `validate <loại> <in.json>` | Chỉ kiểm tra file nguồn | Kiểm tra |
+| `inspect architecture <in.json>` | In toạ độ và kích thước node đã tính | Kiểm tra |
+| `check <out.html>` | Kiểm tra lại HTML đã xuất | Kiểm tra |
+| `browser-check <out.html>` | Kiểm tra bằng Chrome headless | Kiểm tra |
+| `visual-check <out.html>` | Như `browser-check` và chụp ảnh sáng/tối | Kiểm tra |
 
-Thêm `--quality showcase` để kiểm tra chất lượng trình bày chặt hơn, hoặc `standard` cho sơ đồ dày.
+@facts
+| `--quality showcase\|standard` | Mức kiểm tra trình bày; `standard` cho sơ đồ dày |
+| `--repo-root <path>` | Dẫn nguồn tới file và dòng trong repo thật |
+| `--json` | In kết quả dạng JSON |
+| `--out-dir <dir>` | Nơi ghi biên nhận và ảnh chụp |
+| `--require-provenance` | Đòi biên nhận từ `deliver` hoặc `finalize` |
+| `--writing warn\|strict\|off` | Mức kiểm tra văn phong cho explainer |
+
+Nếu layout cũ vi phạm luật v2, `migrate workflow` sẽ từ chối; khi đó cần sửa file trước. Lệnh `inspect` chỉ hỗ trợ loại `architecture`.
 
 ## Cấu hình những gì trong file nguồn? {#config}
 

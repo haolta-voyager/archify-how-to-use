@@ -7,13 +7,13 @@
   "quality": "showcase",
   "specification": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
-    "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
-    "bytes": 6527
+    "sha256": "810be825d185d813f1939267428c6f82425a32a822a0d51bb17b3eefc0faf2b6",
+    "bytes": 8090
   },
   "artifact": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
-    "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
-    "bytes": 552146
+    "sha256": "242161edc7d04918c76df54a6178469552ab31207dab851a84be0025cabc6f12",
+    "bytes": 570572
   },
   "gates": {
     "validate": "pass",
@@ -31,8 +31,18 @@
     "receipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.finalize.json",
     "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.finalize-summary.json"
   },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-10-21T15:13:50.194Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
   "visualReview": "not-requested",
-  "durationMs": 3532,
+  "durationMs": 2476,
   "browserCheck": {
     "requested": false,
     "ran": false
