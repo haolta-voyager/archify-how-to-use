@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "explainer",
+  "quality": "showcase",
+  "startedAt": "2026-10-21T15:13:14.728Z",
+  "specification": {
+    "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
+    "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
+    "bytes": 6527
+  },
+  "artifact": {
+    "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+    "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
+    "bytes": 552146
+  },
+  "stages": {
+    "browser-check": {
+      "status": "not-run",
+      "execution": "not-requested"
+    },
+    "validate": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": null,
+      "execution": "embedded-in-deliver",
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "explainer",
+        "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
+        "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+        "--quality",
+        "showcase",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "ok": true,
+        "command": "validate",
+        "specification": {
+          "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
+          "bytes": 6527
+        },
+        "validation": {
+          "checksPassed": 4,
+          "checkCount": 4,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        }
+      }
+    },
+    "deliver": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 1924,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
+        "deliver",
+        "explainer",
+        "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
+        "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+        "--quality",
+        "showcase",
+        "--json"
+      ],
+      "receipt": {
+        "schemaVersion": 1,
+        "receiptId": "3f73b8d0-d8ab-4085-91ba-4c2c34cac680",
+        "ok": true,
+        "command": "deliver",
+        "type": "explainer",
+        "input": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\candidate.archify.md",
+        "output": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+        "explainer": {
+          "preparedSha256": "9ea781158c5d15b412220cc36ce0e7326b902d435f27726f1aab421aa6c85947",
+          "dependencies": [
+            {
+              "kind": "diagram-spec",
+              "id": "usage-flow",
+              "inline": true,
+              "sha256": "cbcbe6f6a7d0676457ffbc7083b823e52b28f5834197e1c2967ef7bd90ee7405",
+              "bytes": 1480
+            }
+          ]
+        },
+        "specification": {
+          "sha256": "a6dfc7c65e02e7fdc9dd758aa27cba7164c6835e57b54b37a6b958ab90ef718e",
+          "bytes": 6527
+        },
+        "artifact": {
+          "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
+          "bytes": 552146
+        },
+        "validation": {
+          "checksPassed": 4,
+          "checkCount": 4,
+          "compositionProfile": "showcase",
+          "compositionStatus": "pass",
+          "errors": 0,
+          "warnings": 0
+        },
+        "update": {
+          "status": "unavailable",
+          "installedVersion": null,
+          "availableVersion": null,
+          "releaseNotes": null,
+          "checkedAt": null,
+          "source": null,
+          "noticeRequired": false,
+          "noticeText": null,
+          "reason": "disabled"
+        }
+      }
+    },
+    "check": {
+      "status": "pass",
+      "exitCode": 0,
+      "durationMs": 702,
+      "command": [
+        "C:\\Program Files\\nodejs\\node.exe",
+        "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
+        "check",
+        "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+        "--require-provenance"
+      ],
+      "receipt": {
+        "ok": true,
+        "file": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.html",
+        "family": "explainer",
+        "artifact": {
+          "sha256": "c71b998e1dd146846608b0bdd65e94fbf242cbfbc07343ee4ec0691ce58d71b6",
+          "bytes": 552146
+        },
+        "checks": [
+          {
+            "name": "explainer_structure",
+            "ok": true,
+            "details": [
+              "71 unique DOM IDs"
+            ]
+          },
+          {
+            "name": "explainer_payload_identity",
+            "ok": true,
+            "details": []
+          },
+          {
+            "name": "explainer_dependencies",
+            "ok": true,
+            "details": [
+              "1 frozen dependencies"
+            ]
+          },
+          {
+            "name": "explainer_native_diagrams",
+            "ok": true,
+            "details": [
+              "usage-flow: pass"
+            ]
+          }
+        ],
+        "composition": {
+          "schemaVersion": 1,
+          "profile": "showcase",
+          "status": "pass",
+          "summary": {
+            "errors": 0,
+            "warnings": 0
+          },
+          "issues": [],
+          "nativeDiagrams": [
+            {
+              "id": "usage-flow",
+              "receipt": {
+                "ok": true,
+                "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\archify-explainer-check-Y4kvit\\child.html",
+                "artifact": {
+                  "sha256": "3c619ea8397079e2aa6b07cfe8fb1a017eb373b38dc00a6ec23a39779f1b8088",
+                  "bytes": 814426
+                },
+                "checks": [
+                  {
+                    "name": "single_svg",
+                    "ok": true,
+                    "details": [
+                      "found 1 <svg> block(s)"
+                    ]
+                  },
+                  {
+                    "name": "finite_svg",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "orthogonal_arrows",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "label_route_clearance",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "relationship_crossings",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "relationship_corridors",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "container_border_runs",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "route_rhythm",
+                    "ok": true,
+                    "details": []
+                  },
+                  {
+                    "name": "legend_clearance",
+                    "ok": true,
+                    "details": []
+                  }
+                ],
+                "composition": {
+                  "schemaVersion": 1,
+                  "profile": "showcase",
+                  "status": "pass",
+                  "summary": {
+                    "errors": 0,
+                    "warnings": 0
+                  },
+                  "metrics": {
+                    "properCrossings": 0,
+                    "resolvedCrossovers": 0,
+                    "ambiguousCorridors": 0,
+                    "arrowheadCollisions": 0,
+                    "containerBorderRuns": 0,
+                    "labelRouteClearanceIssues": 0,
+                    "labelCanvasOverflowIssues": 0,
+                    "minLabelRouteClearance": 22,
+                    "desktopReadabilityIssues": 0,
+                    "viewportHeightIssues": 0,
+                    "minProjectedNodeTextPx": 8,
+                    "maxBends": 0,
+                    "routesOverSuggestedBends": 0,
+                    "maxStretch": 1,
+                    "routesOverSuggestedStretch": 0,
+                    "minSegmentPx": 8,
+                    "minInteriorSegmentPx": null,
+                    "shortSegmentCount": 5,
+                    "shortEndpointSegmentCount": 5,
+                    "shortInteriorSegmentCount": 0,
+                    "microSegmentCount": 0
+                  },
+                  "suggestedLimits": {
+                    "bendsPerRelationship": 2,
+                    "stretch": 1.35,
+                    "segmentPx": 16,
+                    "microSegmentPx": 8
+                  },
+                  "routeReview": {
+                    "crossings": [],
+                    "detours": []
+                  },
+                  "leadingSpace": {
+                    "measured": false,
+                    "reviewSuggested": false
+                  },
+                  "desktopReadability": {
+                    "budgetBasis": "legacy-930",
+                    "readerContract": "declared-wide-v1",
+                    "availableDiagramWidth": 930,
+                    "actualBudgetPx": 930,
+                    "limit": "legacy",
+                    "requestedTargetPx": null,
+                    "requestedTargetMet": null,
+                    "hardFloorPx": 6,
+                    "hardFloorMet": true,
+                    "minimumOwner": {
+                      "kind": "edge",
+                      "id": "fix-to-finalize-1",
+                      "from": "fix",
+                      "to": "finalize"
+                    },
+                    "minimumSourceTextPx": 8,
+                    "minimumProjectedTextPx": 8,
+                    "semanticTextCount": 10
+                  },
+                  "issues": []
+                }
+              }
+            }
+          ]
+        },
+        "diagnostics": [],
+        "provenance": "current",
+        "deliveryReceiptId": "3f73b8d0-d8ab-4085-91ba-4c2c34cac680"
+      }
+    }
+  },
+  "browserCheck": {
+    "requested": false,
+    "ran": false
+  },
+  "diagnostics": [],
+  "evidence": {
+    "receipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.finalize.json",
+    "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-huong-dan-archify-20261021-221243\\huong-dan-archify.finalize-summary.json"
+  },
+  "visualReview": "not-requested",
+  "finishedAt": "2026-10-21T15:13:18.261Z",
+  "durationMs": 3532,
+  "update": {
+    "status": "unavailable",
+    "installedVersion": null,
+    "availableVersion": null,
+    "releaseNotes": null,
+    "checkedAt": null,
+    "source": null,
+    "noticeRequired": false,
+    "noticeText": null,
+    "reason": "timeout"
+  }
+}
