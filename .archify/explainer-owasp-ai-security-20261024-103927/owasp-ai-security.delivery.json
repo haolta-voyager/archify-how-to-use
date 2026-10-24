@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "72de1194-3925-4527-b927-e3c16460d4fe",
+  "status": "current",
+  "command": "deliver",
+  "type": "explainer",
+  "input": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\candidate.archify.md",
+  "output": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
+  "specification": {
+    "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
+    "bytes": 15130
+  },
+  "artifact": {
+    "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
+    "bytes": 640883
+  },
+  "explainer": {
+    "preparedSha256": "46ce82f9671746dfc131b37b1830a52188365aa3b1c040a628aa604ce57d8548",
+    "dependencies": [
+      {
+        "kind": "diagram-spec",
+        "id": "ai-surface",
+        "inline": true,
+        "sha256": "a93e4e85bec50b6a2678105a55088fc76960d7da92c139da004522387483e7fd",
+        "bytes": 1599
+      }
+    ]
+  }
+}

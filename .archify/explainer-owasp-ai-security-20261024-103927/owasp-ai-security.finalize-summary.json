@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "explainer",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\candidate.archify.md",
+    "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
+    "bytes": 15130
+  },
+  "artifact": {
+    "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
+    "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
+    "bytes": 640883
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "not-run"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.finalize.json",
+    "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.finalize-summary.json"
+  },
+  "visualReview": "not-requested",
+  "durationMs": 2166,
+  "browserCheck": {
+    "requested": false,
+    "ran": false
+  }
+}
