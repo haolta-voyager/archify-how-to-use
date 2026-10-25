@@ -2,6 +2,8 @@
 
 > 📄 **Bản trực quan (có sơ đồ tương tác):** [.archify/explainer-huong-dan-archify-20261021-221243/huong-dan-archify.html](.archify/explainer-huong-dan-archify-20261021-221243/huong-dan-archify.html). Trang này được tạo bằng chính Archify, mở bằng trình duyệt để xem.
 
+> 🚀 **Trang seminar AI Security:** xem cách deploy ở mục [Trang seminar AI Security](#trang-seminar-ai-security-deploy-lên-vercel).
+
 [Archify](https://github.com/tt-a1i/archify) là skill cho AI agent (Claude Code, Cursor, Codex CLI, OpenCode). Nó biến mô tả, câu hỏi, kế hoạch hoặc codebase thành **một file HTML tự chứa** có sơ đồ tương tác (theme sáng/tối, animation, xuất PNG/SVG/WebM).
 
 ## Cài đặt trên máy này
@@ -144,3 +146,45 @@ Sau khi nâng Node, mở lại VS Code để terminal nhận bản mới.
 - [ ] `node $A doctor` báo `Archify is ready.`
 - [ ] Mở thử `archify-demo\archify-demo.html`
 - [ ] Yêu cầu Claude vẽ một sơ đồ và mở file trong `.archify/`
+
+## Trang seminar AI Security (deploy lên Vercel)
+
+Thư mục được deploy là [`.archify/explainer-owasp-ai-security-20261024-103927/deploy/`](.archify/explainer-owasp-ai-security-20261024-103927/deploy/). Thư mục này đã được link với project Vercel `owasp_seminar` (thông tin link nằm trong `deploy/.vercel/`). Bản production chạy ở <https://owaspseminar.vercel.app>.
+
+| File | Nội dung |
+| --- | --- |
+| `index.html` | Mục lục, dẫn đến 3 trang con |
+| `owasp.html` | Ba bộ OWASP Top 10 cho AI (do Archify tạo) |
+| `outline.html` | Dàn ý và các điểm quan trọng của bài thuyết trình |
+| `demo.html` | Trang demo (chưa làm) |
+| `site.css`, `site.js` | Style và nút sáng/tối dùng chung cho 3 trang mới |
+
+### Deploy
+
+```powershell
+cd .archify\explainer-owasp-ai-security-20261024-103927\deploy
+vercel            # bản preview, trả về một URL riêng để xem thử
+vercel --prod     # đưa lên production (owaspseminar.vercel.app)
+```
+
+Đây là site tĩnh nên không cần build. Vercel phục vụ thẳng các file HTML.
+
+> ⚠️ Luôn chạy `vercel` **bên trong thư mục `deploy/`**. Thư mục gốc của repo cũng có một `.vercel/` link tới cùng project. Nếu chạy ở gốc, Vercel sẽ upload cả repo và site sẽ không có `index.html` đúng.
+
+### Lần đầu trên máy khác
+
+```powershell
+npm i -g vercel                         # cài CLI (máy này đang dùng v58.5.1)
+vercel login
+cd .archify\explainer-owasp-ai-security-20261024-103927\deploy
+vercel link --project owasp_seminar     # link lại thư mục với project có sẵn
+vercel --prod
+```
+
+`.vercel/` và `.env*` đã nằm trong `.gitignore`, không commit hai thứ này.
+
+### Sửa nội dung
+
+- Outline: sửa trực tiếp `outline.html`, rồi chạy lại `vercel --prod`.
+- Trang OWASP: được tạo bằng Archify. Nếu tạo lại bằng Archify, copy file HTML mới đè lên `deploy/owasp.html`, rồi chèn lại link `← Mục lục` ngay sau thẻ `<body>`.
+- Thêm trang mới: dùng `site.css` và `site.js` như `demo.html`, rồi thêm link vào thanh nav của các trang và vào thẻ mục lục trong `index.html`.

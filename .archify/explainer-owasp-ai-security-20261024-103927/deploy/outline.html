@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Dàn ý và các điểm quan trọng của seminar bảo mật khi dùng AI và AI agent năm 2026.">
+<title>Seminar Outline</title>
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+<style>
+.jump{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.jump a{font-size:13px;padding:4px 10px;border-radius:999px;border:1px solid var(--rule);background:var(--panel);color:var(--secondary);text-decoration:none}
+.jump a:hover{border-color:var(--accent);color:var(--accent-ink)}
+section[id]{scroll-margin-top:64px}
+
+.big3{counter-reset:b}
+.big3 .card{position:relative;padding-top:46px;font-size:17px;font-weight:600}
+.big3 .card::before{counter-increment:b;content:counter(b);position:absolute;top:14px;left:20px;width:24px;height:24px;border-radius:6px;background:var(--accent);color:var(--panel);font-size:13px;display:grid;place-items:center}
+
+.msgs{width:100%;border-collapse:collapse;font-size:14.5px}
+.msgs td{padding:10px 12px;border-top:1px solid var(--rule);vertical-align:top}
+.msgs tr:first-child td{border-top:0}
+.msgs td:first-child{white-space:nowrap;font-weight:600;width:1%}
+.msgs a{text-decoration:none;color:inherit}
+.msgs a:hover{color:var(--accent-ink)}
+
+.concept h3{font-size:16px;margin-bottom:8px}
+.concept p,.concept li{font-size:14.5px;color:var(--secondary)}
+
+.trifecta{display:flex;justify-content:center;margin:6px 0 12px}
+.trifecta svg{width:100%;max-width:300px;height:auto}
+.trifecta circle{fill-opacity:.14;stroke-width:1.5}
+.trifecta text{font:600 11px var(--sans);fill:var(--ink)}
+
+.bar{display:flex;height:40px;border-radius:8px;overflow:hidden;border:1px solid var(--rule)}
+.bar a{display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;text-decoration:none;min-width:0;overflow:hidden;white-space:nowrap}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 18px;margin-top:14px;font-size:14px}
+.legend a{display:flex;align-items:center;gap:8px;color:var(--secondary);text-decoration:none}
+.legend a:hover{color:var(--accent-ink)}
+.legend i{width:12px;height:12px;border-radius:3px;flex:none}
+.legend b{margin-left:auto;font-family:var(--mono);font-weight:600;color:var(--muted)}
+.c1{background:#6a707c}.c2{background:#2457d6}.c3{background:#b26a00}.c4{background:#6a4fc8}.c5{background:#13834b}.c6{background:#8a8f99}.c7{background:#0e7c86}
+
+.roles .card h3{font-size:16px;margin:6px 0 8px}
+.roles .who{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.roles .r1 .who{color:var(--caution)}.roles .r2 .who{color:var(--violet)}
+.roles .r1{border-top:3px solid var(--caution)}.roles .r2{border-top:3px solid var(--violet)}
+
+.part{margin-top:18px}
+.part-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-bottom:14px}
+.part-head .n{font-family:var(--mono);font-weight:700;color:var(--muted)}
+.part-head h2{font-size:20px}
+.part-head .min{margin-left:auto;font-size:13px;font-weight:600;padding:2px 10px;border-radius:999px;background:var(--sunk);color:var(--secondary);border:1px solid var(--rule)}
+.subs{display:grid;gap:14px 22px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.subs h3{font-size:15px;margin-bottom:6px;color:var(--ink)}
+.subs li{font-size:14.5px;color:var(--secondary)}
+.stripe-1{border-left:4px solid #6a707c}.stripe-2{border-left:4px solid #2457d6}.stripe-3{border-left:4px solid #b26a00}.stripe-4{border-left:4px solid #6a4fc8}.stripe-5{border-left:4px solid #13834b}.stripe-6{border-left:4px solid #8a8f99}.stripe-7{border-left:4px solid #0e7c86}
+
+.layers{width:100%;border-collapse:collapse;font-size:14.5px}
+.layers th,.layers td{text-align:left;padding:9px 10px;border-top:1px solid var(--rule);vertical-align:top}
+.layers th{width:24%;color:var(--ink);font-weight:600}
+.layers tr:first-child th,.layers tr:first-child td{border-top:0}
+.layers td{color:var(--secondary)}
+
+.vs{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-top:4px}
+.vs div{padding:12px 14px;border-radius:8px;font-size:14.5px}
+.vs .weak{background:var(--bad-soft)}.vs .strong{background:var(--good-soft)}
+.vs b{display:block;margin-bottom:4px}
+
+.codes-wrap{overflow-x:auto}
+.codes{width:100%;border-collapse:collapse;font-size:14px;min-width:520px}
+.codes th,.codes td{text-align:left;padding:8px 10px;border-top:1px solid var(--rule);vertical-align:top}
+.codes thead th{border-top:0;font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.codes tbody th{font-weight:400}
+.codes .grp td{background:var(--sunk);font-weight:600;font-size:13px}
+
+.check .card h3{font-size:15px;margin-bottom:10px}
+.check ul{list-style:none;padding:0}
+.check li{position:relative;padding-left:24px;font-size:14.5px;color:var(--secondary)}
+.check li::before{content:"";position:absolute;left:0;top:.3em;width:14px;height:14px;border:1.5px solid var(--good);border-radius:4px}
+
+.faq details{border-top:1px solid var(--rule);padding:10px 0}
+.faq details:first-of-type{border-top:0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{margin-top:8px;color:var(--secondary);font-size:14.5px}
+.note{font-size:12.5px;color:var(--muted);margin-bottom:6px}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="wrap">
+  <a class="brand" href="index.html">AI Security · Seminar</a>
+  <nav class="topnav" aria-label="Trang">
+    <a href="index.html">Mục lục</a>
+    <a href="owasp.html">OWASP</a>
+    <a href="outline.html" aria-current="page">Outline</a>
+    <a href="demo.html">Demo</a>
+  </nav>
+  <button class="theme-btn" type="button" data-theme-btn>◐</button>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Phần 2 · Outline bài thuyết trình</div>
+    <h1>Bảo mật khi dùng AI và AI agent: developer cần chú ý gì năm 2026</h1>
+    <p class="lede">Khung sườn seminar, đi từ tổng quan đến chi tiết. Đọc phần "Điểm quan trọng" trước để nắm cái cần nói, sau đó xem chi tiết từng phần.</p>
+    <div class="meta">
+      <span class="chip">👥 Backend, frontend, fullstack, DevOps</span>
+      <span class="chip">⏱ ~75 phút trình bày + 15 phút hỏi đáp</span>
+      <span class="chip">🧭 7 phần, 2 khối chính</span>
+    </div>
+    <nav class="jump" aria-label="Trong trang">
+      <a href="#diem-chinh">Điểm quan trọng</a>
+      <a href="#thoi-gian">Thời gian</a>
+      <a href="#hai-vai">Hai vai</a>
+      <a href="#mo-dau">1 Mở đầu</a>
+      <a href="#tong-quan">2 Tổng quan</a>
+      <a href="#khoi-1">3 Khối một</a>
+      <a href="#khoi-2">4 Khối hai</a>
+      <a href="#phong-thu">5 Phòng thủ</a>
+      <a href="#chuan-muc">6 Chuẩn mực</a>
+      <a href="#ket-thuc">7 Kết thúc</a>
+      <a href="#ma-owasp">Mã OWASP</a>
+      <a href="#phu-luc">Phụ lục</a>
+    </nav>
+  </section>
+
+  <!-- KEY POINTS -->
+  <section class="section" id="diem-chinh">
+    <h2>Điểm quan trọng của bài</h2>
+    <p class="sub">Nếu khán giả chỉ nhớ một trang, đây là trang đó.</p>
+
+    <div class="callout"><strong>Thông điệp xuyên suốt:</strong> mọi thứ model đọc được đều có thể là lệnh của kẻ tấn công, nên phải <strong>giới hạn những gì agent làm được</strong> thay vì chỉ cố lọc những gì nó đọc.</div>
+
+    <h3 style="font-size:16px;margin:24px 0 12px">Ba thông điệp chốt</h3>
+    <div class="grid g3 big3">
+      <div class="card">Mọi thứ model đọc đều có thể là lệnh.</div>
+      <div class="card">Giới hạn quyền của agent quan trọng hơn lọc input.</div>
+      <div class="card">Coding agent trên máy bạn cũng là một bề mặt tấn công.</div>
+    </div>
+
+    <h3 style="font-size:16px;margin:24px 0 12px">Bốn ý cần giải thích rõ</h3>
+    <div class="grid g2">
+      <div class="card concept">
+        <h3>1 · Vì sao AI khác phần mềm truyền thống</h3>
+        <ul>
+          <li><b>Không tách được lệnh và dữ liệu.</b> SQL có prepared statement, LLM thì mọi văn bản nằm chung một ngữ cảnh.</li>
+          <li><b>Không tất định.</b> Cùng input có thể cho output khác, khó test kiểu cũ.</li>
+          <li><b>Agent có "tay chân".</b> Lỗi thành hành động thật, không dừng ở câu trả lời sai.</li>
+          <li><b>Bề mặt tấn công lan sang dữ liệu.</b> Email, web, PDF, issue, README đều có thể chứa lệnh.</li>
+        </ul>
+      </div>
+      <div class="card concept">
+        <h3>2 · Lethal trifecta</h3>
+        <div class="trifecta" aria-hidden="true">
+          <svg viewBox="0 0 300 220">
+            <circle cx="110" cy="80" r="64" fill="var(--accent)" stroke="var(--accent)"/>
+            <circle cx="190" cy="80" r="64" fill="var(--violet)" stroke="var(--violet)"/>
+            <circle cx="150" cy="142" r="64" fill="var(--bad)" stroke="var(--bad)"/>
+            <text x="86" y="62" text-anchor="middle">Dữ liệu</text><text x="86" y="76" text-anchor="middle">riêng tư</text>
+            <text x="214" y="62" text-anchor="middle">Nội dung</text><text x="214" y="76" text-anchor="middle">không tin cậy</text>
+            <text x="150" y="180" text-anchor="middle">Kênh gửi ra ngoài</text>
+            <text x="150" y="112" text-anchor="middle" style="fill:var(--bad);font-size:10px">⚠</text>
+          </svg>
+        </div>
+        <p>Agent nguy hiểm khi có <b>cùng lúc cả ba</b>. Cắt ít nhất một trong ba là cách giới hạn thiệt hại chắc chắn nhất.</p>
+      </div>
+      <div class="card concept">
+        <h3>3 · Vì sao chỉ lọc là không đủ</h3>
+        <div class="vs">
+          <div class="weak"><b>Bộ lọc là xác suất</b>Kẻ tấn công chỉ cần thắng một lần. Dùng để giảm tần suất.</div>
+          <div class="strong"><b>Kiến trúc là tất định</b>Tool không tồn tại thì không thể bị lạm dụng. Dùng để giới hạn thiệt hại.</div>
+        </div>
+      </div>
+      <div class="card concept">
+        <h3>4 · Câu hỏi thiết kế cốt lõi</h3>
+        <p>Hãy <b>giả định prompt injection sẽ thành công</b>, rồi hỏi: khi đó agent làm được gì?</p>
+        <p style="margin-top:10px">Bảo mật agent chủ yếu là <b>bài toán phân quyền</b>, không phải bài toán viết prompt.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:16px;margin:24px 0 12px">Thông điệp của từng phần</h3>
+    <div class="card" style="padding:6px 8px">
+      <table class="msgs">
+        <tr><td><a href="#tong-quan">2 · Tổng quan</a></td><td>AI không tạo ra loại lỗi hoàn toàn mới, nhưng biến dữ liệu thành mã thực thi và trao cho nó quyền hành động.</td></tr>
+        <tr><td><a href="#khoi-1">3 · Khối một</a></td><td>Coding agent của bạn là một đồng nghiệp rất nhanh nhưng dễ bị lừa. Đừng đưa nó chìa khóa production.</td></tr>
+        <tr><td><a href="#khoi-2">4 · Khối hai</a></td><td>Khi thiết kế, hãy giả định prompt injection sẽ thành công và hỏi: khi đó agent làm được gì?</td></tr>
+        <tr><td><a href="#phong-thu">5 · Phòng thủ</a></td><td>Bảo mật agent chủ yếu là bài toán phân quyền, không phải bài toán viết prompt.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- TIMING -->
+  <section class="section" id="thoi-gian">
+    <h2>Phân bổ thời gian</h2>
+    <p class="sub">Tổng các phần trong dàn ý là 77 phút, chưa tính 15 phút hỏi đáp. Khối hai dài nhất vì có demo.</p>
+    <div class="card">
+      <div class="bar" role="img" aria-label="Thanh phân bổ thời gian theo phần">
+        <a class="c1" style="flex:8" href="#mo-dau" title="Mở đầu, 8 phút">8′</a>
+        <a class="c2" style="flex:12" href="#tong-quan" title="Tổng quan, 12 phút">12′</a>
+        <a class="c3" style="flex:15" href="#khoi-1" title="Khối một, 15 phút">15′</a>
+        <a class="c4" style="flex:20" href="#khoi-2" title="Khối hai, 20 phút">20′</a>
+        <a class="c5" style="flex:12" href="#phong-thu" title="Phòng thủ, 12 phút">12′</a>
+        <a class="c6" style="flex:4" href="#chuan-muc" title="Chuẩn mực, 4 phút">4′</a>
+        <a class="c7" style="flex:6" href="#ket-thuc" title="Kết thúc, 6 phút">6′</a>
+      </div>
+      <div class="legend">
+        <a href="#mo-dau"><i class="c1"></i>1 · Mở đầu<b>8′</b></a>
+        <a href="#tong-quan"><i class="c2"></i>2 · Tổng quan<b>12′</b></a>
+        <a href="#khoi-1"><i class="c3"></i>3 · Dùng AI agent<b>15′</b></a>
+        <a href="#khoi-2"><i class="c4"></i>4 · Xây sản phẩm AI<b>20′</b></a>
+        <a href="#phong-thu"><i class="c5"></i>5 · Phòng thủ<b>12′</b></a>
+        <a href="#chuan-muc"><i class="c6"></i>6 · Chuẩn mực<b>4′</b></a>
+        <a href="#ket-thuc"><i class="c7"></i>7 · Kết thúc<b>6′ + Q&amp;A</b></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO ROLES -->
+  <section class="section" id="hai-vai">
+    <h2>Cách kể chuyện: developer đứng ở hai vai</h2>
+    <p class="sub">Mỗi vai có rủi ro và cách phòng riêng, nên sau phần tổng quan bài tách thành hai khối lớn.</p>
+    <div class="grid g2 roles">
+      <div class="card r1">
+        <div class="who">Vai 1 → Khối một</div>
+        <h3>Người dùng AI để viết code</h3>
+        <p class="muted">Coding agent, chatbot, MCP. Rủi ro nằm ngay trên máy của developer: secret, quyền chạy lệnh, package.</p>
+      </div>
+      <div class="card r2">
+        <div class="who">Vai 2 → Khối hai</div>
+        <h3>Người xây sản phẩm có AI</h3>
+        <p class="muted">LLM app, RAG, agent, MCP server. Rủi ro đến người dùng cuối và dữ liệu của công ty.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAILS -->
+  <section class="section" id="chi-tiet" style="padding-bottom:0">
+    <h2>Chi tiết từng phần</h2>
+    <p class="sub">Mỗi thẻ là một phần của bài, các khối bên trong là slide hoặc nhóm slide.</p>
+  </section>
+
+  <section class="card part stripe-1" id="mo-dau">
+    <div class="part-head"><span class="n">01</span><h2>Mở đầu</h2><span class="min">8 phút</span></div>
+    <div class="subs">
+      <div><h3>Câu chuyện mở màn (chọn một)</h3><ul>
+        <li><b>EchoLeak, M365 Copilot (2025):</b> một email gửi đến, người nhận không bấm gì, Copilot tự đọc email và đẩy dữ liệu nội bộ ra ngoài qua link ảnh.</li>
+        <li><b>Extension Amazon Q (2025):</b> prompt yêu cầu xóa dữ liệu bị chèn vào bản phát hành của một coding agent.</li>
+        <li>Câu kết: nếu đó là agent trong IDE của bạn, có quyền chạy lệnh và đọc <code>.env</code>, chuyện gì sẽ xảy ra?</li>
+      </ul></div>
+      <div><h3>Khảo sát nhanh khán giả</h3><ul>
+        <li>Ai đang dùng coding agent (Claude Code, Cursor, Copilot, Codex...)?</li>
+        <li>Ai đã bật tự động chấp nhận lệnh, hoặc cài MCP server bên thứ ba?</li>
+        <li>Ai đang đưa LLM hoặc agent vào sản phẩm của công ty?</li>
+      </ul></div>
+      <div><h3>Ba điều mang về</h3><ul>
+        <li>Hiểu vì sao bảo mật AI khác bảo mật phần mềm truyền thống.</li>
+        <li>Nhận ra rủi ro trong chính công cụ AI mình dùng hằng ngày.</li>
+        <li>Có checklist để thiết kế ứng dụng AI và agent an toàn hơn ngay từ đầu.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <section class="card part stripe-2" id="tong-quan">
+    <div class="part-head"><span class="n">02</span><h2>Tổng quan: bức tranh AI security 2026</h2><span class="min">12 phút</span></div>
+    <div class="subs">
+      <div><h3>AI security là gì</h3><ul>
+        <li><b>Security of AI:</b> bảo vệ model, dữ liệu, ứng dụng, agent. <em>Trọng tâm của buổi này.</em></li>
+        <li><b>AI for security:</b> dùng AI để phòng thủ (quét lỗ hổng, phân tích log, SOC copilot).</li>
+        <li><b>Security from AI:</b> AI bị dùng để tấn công (deepfake, phishing, agent tự tấn công).</li>
+        <li>Khác <b>AI safety</b>: safety lo model gây hại ngoài ý muốn, security lo kẻ tấn công cố ý lợi dụng.</li>
+      </ul></div>
+      <div><h3>Vì sao AI khác phần mềm truyền thống</h3><ul>
+        <li>Không tách được lệnh và dữ liệu.</li>
+        <li>Hành vi không tất định.</li>
+        <li>Agent có "tay chân": đọc file, chạy lệnh, gọi API, gửi email.</li>
+        <li>Bề mặt tấn công mở rộng sang dữ liệu.</li>
+      </ul></div>
+      <div><h3>Bề mặt tấn công</h3><ul>
+        <li>Dùng sơ đồ ở <a href="owasp.html">trang OWASP</a>: người dùng, nội dung ngoài, ứng dụng LLM, kho RAG, agent, MCP server, tool/API, model, chuỗi cung ứng.</li>
+        <li>Gắn mã: injection trực tiếp <span class="tag t-llm">LLM01</span>, gián tiếp <span class="tag t-llm">LLM01</span> <span class="tag t-asi">ASI01</span>, đầu độc RAG <span class="tag t-llm">LLM08</span> <span class="tag t-asi">ASI06</span>, tool poisoning <span class="tag t-mcp">MCP03</span>.</li>
+        <li>Giới thiệu ba bộ OWASP: LLM 2025, Agentic 2026, MCP (beta).</li>
+      </ul></div>
+      <div><h3>Thực trạng</h3><ul>
+        <li>Prompt injection vẫn là nguyên nhân hàng đầu của sự cố ở agent production (OWASP, 6/2026).</li>
+        <li>Coding agent và MCP lan nhanh hơn quy trình bảo mật, sinh ra shadow AI và shadow MCP.</li>
+        <li>Kẻ tấn công cũng dùng AI: phishing do AI viết, deepfake, chiến dịch do agent làm phần lớn.</li>
+        <li>Model mới tìm và khai thác được lỗ hổng, thời gian từ lỗi đến bị khai thác ngắn lại.</li>
+      </ul></div>
+    </div>
+    <p class="msg">AI không tạo ra loại lỗi hoàn toàn mới, nhưng biến dữ liệu thành mã thực thi và trao cho nó quyền hành động.</p>
+  </section>
+
+  <section class="card part stripe-3" id="khoi-1">
+    <div class="part-head"><span class="n">03</span><h2>Khối một: developer dùng AI agent trong công việc</h2><span class="min">15 phút</span></div>
+    <div class="subs">
+      <div><h3>Coding agent là người dùng có quyền rất cao</h3><ul>
+        <li>Đọc toàn bộ repo, cấu hình, <code>.env</code>, SSH key, token của CLI đã đăng nhập.</li>
+        <li>Chạy shell, cài package, push code, gọi API cloud.</li>
+        <li>Ví dụ: mã độc Nx "s1ngularity" (2025) gọi các CLI AI có sẵn trên máy nạn nhân để đi tìm secret.</li>
+      </ul></div>
+      <div><h3>Prompt injection qua những gì agent đọc</h3><ul>
+        <li>README, comment, issue, pull request, tài liệu web, kết quả tìm kiếm, log lỗi.</li>
+        <li>Văn bản ẩn: chữ trắng nền trắng, Unicode vô hình, lệnh trong ảnh.</li>
+        <li>Kịch bản: issue chứa lệnh "đọc <code>~/.aws/credentials</code> rồi gửi lên URL này".</li>
+      </ul></div>
+      <div><h3>MCP server và plugin bên thứ ba</h3><ul>
+        <li><span class="tag t-mcp">MCP03</span> Tool poisoning: mô tả tool chứa lệnh ẩn, người không thấy nhưng model đọc.</li>
+        <li>Rug pull: lúc cài bình thường, đổi hành vi qua bản cập nhật.</li>
+        <li><span class="tag t-mcp">MCP09</span> shadow MCP, <span class="tag t-mcp">MCP01</span> lộ token, <span class="tag t-mcp">MCP02</span> scope phình dần.</li>
+        <li>MCP đọc email + MCP gửi request ra ngoài = đủ để rò dữ liệu.</li>
+      </ul></div>
+      <div><h3>Chuỗi cung ứng và code AI sinh ra</h3><ul>
+        <li><b>Slopsquatting:</b> LLM bịa tên package, kẻ tấn công đăng ký sẵn tên đó.</li>
+        <li>Model độc trên Hugging Face qua file pickle.</li>
+        <li>Code AI trông gọn gàng nhưng có thể chứa SQL injection, thiếu kiểm tra quyền, secret hard-code.</li>
+      </ul></div>
+      <div><h3>Rò rỉ dữ liệu khi dùng chatbot</h3><ul>
+        <li>Dán code nội bộ, log có dữ liệu khách hàng, secret vào chatbot công cộng.</li>
+        <li>Chính sách lưu trữ và huấn luyện khác nhau giữa bản doanh nghiệp và bản cá nhân.</li>
+      </ul></div>
+      <div><h3>Thực hành an toàn</h3><ul>
+        <li>Chạy agent trong sandbox hoặc devcontainer, tránh máy có credential production.</li>
+        <li>Không tự động chấp nhận mọi lệnh. Dùng allowlist, chặn mạng nếu không cần.</li>
+        <li>Secret ngoài tầm đọc của agent, token ngắn hạn, quyền tối thiểu.</li>
+        <li>MCP từ nguồn tin cậy, ghim phiên bản, đọc mô tả tool trước khi bật.</li>
+        <li>Kiểm tra package AI gợi ý, review diff như code của đồng nghiệp mới.</li>
+      </ul></div>
+    </div>
+    <p class="msg">Coding agent của bạn là một đồng nghiệp rất nhanh nhưng dễ bị lừa. Đừng đưa nó chìa khóa production.</p>
+  </section>
+
+  <section class="card part stripe-4" id="khoi-2">
+    <div class="part-head"><span class="n">04</span><h2>Khối hai: developer xây sản phẩm có AI</h2><span class="min">20 phút</span></div>
+    <div class="subs">
+      <div><h3>OWASP LLM Top 10 2025, góc nhìn developer</h3><ul>
+        <li><span class="tag t-llm">LLM01</span> Prompt Injection: rủi ro số một, không có cách chặn tuyệt đối.</li>
+        <li><span class="tag t-llm">LLM02</span> <span class="tag t-llm">LLM07</span> Đừng để secret hay logic phân quyền trong system prompt.</li>
+        <li><span class="tag t-llm">LLM05</span> Output của model là input không tin cậy: encode, kiểm tra trước khi render HTML, chạy SQL, gọi shell.</li>
+        <li><span class="tag t-llm">LLM06</span> Excessive Agency: model có nhiều quyền hơn mức cần.</li>
+        <li><span class="tag t-llm">LLM08</span> RAG trả tài liệu cho người không có quyền, kho bị đầu độc.</li>
+        <li><span class="tag t-llm">LLM10</span> Thiếu rate limit, hóa đơn API tăng vọt (denial of wallet).</li>
+        <li>Điểm nhanh: <span class="tag t-llm">LLM03</span> <span class="tag t-llm">LLM04</span> <span class="tag t-llm">LLM09</span>.</li>
+      </ul></div>
+      <div><h3>RAG an toàn</h3><ul>
+        <li>Phân quyền theo từng người dùng ở tầng truy xuất, không trông chờ model tự giấu tài liệu.</li>
+        <li>Mọi tài liệu vào kho là không tin cậy, nhất là tài liệu người dùng tải lên.</li>
+        <li>Ghi lại tài liệu nào đã vào ngữ cảnh của từng câu trả lời.</li>
+      </ul></div>
+      <div><h3>OWASP Agentic Top 10 2026</h3><ul>
+        <li><span class="tag t-asi">ASI01</span> chiếm mục tiêu agent, <span class="tag t-asi">ASI06</span> đầu độc bộ nhớ và ngữ cảnh.</li>
+        <li><span class="tag t-asi">ASI02</span> lạm dụng tool, <span class="tag t-asi">ASI03</span> lạm dụng danh tính và quyền. Agent dùng chung token với người dùng là rủi ro lớn.</li>
+        <li><span class="tag t-asi">ASI05</span> thực thi code ngoài ý muốn.</li>
+        <li><span class="tag t-asi">ASI07</span> giao tiếp agent không an toàn, <span class="tag t-asi">ASI08</span> lỗi lan dây chuyền, <span class="tag t-asi">ASI10</span> agent mất kiểm soát.</li>
+        <li><span class="tag t-asi">ASI09</span> người duyệt bấm đồng ý mà không đọc.</li>
+      </ul></div>
+      <div><h3>Khi tự viết MCP server</h3><ul>
+        <li><span class="tag t-mcp">MCP07</span> xác thực và phân quyền đầy đủ, không dùng một token toàn quyền cho mọi tool.</li>
+        <li><span class="tag t-mcp">MCP05</span> chống command injection khi tool nhận tham số từ model.</li>
+        <li><span class="tag t-mcp">MCP10</span> chỉ trả về dữ liệu cần thiết, <span class="tag t-mcp">MCP08</span> log và telemetry mọi lần gọi tool.</li>
+        <li>MCP Top 10 đang ở bản 0.1: tên mục ổn định, thứ tự có thể đổi.</li>
+      </ul></div>
+      <div><h3>Demo: prompt injection gián tiếp</h3><ul>
+        <li>Chatbot RAG nhỏ có tool gửi email hoặc gọi URL.</li>
+        <li>Đưa tài liệu chứa lệnh ẩn vào kho, hỏi câu bình thường, cho thấy dữ liệu bị gửi ra ngoài.</li>
+        <li>Chạy lại với một biện pháp (bỏ tool gửi ra ngoài hoặc bắt người duyệt) để thấy thiệt hại bị chặn.</li>
+        <li>Lab riêng, có sẵn video dự phòng. Chi tiết ở <a href="demo.html">trang Demo</a>.</li>
+      </ul></div>
+    </div>
+    <p class="msg">Khi thiết kế, hãy giả định prompt injection sẽ thành công và hỏi: khi đó agent làm được gì?</p>
+  </section>
+
+  <section class="card part stripe-5" id="phong-thu">
+    <div class="part-head"><span class="n">05</span><h2>Phòng thủ: nguyên tắc thiết kế</h2><span class="min">12 phút</span></div>
+    <div class="subs" style="margin-bottom:18px">
+      <div><h3>Lethal trifecta</h3><ul>
+        <li>Nguy hiểm khi có cùng lúc: dữ liệu riêng tư, nội dung không tin cậy, kênh gửi ra ngoài.</li>
+        <li>Cắt ít nhất một trong ba.</li>
+        <li><b>Bài tập với khán giả:</b> chấm agent mình đang dùng theo ba tiêu chí này.</li>
+      </ul></div>
+      <div><h3>Vì sao chỉ lọc là không đủ</h3><ul>
+        <li>Bộ lọc là xác suất, kẻ tấn công chỉ cần thắng một lần.</li>
+        <li>Kiến trúc là tất định: tool không tồn tại thì không thể bị lạm dụng.</li>
+        <li>Lọc để giảm tần suất, kiến trúc để giới hạn thiệt hại.</li>
+      </ul></div>
+    </div>
+    <h3 style="font-size:15px;margin-bottom:6px">Defense-in-depth theo tầng</h3>
+    <table class="layers">
+      <tr><th>Thiết kế</th><td>Quyền tối thiểu, tách nguồn tin cậy và không tin cậy, người duyệt cho hành động không đảo ngược được.</td></tr>
+      <tr><th>Đầu vào, đầu ra</th><td>Guardrail, bộ phân loại prompt injection, encode output, chặn render link và ảnh trỏ ra ngoài.</td></tr>
+      <tr><th>Danh tính</th><td>Mỗi agent có danh tính và token riêng, ngắn hạn, phạm vi hẹp.</td></tr>
+      <tr><th>Dữ liệu và model</th><td>Kiểm soát nguồn dữ liệu, dùng safetensors, quét file model, lập AI-BOM.</td></tr>
+      <tr><th>Hạ tầng</th><td>Sandbox, egress allowlist, rate limit, giới hạn chi phí.</td></tr>
+      <tr><th>Vận hành</th><td>Log mọi lần gọi tool, giám sát bất thường, red team prompt injection định kỳ, đưa test bảo mật vào eval.</td></tr>
+    </table>
+    <p class="msg">Bảo mật agent chủ yếu là bài toán phân quyền, không phải bài toán viết prompt.</p>
+  </section>
+
+  <section class="card part stripe-6" id="chuan-muc">
+    <div class="part-head"><span class="n">06</span><h2>Chuẩn mực và tuân thủ</h2><span class="min">4 phút</span></div>
+    <table class="layers">
+      <tr><th>OWASP Top 10</th><td>LLM, Agentic, MCP. Danh sách rủi ro để ưu tiên kiểm tra, <b>không phải</b> khung tuân thủ.</td></tr>
+      <tr><th>MITRE ATLAS</th><td>Chuỗi tấn công chi tiết, dùng cho threat modeling và red team.</td></tr>
+      <tr><th>NIST AI RMF, ISO/IEC 42001</th><td>Khung quản trị rủi ro và hệ thống quản lý AI cho tổ chức.</td></tr>
+      <tr><th>EU AI Act</th><td>Nghĩa vụ bắt buộc với hệ thống rủi ro cao từ 8/2026. Quan trọng nếu có khách hàng châu Âu.</td></tr>
+      <tr><th>Việt Nam</th><td>Luật An ninh mạng và Nghị định 13/2023 về bảo vệ dữ liệu cá nhân, áp dụng cả khi dữ liệu đi qua LLM.</td></tr>
+    </table>
+  </section>
+
+  <section class="card part stripe-7" id="ket-thuc">
+    <div class="part-head"><span class="n">07</span><h2>Kết thúc</h2><span class="min">6 phút + hỏi đáp</span></div>
+    <div class="subs">
+      <div><h3>Xu hướng cần theo dõi</h3><ul>
+        <li>Agent tự chủ hơn, chạy lâu hơn, nhiều agent phối hợp.</li>
+        <li>AI tự tìm và khai thác lỗ hổng, ở cả hai phía.</li>
+        <li>Tấn công đa phương thức qua ảnh, âm thanh, video.</li>
+        <li>Chuẩn hóa danh tính và phân quyền cho agent.</li>
+      </ul></div>
+      <div><h3>Ba thông điệp chốt</h3><ul>
+        <li>Mọi thứ model đọc đều có thể là lệnh.</li>
+        <li>Giới hạn quyền của agent quan trọng hơn lọc input.</li>
+        <li>Coding agent trên máy bạn cũng là một bề mặt tấn công.</li>
+      </ul></div>
+    </div>
+    <h3 style="font-size:15px;margin:18px 0 10px" id="checklist">Checklist mang về</h3>
+    <div class="grid g4 check">
+      <div class="card"><h3>Developer</h3><ul>
+        <li>Liệt kê tool và quyền của agent mình dùng</li>
+        <li>Chạy agent trong sandbox</li>
+        <li>Coi output của model là input không tin cậy</li>
+        <li>Kiểm tra package do AI gợi ý</li>
+      </ul></div>
+      <div class="card"><h3>Tech lead</h3><ul>
+        <li>Rà mọi agent theo lethal trifecta</li>
+        <li>Bắt buộc người duyệt cho hành động không đảo ngược</li>
+        <li>Đưa test prompt injection vào CI hoặc eval</li>
+      </ul></div>
+      <div class="card"><h3>Đội bảo mật</h3><ul>
+        <li>Lập danh mục MCP server và công cụ AI được phép</li>
+        <li>Red team prompt injection gián tiếp</li>
+        <li>Giám sát log gọi tool</li>
+      </ul></div>
+      <div class="card"><h3>Lãnh đạo</h3><ul>
+        <li>Ban hành chính sách dùng AI</li>
+        <li>Xác định hệ thống chịu EU AI Act hoặc cần ISO/IEC 42001</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- OWASP CODES -->
+  <section class="section" id="ma-owasp">
+    <h2>Các mã OWASP nhắc trong bài</h2>
+    <p class="sub">Tra nhanh khi trình bày. Chi tiết đầy đủ ở <a href="owasp.html">trang OWASP</a>.</p>
+    <div class="card codes-wrap" style="padding:8px 12px">
+      <table class="codes">
+        <thead><tr><th>Mã</th><th>Rủi ro</th><th>Nhắc ở</th></tr></thead>
+        <tbody>
+          <tr class="grp"><td colspan="3">LLM Applications Top 10 2025</td></tr>
+          <tr><th><span class="tag t-llm">LLM01</span></th><td>Prompt Injection</td><td>Tổng quan, Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM02</span></th><td>Sensitive Information Disclosure</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM03</span></th><td>Supply Chain</td><td>Khối hai (điểm nhanh)</td></tr>
+          <tr><th><span class="tag t-llm">LLM04</span></th><td>Data and Model Poisoning</td><td>Khối hai (điểm nhanh)</td></tr>
+          <tr><th><span class="tag t-llm">LLM05</span></th><td>Improper Output Handling</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM06</span></th><td>Excessive Agency</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM07</span></th><td>System Prompt Leakage</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM08</span></th><td>Vector and Embedding Weaknesses</td><td>Tổng quan, Khối hai</td></tr>
+          <tr><th><span class="tag t-llm">LLM09</span></th><td>Misinformation</td><td>Khối hai (điểm nhanh)</td></tr>
+          <tr><th><span class="tag t-llm">LLM10</span></th><td>Unbounded Consumption</td><td>Khối hai</td></tr>
+          <tr class="grp"><td colspan="3">Agentic Applications Top 10 2026</td></tr>
+          <tr><th><span class="tag t-asi">ASI01</span></th><td>Chiếm mục tiêu agent</td><td>Tổng quan, Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI02</span></th><td>Lạm dụng tool</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI03</span></th><td>Lạm dụng danh tính và quyền</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI05</span></th><td>Thực thi code ngoài ý muốn</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI06</span></th><td>Đầu độc bộ nhớ, ngữ cảnh</td><td>Tổng quan, Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI07</span></th><td>Giao tiếp giữa các agent không an toàn</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI08</span></th><td>Lỗi lan dây chuyền</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI09</span></th><td>Lợi dụng niềm tin của con người vào agent</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-asi">ASI10</span></th><td>Agent mất kiểm soát</td><td>Khối hai</td></tr>
+          <tr class="grp"><td colspan="3">MCP Top 10 (bản 0.1)</td></tr>
+          <tr><th><span class="tag t-mcp">MCP01</span></th><td>Token bị lộ</td><td>Khối một</td></tr>
+          <tr><th><span class="tag t-mcp">MCP02</span></th><td>Scope quyền phình dần</td><td>Khối một</td></tr>
+          <tr><th><span class="tag t-mcp">MCP03</span></th><td>Tool poisoning</td><td>Tổng quan, Khối một</td></tr>
+          <tr><th><span class="tag t-mcp">MCP05</span></th><td>Command injection</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-mcp">MCP07</span></th><td>Xác thực và phân quyền thiếu</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-mcp">MCP08</span></th><td>Thiếu log và telemetry</td><td>Khối hai</td></tr>
+          <tr><th><span class="tag t-mcp">MCP09</span></th><td>Shadow MCP server</td><td>Khối một</td></tr>
+          <tr><th><span class="tag t-mcp">MCP10</span></th><td>Trả về quá nhiều dữ liệu</td><td>Khối hai</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- APPENDIX -->
+  <section class="section" id="phu-luc">
+    <h2>Phụ lục cho người trình bày</h2>
+    <div class="grid g2" style="margin-top:14px">
+      <div class="card faq">
+        <h3 style="font-size:16px;margin-bottom:4px">Câu hỏi khán giả hay hỏi</h3>
+        <p class="note">Câu hỏi lấy từ dàn ý. Gợi ý trả lời được soạn thêm, chỉnh lại theo ý bạn.</p>
+        <details><summary>Dùng model mạnh hơn có chặn được prompt injection không?</summary>
+          <p>Giảm được tần suất nhưng không chặn tuyệt đối, vì model vẫn không tách được lệnh và dữ liệu. Vẫn phải giới hạn quyền của agent.</p></details>
+        <details><summary>Có nên cho agent quyền push lên nhánh chính không?</summary>
+          <p>Không. Cho agent mở pull request, giữ branch protection và người review, vì push lên nhánh chính là hành động khó đảo ngược.</p></details>
+        <details><summary>Dữ liệu dán vào chatbot có bị dùng để huấn luyện không?</summary>
+          <p>Tùy nhà cung cấp và gói dịch vụ: bản doanh nghiệp và bản cá nhân thường có chính sách lưu trữ, huấn luyện khác nhau. Đọc điều khoản và theo chính sách dùng AI của công ty.</p></details>
+        <details><summary>Làm sao test bảo mật cho một hệ thống không tất định?</summary>
+          <p>Đưa bộ prompt tấn công vào eval, chạy nhiều lần và đo tỷ lệ thành công. Phần phân quyền và sandbox thì tất định, test như phần mềm thường.</p></details>
+      </div>
+      <div class="grid" style="gap:16px">
+        <div class="card check">
+          <h3 style="font-size:16px;margin-bottom:10px">Chuẩn bị trước buổi</h3>
+          <ul>
+            <li>Kiểm tra lại số liệu và chi tiết từng sự cố từ nguồn gốc trước khi đưa lên slide</li>
+            <li>Chuẩn bị môi trường demo riêng và video dự phòng</li>
+            <li>Lấy sơ đồ bề mặt tấn công và bảng OWASP ở <a href="owasp.html">trang OWASP</a> làm hình minh họa</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="font-size:16px;margin-bottom:10px">Tài liệu tham khảo</h3>
+          <ul>
+            <li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications 2025</a></li>
+            <li><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">OWASP Top 10 for Agentic Applications 2026</a></li>
+            <li><a href="https://owasp.org/www-project-mcp-top-10/" target="_blank" rel="noopener">OWASP MCP Top 10</a></li>
+            <li><a href="https://atlas.mitre.org/" target="_blank" rel="noopener">MITRE ATLAS</a></li>
+            <li><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">NIST AI Risk Management Framework</a></li>
+            <li><a href="owasp.html">Trang tổng hợp OWASP cho AI Security</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap foot"><a href="index.html">← Về mục lục</a> · Nội dung tổng hợp từ tài liệu Outline trên Google Docs.</footer>
+</body>
+</html>
