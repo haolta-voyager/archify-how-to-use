@@ -187,4 +187,4 @@ vercel --prod
 
 - Outline: sửa trực tiếp `outline.html`, rồi chạy lại `vercel --prod`.
 - Trang OWASP: được tạo bằng Archify. Nếu tạo lại bằng Archify, copy file HTML mới đè lên `deploy/owasp.html`, rồi chèn lại link `← Mục lục` ngay sau thẻ `<body>`.
-- Thêm trang mới: dùng `site.css` và `site.js` như `demo.html`, rồi thêm link vào thanh nav của các trang và vào thẻ mục lục trong `index.html`.
+- Thêm trang mới: dùng `site.css`, `site.js` và hai thẻ script Vercel Analytics như `demo.html`, rồi thêm link vào thanh nav của các trang và vào thẻ mục lục trong `index.html`.
