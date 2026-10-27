@@ -42,7 +42,7 @@ section[id],article[id]{scroll-margin-top:64px}
 .legend a:hover{color:var(--accent-ink)}
 .legend i{width:12px;height:12px;border-radius:3px;flex:none}
 .legend b{margin-left:auto;font-family:var(--mono);font-weight:600;color:var(--muted)}
-.c1{background:#6a707c}.c2{background:#2457d6}.c3{background:#b26a00}.c4{background:#13834b}.c5{background:#6a4fc8}.c6{background:#c4321f}.c7{background:#0e7c86}.c8{background:#a1366e}.c9{background:#45556c}
+.c1{background:#6a707c}.c2{background:#2457d6}.c3{background:#7b5e3b}.c4{background:#b26a00}.c5{background:#13834b}.c6{background:#6a4fc8}.c7{background:#c4321f}.c8{background:#0e7c86}.c9{background:#a1366e}.c10{background:#45556c}
 
 .part{margin-top:18px}
 .part-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-bottom:6px}
@@ -53,7 +53,7 @@ section[id],article[id]{scroll-margin-top:64px}
 .subs{display:grid;gap:14px 22px;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))}
 .subs h3{font-size:15px;margin-bottom:6px}
 .subs li{font-size:14.5px;color:var(--secondary)}
-.stripe-1{border-left:4px solid #6a707c}.stripe-2{border-left:4px solid #2457d6}.stripe-3{border-left:4px solid #b26a00}.stripe-4{border-left:4px solid #13834b}.stripe-5{border-left:4px solid #6a4fc8}.stripe-6{border-left:4px solid #c4321f}.stripe-7{border-left:4px solid #0e7c86}.stripe-8{border-left:4px solid #a1366e}.stripe-9{border-left:4px solid #45556c}
+.stripe-1{border-left:4px solid #6a707c}.stripe-2{border-left:4px solid #2457d6}.stripe-3{border-left:4px solid #7b5e3b}.stripe-4{border-left:4px solid #b26a00}.stripe-5{border-left:4px solid #13834b}.stripe-6{border-left:4px solid #6a4fc8}.stripe-7{border-left:4px solid #c4321f}.stripe-8{border-left:4px solid #0e7c86}.stripe-9{border-left:4px solid #a1366e}.stripe-10{border-left:4px solid #45556c}
 .t-ast{background:var(--good-soft);color:var(--good)}
 
 .moments{display:grid;gap:12px;margin-top:4px}
@@ -110,7 +110,7 @@ pre .c{color:var(--muted)}
     <p class="lede">Khung sườn seminar cho developer có kinh nghiệm. Bài bỏ qua phần định nghĩa và lý thuyết về model, tập trung vào công cụ, cấu hình và đoạn code dev đụng tới mỗi ngày.</p>
     <div class="meta">
       <span class="chip">👥 Dev đã dùng coding agent (Claude Code, Cursor, Copilot, Codex CLI), MCP và LLM API</span>
-      <span class="chip">⏱ Khoảng 85 phút + 15 phút hỏi đáp</span>
+      <span class="chip">⏱ Khoảng 90 phút + 15 phút hỏi đáp</span>
       <span class="chip">🛠 Có demo và cấu hình mẫu</span>
     </div>
     <nav class="jump" aria-label="Trong trang">
@@ -119,13 +119,14 @@ pre .c{color:var(--muted)}
       <a href="#cach-trinh-bay">Cách trình bày</a>
       <a href="#p1">1 Mở đầu</a>
       <a href="#p2">2 Một mô hình</a>
-      <a href="#p3">3 Coding agent</a>
-      <a href="#p4">4 MCP</a>
-      <a href="#p5">5 Code do AI sinh</a>
-      <a href="#p6">6 CI/CD</a>
-      <a href="#p7">7 Ship tính năng LLM</a>
-      <a href="#p8">8 Tự viết agent</a>
-      <a href="#p9">9 Checklist</a>
+      <a href="#p3">3 Chat trên web</a>
+      <a href="#p4">4 Coding agent</a>
+      <a href="#p5">5 MCP</a>
+      <a href="#p6">6 Code do AI sinh</a>
+      <a href="#p7">7 CI/CD</a>
+      <a href="#p8">8 Ship tính năng LLM</a>
+      <a href="#p9">9 Tự viết agent</a>
+      <a href="#p10">10 Checklist</a>
       <a href="#phu-luc">Phụ lục</a>
     </nav>
   </section>
@@ -182,24 +183,26 @@ pre .c{color:var(--muted)}
       <div class="bar" role="img" aria-label="Thanh phân bổ thời gian theo phần">
         <a class="c1" style="flex:5" href="#p1" title="Mở đầu, 5 phút">5′</a>
         <a class="c2" style="flex:5" href="#p2" title="Một mô hình, 5 phút">5′</a>
-        <a class="c3" style="flex:15" href="#p3" title="Coding agent trên máy dev, 15 phút">15′</a>
-        <a class="c4" style="flex:10" href="#p4" title="MCP server, 10 phút">10′</a>
-        <a class="c5" style="flex:10" href="#p5" title="Code và dependency do AI sinh, 10 phút">10′</a>
-        <a class="c6" style="flex:8" href="#p6" title="Agent trong CI/CD, 8 phút">8′</a>
-        <a class="c7" style="flex:15" href="#p7" title="Ship tính năng có LLM, 15 phút">15′</a>
-        <a class="c8" style="flex:8" href="#p8" title="Tự viết agent hoặc MCP server, 8 phút">8′</a>
-        <a class="c9" style="flex:7" href="#p9" title="Checklist, 7 phút">7′</a>
+        <a class="c3" style="flex:5" href="#p3" title="Ngay cả khi chỉ chat trên web, 5 phút">5′</a>
+        <a class="c4" style="flex:15" href="#p4" title="Coding agent trên máy dev, 15 phút">15′</a>
+        <a class="c5" style="flex:10" href="#p5" title="MCP server, 10 phút">10′</a>
+        <a class="c6" style="flex:10" href="#p6" title="Code và dependency do AI sinh, 10 phút">10′</a>
+        <a class="c7" style="flex:8" href="#p7" title="Agent trong CI/CD, 8 phút">8′</a>
+        <a class="c8" style="flex:15" href="#p8" title="Ship tính năng có LLM, 15 phút">15′</a>
+        <a class="c9" style="flex:8" href="#p9" title="Tự viết agent hoặc MCP server, 8 phút">8′</a>
+        <a class="c10" style="flex:7" href="#p10" title="Checklist, 7 phút">7′</a>
       </div>
       <div class="legend">
         <a href="#p1"><i class="c1"></i>1 · Mở đầu<b>5′</b></a>
         <a href="#p2"><i class="c2"></i>2 · Một mô hình để nhìn rủi ro<b>5′</b></a>
-        <a href="#p3"><i class="c3"></i>3 · Coding agent trên máy dev<b>15′</b></a>
-        <a href="#p4"><i class="c4"></i>4 · MCP server và tích hợp<b>10′</b></a>
-        <a href="#p5"><i class="c5"></i>5 · Code và dependency do AI sinh<b>10′</b></a>
-        <a href="#p6"><i class="c6"></i>6 · Agent trong CI/CD<b>8′</b></a>
-        <a href="#p7"><i class="c7"></i>7 · Ship tính năng có LLM<b>15′</b></a>
-        <a href="#p8"><i class="c8"></i>8 · Tự viết agent / MCP server<b>8′</b></a>
-        <a href="#p9"><i class="c9"></i>9 · Checklist<b>7′ + Q&amp;A</b></a>
+        <a href="#p3"><i class="c3"></i>3 · Ngay cả khi chỉ chat trên web<b>5′</b></a>
+        <a href="#p4"><i class="c4"></i>4 · Coding agent trên máy dev<b>15′</b></a>
+        <a href="#p5"><i class="c5"></i>5 · MCP server và tích hợp<b>10′</b></a>
+        <a href="#p6"><i class="c6"></i>6 · Code và dependency do AI sinh<b>10′</b></a>
+        <a href="#p7"><i class="c7"></i>7 · Agent trong CI/CD<b>8′</b></a>
+        <a href="#p8"><i class="c8"></i>8 · Ship tính năng có LLM<b>15′</b></a>
+        <a href="#p9"><i class="c9"></i>9 · Tự viết agent / MCP server<b>8′</b></a>
+        <a href="#p10"><i class="c10"></i>10 · Checklist<b>7′ + Q&amp;A</b></a>
       </div>
     </div>
   </section>
@@ -228,7 +231,7 @@ pre .c{color:var(--muted)}
         <dl>
           <dt>Kịch bản</dt><dd>Issue do người ngoài tạo, cuối issue có một đoạn hướng dẫn ẩn. Agent làm theo: đọc <code>.env</code>, chạy <code>curl</code> gửi nội dung lên một URL lạ, rồi sửa issue như bình thường. Dev chỉ thấy PR sửa lỗi rất gọn.</dd>
           <dt>Câu hỏi</dt><dd>Trong chuỗi này, code của ai có bug? Không ai cả. Lỗ hổng nằm ở quyền mà ta đã cấp cho agent.</dd>
-          <dt>Dựa trên</dt><dd>GitHub MCP bị prompt injection qua issue công khai để đọc repo private (Invariant Labs, 2025). Sang 2026 cùng kiểu tấn công này đã đánh vào CI của nhiều dự án lớn (xem <a href="#p6">phần CI/CD</a>).</dd>
+          <dt>Dựa trên</dt><dd>GitHub MCP bị prompt injection qua issue công khai để đọc repo private (Invariant Labs, 2025). Sang 2026 cùng kiểu tấn công này đã đánh vào CI của nhiều dự án lớn (xem <a href="#p7">phần CI/CD</a>).</dd>
         </dl>
       </div>
     </div>
@@ -253,7 +256,35 @@ pre .c{color:var(--muted)}
   </article>
 
   <article class="card part stripe-3" id="p3">
-    <div class="part-head"><span class="n">03</span><h2>Coding agent trên máy dev</h2><span class="min">15 phút</span></div>
+    <div class="part-head"><span class="n">03</span><h2>Ngay cả khi chỉ chat trên web</h2><span class="min">5 phút</span></div>
+    <div class="subs">
+      <div><h3>Hình thức tấn công</h3><ul>
+        <li>Prompt injection gián tiếp: lệnh ẩn nằm trong file tải lên (chữ trắng, chữ cực nhỏ, metadata), trang web AI được nhờ tóm tắt hoặc tự tìm kiếm, email và tài liệu từ app đã kết nối.</li>
+        <li>Link điền sẵn prompt: URL mở chatbot với nội dung đã điền sẵn, kèm chỉ dẫn ẩn mà người dùng không nhìn thấy.</li>
+        <li>Đầu độc memory: một tài liệu độc cài chỉ dẫn vào bộ nhớ dài hạn, tiếp tục ảnh hưởng các phiên chat sau.</li>
+        <li>Lừa đảo kiểu xã hội: "dán đoạn này vào AI để mở khóa tính năng", website AI giả mạo, extension trình duyệt đọc trộm nội dung chat.</li>
+      </ul></div>
+      <div><h3>Vụ thật</h3><ul>
+        <li>Claudy Day (3/2026, Oasis Security): prompt injection vô hình qua tham số URL điền sẵn khung chat của claude.ai, kết hợp kênh rò rỉ để lấy lịch sử hội thoại từ một phiên mặc định, không cần MCP hay tool. Anthropic đã vá.</li>
+        <li>EchoLeak (M365 Copilot, 2025): một email được soạn sẵn đủ để rút dữ liệu doanh nghiệp mà người dùng không cần bấm gì.</li>
+      </ul></div>
+      <div><h3>Hậu quả và kẻ tấn công làm được gì</h3><ul>
+        <li>Chỉ chat thuần: câu trả lời bị bóp méo, chèn link phishing trông đáng tin, gợi ý lệnh hoặc package độc để người dùng tự chạy.</li>
+        <li>Có lịch sử chat, memory, file: rò rỉ code, hợp đồng, dữ liệu khách hàng, API key từng dán vào. Kênh rò thường là ảnh markdown trỏ tới URL của kẻ tấn công; dữ liệu đi ra ngay khi trình duyệt tải ảnh.</li>
+        <li>Có app kết nối hoặc quyền hành động: đọc và gửi dữ liệu nội bộ ra ngoài, gửi email, chia sẻ file, tạo lịch nhân danh người dùng.</li>
+      </ul></div>
+      <div><h3>Phòng thủ cho người dùng</h3><ul>
+        <li>Không dán secret, mật khẩu, dữ liệu khách hàng vào chat; dùng bản doanh nghiệp có chính sách dữ liệu rõ ràng.</li>
+        <li>Cẩn thận với link và file lạ khi đưa cho AI xử lý; chỉ kết nối app thật sự cần và ngắt khi không dùng.</li>
+        <li>Đọc kỹ trước khi xác nhận hành động AI đề xuất; định kỳ xem lại và xóa memory lạ.</li>
+        <li>Coi link, lệnh, tên package trong câu trả lời là lời khuyên chưa kiểm chứng.</li>
+      </ul></div>
+    </div>
+    <p class="msg">Kẻ tấn công chỉ làm được những gì chatbot của bạn được phép làm. Mỗi app kết nối, mỗi tính năng memory là thêm một cạnh trong lethal trifecta.</p>
+  </article>
+
+  <article class="card part stripe-4" id="p4">
+    <div class="part-head"><span class="n">04</span><h2>Coding agent trên máy dev</h2><span class="min">15 phút</span></div>
     <div class="subs">
       <div><h3>Agent đang có quyền gì trên máy bạn</h3><ul>
         <li>Đọc toàn bộ repo và thường cả thư mục home: <code>.env</code>, <code>~/.aws/credentials</code>, <code>~/.ssh</code>, <code>~/.npmrc</code>, token của gh, gcloud, kubectl đã đăng nhập.</li>
@@ -296,8 +327,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Coding agent là một người dùng có quyền rất cao trên máy bạn. Cấu hình quyền cho nó như cấu hình IAM cho một service.</p>
   </article>
 
-  <article class="card part stripe-4" id="p4">
-    <div class="part-head"><span class="n">04</span><h2>MCP server và tích hợp công cụ</h2><span class="min">10 phút</span></div>
+  <article class="card part stripe-5" id="p5">
+    <div class="part-head"><span class="n">05</span><h2>MCP server và tích hợp công cụ</h2><span class="min">10 phút</span></div>
     <div class="subs">
       <div><h3>Cài MCP server giống cài một dependency có quyền chạy trên máy</h3><ul>
         <li>Phần lớn cấu hình dùng <code>npx</code> hoặc <code>uvx</code> tải bản mới nhất mỗi lần chạy, không ghim phiên bản, không lockfile.</li>
@@ -319,8 +350,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Mỗi MCP server bạn thêm vào là một cạnh mới trong lethal trifecta. Hãy đếm cạnh trước khi bật.</p>
   </article>
 
-  <article class="card part stripe-5" id="p5">
-    <div class="part-head"><span class="n">05</span><h2>Code và dependency do AI sinh ra</h2><span class="min">10 phút</span></div>
+  <article class="card part stripe-6" id="p6">
+    <div class="part-head"><span class="n">06</span><h2>Code và dependency do AI sinh ra</h2><span class="min">10 phút</span></div>
     <div class="subs">
       <div><h3>Những lỗi AI hay viết ra, trông rất gọn gàng</h3><ul>
         <li>Ghép chuỗi vào SQL hoặc shell, dùng <code>eval</code> hay <code>pickle.loads</code> trên dữ liệu ngoài.</li>
@@ -342,8 +373,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Tốc độ viết code tăng không có nghĩa tốc độ review được giảm.</p>
   </article>
 
-  <article class="card part stripe-6" id="p6">
-    <div class="part-head"><span class="n">06</span><h2>AI agent trong CI/CD và GitHub</h2><span class="min">8 phút</span></div>
+  <article class="card part stripe-7" id="p7">
+    <div class="part-head"><span class="n">07</span><h2>AI agent trong CI/CD và GitHub</h2><span class="min">8 phút</span></div>
     <p class="goal">Ngày càng nhiều team chạy agent trong GitHub Actions: tự review PR, tự sửa issue, tự trả lời comment.</p>
     <div class="moments">
       <div class="moment">
@@ -360,8 +391,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Agent trong CI chạy không có ai ngồi bấm xác nhận, nên mọi giới hạn phải nằm ở cấu hình.</p>
   </article>
 
-  <article class="card part stripe-7" id="p7">
-    <div class="part-head"><span class="n">07</span><h2>Khi bạn ship tính năng có LLM</h2><span class="min">15 phút</span></div>
+  <article class="card part stripe-8" id="p8">
+    <div class="part-head"><span class="n">08</span><h2>Khi bạn ship tính năng có LLM</h2><span class="min">15 phút</span></div>
     <div class="subs">
       <div><h3>Output của model là input không tin cậy</h3><ul>
         <li>Render markdown từ LLM có thể chèn ảnh trỏ tới URL của kẻ tấn công, kèm dữ liệu trong query string. Đây là kỹ thuật của EchoLeak (M365 Copilot) và CamoLeak (GitHub Copilot Chat) năm 2025.</li>
@@ -391,8 +422,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Hãy thiết kế như thể prompt injection chắc chắn thành công, rồi đảm bảo khi đó nó không làm được gì đáng kể.</p>
   </article>
 
-  <article class="card part stripe-8" id="p8">
-    <div class="part-head"><span class="n">08</span><h2>Khi bạn tự viết agent hoặc MCP server</h2><span class="min">8 phút</span></div>
+  <article class="card part stripe-9" id="p9">
+    <div class="part-head"><span class="n">09</span><h2>Khi bạn tự viết agent hoặc MCP server</h2><span class="min">8 phút</span></div>
     <div class="subs">
       <div><h3>MCP server của chính team</h3><ul>
         <li><span class="tag t-mcp">MCP07</span> Xác thực và phân quyền: dùng OAuth theo đặc tả MCP và token theo từng người dùng, không dùng một API key chung cho mọi client.</li>
@@ -412,8 +443,8 @@ pre .c{color:var(--muted)}
     <p class="msg">Khi bạn là người viết agent, phần quyền mà model không tự giới hạn được là trách nhiệm của bạn.</p>
   </article>
 
-  <article class="card part stripe-9" id="p9">
-    <div class="part-head"><span class="n">09</span><h2>Checklist và hỏi đáp</h2><span class="min">7 phút + 15 phút hỏi đáp</span></div>
+  <article class="card part stripe-10" id="p10">
+    <div class="part-head"><span class="n">10</span><h2>Checklist và hỏi đáp</h2><span class="min">7 phút + 15 phút hỏi đáp</span></div>
     <div class="grid g2 check">
       <div class="card"><h3>Làm được ngay trong tuần này</h3><ul>
         <li>Tắt auto-approve, thêm rule deny đọc <code>.env</code> và thư mục credential, allowlist lệnh cho coding agent</li>
@@ -449,6 +480,7 @@ pre .c{color:var(--muted)}
           <thead><tr><th>Phần</th><th>Mã OWASP</th></tr></thead>
           <tbody>
             <tr><th>Mở đầu và lethal trifecta</th><td>LLM01, ASI01, MCP06</td></tr>
+            <tr><th>Ngay cả khi chỉ chat trên web</th><td>LLM01, LLM02, LLM10, ASI06, ASI09</td></tr>
             <tr><th>Coding agent trên máy dev</th><td>LLM02, LLM03, ASI02, ASI03, ASI05</td></tr>
             <tr><th>File cấu hình, skill, plugin</th><td>LLM01, ASI04, ASI06, AST01, AST02</td></tr>
             <tr><th>MCP server và tích hợp</th><td>MCP01, MCP02, MCP03, MCP04, MCP09, ASI04</td></tr>
@@ -464,7 +496,7 @@ pre .c{color:var(--muted)}
         <div class="card check">
           <h3 style="font-size:16px;margin-bottom:10px">Chuẩn bị trước buổi</h3>
           <ul>
-            <li>Đối chiếu lại chi tiết từng vụ (Nx s1ngularity, GitHub MCP, Supabase MCP, EchoLeak, CamoLeak, Clinejection, Comment and Control, ClawHavoc) với bài công bố gốc trước khi đưa lên slide</li>
+            <li>Đối chiếu lại chi tiết từng vụ (Nx s1ngularity, GitHub MCP, Supabase MCP, EchoLeak, CamoLeak, Clinejection, Comment and Control, ClawHavoc, Claudy Day) với bài công bố gốc trước khi đưa lên slide</li>
             <li>Chuẩn bị sẵn file cấu hình mẫu cho Claude Code, Cursor và Codex CLI để chiếu trực tiếp</li>
             <li>Dựng môi trường demo riêng, không dùng tài khoản hay token thật</li>
           </ul>
