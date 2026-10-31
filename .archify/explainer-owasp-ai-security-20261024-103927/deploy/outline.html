@@ -323,6 +323,25 @@ pre .c{color:var(--muted)}
         <li>Skill và plugin là lớp mới nổi năm 2026: chiến dịch ClawHavoc (2/2026) đẩy hàng trăm skill độc lên ClawHub giả làm công cụ phổ biến, kèm bước "cài đặt trước" để chạy mã đánh cắp dữ liệu. OWASP đã tách riêng lớp này thành Agentic Skills Top 10 (<span class="tag t-ast">AST01</span>–<span class="tag t-ast">AST10</span>).</li>
         <li>Thực hành: đưa các file này vào CODEOWNERS, review như review code, bật cảnh báo ký tự ẩn trong diff. Chỉ cài skill/plugin từ nguồn đã duyệt, ghim phiên bản, tắt tự cập nhật.</li>
       </ul></div>
+      <div><h3>Bản thân extension AI cũng là dependency: vụ Claude Code trên Cursor Marketplace (29/10/2026)</h3><ul>
+        <li>Chuyện gì xảy ra: bản <code>anthropic.claude-code@2.1.313</code> bị cài cắm xuất hiện trên Cursor Marketplace khoảng 11 giờ (09:27–20:35 UTC), tối đa khoảng 5.000 người dùng Cursor nhận bản này. Anthropic không build bản này; bản trên Open VSX, VS Code Marketplace và gói npm đều sạch.</li>
+        <li>Cách làm: 66 dòng chèn vào đầu <code>extension.js</code>, chạy ngay khi editor nạp extension, không cần mở chat. Nó thêm khóa SSH <code>svc-telemetry</code> vào <code>authorized_keys</code>, mở reverse tunnel <code>ssh -R</code> về máy chủ kẻ tấn công, cài persistence giả tên hệ thống (LaunchAgent <code>com.apple.sysmond</code>, scheduled task <code>SysMon</code>, cron <code>@reboot</code>), gửi tên các biến môi trường chứa KEY, TOKEN hay SECRET. Mọi lỗi đều bị nuốt nên extension vẫn chạy bình thường.</li>
+        <li>Bài học: không cần prompt injection, không dính gì tới model. Kẻ tấn công nhắm vào công cụ AI vì nó được cài khắp nơi, tự cập nhật và được tin theo thương hiệu.</li>
+        <li>Ba điểm kiểm soát hay bỏ sót:
+          <ul>
+            <li>Cùng một ID extension trên mỗi marketplace là một chuỗi cung ứng riêng, nên phải biết editor đang lấy extension từ đâu.</li>
+            <li>Mã độc chạy lúc extension được nạp, không qua install script, nên công cụ chỉ quét lúc cài sẽ không thấy.</li>
+            <li>Tunnel là kết nối đi ra, nên firewall chặn chiều vào và NAT không cứu được.</li>
+          </ul></li>
+        <li>Đã cài 2.1.313 thì coi máy là đã bị chiếm: gỡ extension không xóa được backdoor. Đổi mọi credential máy đó chạm được, làm từ một máy sạch, và nên cài lại máy.</li>
+      </ul>
+<pre><span class="c"># Kiểm tra nhanh (macOS/Linux)</span>
+grep svc-telemetry ~/.ssh/authorized_keys
+ls ~/.config/.smt* ~/Library/LaunchAgents/com.apple.sysmond.plist
+ps aux | grep -E "ssh.*-R"
+<span class="c"># Windows (PowerShell)</span>
+schtasks /query /tn SysMon</pre>
+      </div>
     </div>
     <p class="msg">Coding agent là một người dùng có quyền rất cao trên máy bạn. Cấu hình quyền cho nó như cấu hình IAM cho một service.</p>
   </article>
@@ -450,6 +469,7 @@ pre .c{color:var(--muted)}
         <li>Tắt auto-approve, thêm rule deny đọc <code>.env</code> và thư mục credential, allowlist lệnh cho coding agent</li>
         <li>Rà danh sách MCP server đang bật: ghim phiên bản, đổi sang token riêng quyền tối thiểu, tắt cái không dùng</li>
         <li>Đưa <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code> vào CODEOWNERS; rà skill/plugin đang cài, gỡ cái không rõ nguồn</li>
+        <li>Rà extension AI trong IDE: biết editor lấy extension từ marketplace nào, tắt tự cập nhật hoặc cập nhật trễ, tìm <code>svc-telemetry</code> trong <code>~/.ssh/authorized_keys</code></li>
         <li>Bật secret scanning và quét dependency cho mọi PR, kể cả PR do agent viết</li>
         <li>Rà workflow có agent trong CI: ai kích hoạt được, <code>GITHUB_TOKEN</code> có quyền gì, job có secret nào</li>
         <li>Với tính năng LLM đang chạy: kiểm tra render markdown, quyền của tool, lọc RAG theo người dùng, rate limit</li>
@@ -481,7 +501,7 @@ pre .c{color:var(--muted)}
           <tbody>
             <tr><th>Mở đầu và lethal trifecta</th><td>LLM01, ASI01, MCP06</td></tr>
             <tr><th>Ngay cả khi chỉ chat trên web</th><td>LLM01, LLM02, LLM10, ASI06, ASI09</td></tr>
-            <tr><th>Coding agent trên máy dev</th><td>LLM02, LLM03, ASI02, ASI03, ASI05</td></tr>
+            <tr><th>Coding agent trên máy dev</th><td>LLM02, LLM03, ASI02, ASI03, ASI04, ASI05</td></tr>
             <tr><th>File cấu hình, skill, plugin</th><td>LLM01, ASI04, ASI06, AST01, AST02</td></tr>
             <tr><th>MCP server và tích hợp</th><td>MCP01, MCP02, MCP03, MCP04, MCP09, ASI04</td></tr>
             <tr><th>Code và dependency do AI sinh</th><td>LLM04, LLM07, LLM10, ASI04, ASI05</td></tr>
@@ -496,7 +516,7 @@ pre .c{color:var(--muted)}
         <div class="card check">
           <h3 style="font-size:16px;margin-bottom:10px">Chuẩn bị trước buổi</h3>
           <ul>
-            <li>Đối chiếu lại chi tiết từng vụ (Nx s1ngularity, GitHub MCP, Supabase MCP, EchoLeak, CamoLeak, Clinejection, Comment and Control, ClawHavoc, Claudy Day) với bài công bố gốc trước khi đưa lên slide</li>
+            <li>Đối chiếu lại chi tiết từng vụ (Nx s1ngularity, GitHub MCP, Supabase MCP, EchoLeak, CamoLeak, Clinejection, Comment and Control, ClawHavoc, Claudy Day, extension Claude Code trên Cursor Marketplace) với bài công bố gốc trước khi đưa lên slide</li>
             <li>Chuẩn bị sẵn file cấu hình mẫu cho Claude Code, Cursor và Codex CLI để chiếu trực tiếp</li>
             <li>Dựng môi trường demo riêng, không dùng tài khoản hay token thật</li>
           </ul>
