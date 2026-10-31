@@ -8,6 +8,7 @@
 <title>Seminar AI Security</title>
 <link rel="stylesheet" href="site.css">
 <script src="site.js"></script>
+<script defer src="present.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
@@ -31,6 +32,7 @@
     <a href="index.html" aria-current="page">Mục lục</a>
     <a href="owasp.html">OWASP</a>
     <a href="outline.html">Outline</a>
+    <a href="slides.html">Slide</a>
     <a href="demo.html">Demo</a>
   </nav>
   <button class="theme-btn" type="button" data-theme-btn>◐</button>
@@ -42,6 +44,7 @@
     <h1>Bảo mật khi dùng AI và AI agent</h1>
     <p class="lede">Developer cần chú ý gì năm 2026. Bộ tài liệu gồm ba phần: tài liệu tham khảo về OWASP, dàn ý bài thuyết trình và phần demo.</p>
     <div class="callout" style="margin-top:20px"><strong>Thông điệp xuyên suốt:</strong> mọi thứ model đọc được đều có thể là lệnh của kẻ tấn công, nên phải giới hạn những gì agent làm được thay vì chỉ cố lọc những gì nó đọc.</div>
+    <p style="margin-top:18px"><a class="chip" href="slides.html" style="text-decoration:none;font-weight:600">▶ Mở slide thuyết trình</a></p>
   </section>
 
   <nav class="toc" aria-label="Mục lục">
@@ -59,12 +62,12 @@
     <a class="card" href="outline.html">
       <span class="num">2</span>
       <h2>Outline bài thuyết trình</h2>
-      <p>Dàn ý 90 phút cho developer có kinh nghiệm, bám theo công việc hằng ngày với AI agent.</p>
+      <p>Dàn ý khoảng 65 phút cho developer có kinh nghiệm, xoay quanh một ngày làm việc với coding agent.</p>
       <ul>
-        <li>Rủi ro ngay cả khi chỉ chat với AI trên web</li>
-        <li>Một ngày làm việc với agent: rủi ro và cách xử lý</li>
-        <li>Setup an toàn, cấu hình mẫu</li>
-        <li>Lỗi cần tránh khi viết feature có LLM</li>
+        <li>Vấn đề: agent có mọi quyền mà bạn có</li>
+        <li>Sáu cửa vào của kẻ tấn công, mỗi cửa một vụ thật</li>
+        <li>Hậu quả: từ máy một dev tới người dùng của bạn</li>
+        <li>Phòng thủ: quyền, sandbox, secret, MCP, chuỗi cung ứng</li>
       </ul>
       <span class="go">Mở trang →</span>
     </a>
@@ -72,7 +75,7 @@
       <span class="num">3</span>
       <span class="badge">Đang chuẩn bị</span>
       <h2>Demo</h2>
-      <p>Coding agent bị lừa qua một issue độc và gửi secret ra ngoài, rồi bị chặn khi chạy trong sandbox.</p>
+      <p>Coding agent bị lừa qua một file trong repo và gửi secret ra ngoài, rồi bị chặn khi chạy trong sandbox.</p>
       <span class="go">Xem trang →</span>
     </a>
   </nav>

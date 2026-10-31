@@ -158,6 +158,30 @@ Thư mục được deploy là [`.archify/explainer-owasp-ai-security-20261024-1
 | `outline.html` | Dàn ý và các điểm quan trọng của bài thuyết trình |
 | `demo.html` | Trang demo (chưa làm) |
 | `site.css`, `site.js` | Style và nút sáng/tối dùng chung cho 3 trang mới |
+| `present.js` | Chế độ trình chiếu nhanh cho trang outline: mỗi section/phần là một slide |
+| `slides.html`, `slides.css`, `slides.js` | Bộ slide thuyết trình 35 trang kiểu PowerPoint, có ghi chú người nói |
+
+### Slide thuyết trình (`slides.html`)
+
+Bộ slide 16:9 tự co theo màn hình. Mỗi lần bấm hiện thêm một ý (giống animation "On click" của PowerPoint), chuyển slide có hiệu ứng trượt, slide chuyển chương có hiệu ứng phóng.
+
+| Phím | Tác dụng |
+| --- | --- |
+| `→` `Space` `PageDown` hoặc click | Hiện ý tiếp theo, hết ý thì sang slide sau (bút trình chiếu dùng được) |
+| `←` `PageUp` | Lùi một bước |
+| `Home` / `End` | Slide đầu / cuối |
+| `F` | Toàn màn hình |
+| `B` | Màn hình đen (khi muốn khán giả nhìn vào người nói) |
+| `S` | Mở cửa sổ người trình bày: đồng hồ, slide đang chiếu, slide kế, ghi chú |
+| `?` | Bảng phím tắt |
+
+Cách chiếu chuẩn: kéo tab `slides.html` sang máy chiếu và bấm `F`, nhấn `S` để mở cửa sổ người trình bày trên màn hình laptop. Hai cửa sổ tự đồng bộ, điều khiển ở cửa sổ nào cũng được. Link `slides.html#16` mở thẳng slide 16.
+
+Ghi chú người nói nằm trong thẻ `<aside class="notes">` của mỗi slide. Muốn một nhóm phần tử hiện cùng một lần bấm thì gán cùng `data-step`.
+
+### Trình chiếu nhanh trang outline
+
+Trên `outline.html`, bấm **▶ Trình chiếu** hoặc phím `P` để xem từng section toàn màn hình. `Esc` để thoát.
 
 ### Deploy
 

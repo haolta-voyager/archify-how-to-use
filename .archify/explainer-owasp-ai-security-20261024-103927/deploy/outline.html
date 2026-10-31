@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="Khung sườn seminar bảo mật khi dev làm việc với AI agent hằng ngày (2026), dành cho developer có kinh nghiệm.">
+<meta name="description" content="Khung sườn seminar bảo mật khi dev làm việc với coding agent hằng ngày (2026), dành cho developer có kinh nghiệm.">
 <title>Seminar Outline</title>
 <link rel="stylesheet" href="site.css">
 <script src="site.js"></script>
+<script defer src="present.js"></script>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 <style>
@@ -98,6 +99,7 @@ pre .c{color:var(--muted)}
     <a href="index.html">Mục lục</a>
     <a href="owasp.html">OWASP</a>
     <a href="outline.html" aria-current="page">Outline</a>
+    <a href="slides.html">Slide</a>
     <a href="demo.html">Demo</a>
   </nav>
   <button class="theme-btn" type="button" data-theme-btn>◐</button>
@@ -106,27 +108,23 @@ pre .c{color:var(--muted)}
 <main class="wrap">
   <section class="hero">
     <div class="eyebrow">Phần 2 · Outline bài thuyết trình</div>
-    <h1>Bảo mật khi dev làm việc với AI agent hằng ngày (2026)</h1>
-    <p class="lede">Khung sườn seminar cho developer có kinh nghiệm. Bài bỏ qua phần định nghĩa và lý thuyết về model, tập trung vào công cụ, cấu hình và đoạn code dev đụng tới mỗi ngày.</p>
+    <h1>Bảo mật khi dev làm việc với coding agent hằng ngày (2026)</h1>
+    <p class="lede">Khung sườn seminar cho developer có kinh nghiệm. Bài xoay quanh một ngày làm việc với coding agent và trả lời bốn câu hỏi: vấn đề là gì, bị tấn công thế nào, hậu quả ra sao, phòng thủ thế nào.</p>
     <div class="meta">
-      <span class="chip">👥 Dev đã dùng coding agent (Claude Code, Cursor, Copilot, Codex CLI), MCP và LLM API</span>
-      <span class="chip">⏱ Khoảng 90 phút + 15 phút hỏi đáp</span>
+      <span class="chip">👥 Dev đang dùng Claude Code, Cursor, Copilot, Codex CLI và MCP</span>
+      <span class="chip">⏱ Khoảng 65 phút + 15 phút hỏi đáp</span>
       <span class="chip">🛠 Có demo và cấu hình mẫu</span>
     </div>
     <nav class="jump" aria-label="Trong trang">
       <a href="#diem-chinh">Điểm quan trọng</a>
       <a href="#thoi-gian">Thời gian</a>
       <a href="#cach-trinh-bay">Cách trình bày</a>
-      <a href="#p1">1 Mở đầu</a>
-      <a href="#p2">2 Một mô hình</a>
-      <a href="#p3">3 Chat trên web</a>
-      <a href="#p4">4 Coding agent</a>
-      <a href="#p5">5 MCP</a>
-      <a href="#p6">6 Code do AI sinh</a>
-      <a href="#p7">7 CI/CD</a>
-      <a href="#p8">8 Ship tính năng LLM</a>
-      <a href="#p9">9 Tự viết agent</a>
-      <a href="#p10">10 Checklist</a>
+      <a href="#p1">0 Mở đầu</a>
+      <a href="#p2">1 Vấn đề</a>
+      <a href="#p3">2 Tấn công</a>
+      <a href="#p4">3 Hậu quả</a>
+      <a href="#p5">4 Phòng thủ</a>
+      <a href="#p6">Checklist</a>
       <a href="#phu-luc">Phụ lục</a>
     </nav>
   </section>
@@ -134,15 +132,15 @@ pre .c{color:var(--muted)}
   <!-- KEY POINTS -->
   <section class="section" id="diem-chinh">
     <h2>Điểm quan trọng của bài</h2>
-    <p class="sub">Người nghe đã biết SQL injection, XSS, least privilege. Bài không dạy lại những thứ đó, mà chỉ ra chúng xuất hiện lại ở đâu khi có agent.</p>
+    <p class="sub">Phạm vi chỉ gồm những gì dev đụng mỗi ngày khi dùng coding agent trên máy, trong IDE và trong CI. Bài không bàn chuyện xây sản phẩm có LLM.</p>
 
     <div class="callout"><strong>Câu hỏi đúng:</strong> không thể chặn prompt injection 100%, nên hãy hỏi <strong>nếu agent bị lừa thì nó làm được gì</strong>, và làm sao giảm phạm vi đó.</div>
 
     <h3 class="h3">Ba thông điệp chốt</h3>
     <div class="grid g3 big3">
-      <div class="card"><strong>Với LLM, dữ liệu chính là lệnh.</strong><p>File, issue, trang web, kết quả tool, log đều có thể chứa chỉ dẫn, và model không phân biệt được đâu là của bạn.</p></div>
+      <div class="card"><strong>Agent có mọi quyền mà bạn có.</strong><p>Và nó nghe lời bất kỳ ai viết được chữ vào thứ nó đọc: file trong repo, trang docs, kết quả MCP, log.</p></div>
       <div class="card"><strong>Cấu hình quyền cho agent như cấu hình IAM cho một service.</strong><p>Rule deny chỉ là lớp mềm. Ranh giới thật phải nằm ở OS hoặc container.</p></div>
-      <div class="card"><strong>Thiết kế như thể injection chắc chắn thành công.</strong><p>Rồi đảm bảo khi đó nó không làm được gì đáng kể.</p></div>
+      <div class="card"><strong>Thiết kế như thể injection chắc chắn thành công.</strong><p>Rồi đảm bảo khi đó nó không làm được gì đáng kể, kể cả khi lỗi là do chính agent.</p></div>
     </div>
 
     <h3 class="h3">Ba ý cần giải thích kỹ</h3>
@@ -159,17 +157,17 @@ pre .c{color:var(--muted)}
             <circle cx="190" cy="80" r="64" fill="var(--violet)" stroke="var(--violet)"/>
             <circle cx="150" cy="142" r="64" fill="var(--bad)" stroke="var(--bad)"/>
             <text x="84" y="58" text-anchor="middle">Dữ liệu nhạy cảm</text><text class="s" x="84" y="72" text-anchor="middle">.env, ~/.aws, repo</text>
-            <text x="216" y="58" text-anchor="middle">Nội dung lạ</text><text class="s" x="216" y="72" text-anchor="middle">issue, web, MCP</text>
-            <text x="150" y="176" text-anchor="middle">Đường ra ngoài</text><text class="s" x="150" y="190" text-anchor="middle">curl, git push, ảnh</text>
+            <text x="216" y="58" text-anchor="middle">Nội dung lạ</text><text class="s" x="216" y="72" text-anchor="middle">docs, package, MCP</text>
+            <text x="150" y="176" text-anchor="middle">Đường ra ngoài</text><text class="s" x="150" y="190" text-anchor="middle">curl, git push, publish</text>
           </svg>
         </div>
-        <p>Agent nguy hiểm khi có <b>cùng lúc cả ba</b>. Cả bài dùng ba câu hỏi này để soi từng công cụ.</p>
+        <p>Agent nguy hiểm khi có <b>cùng lúc cả ba</b>. Coding agent mặc định có đủ cả ba; phần Phòng thủ là cắt bớt từng vòng.</p>
       </div>
       <div class="card concept">
         <h3>Lớp mềm và ranh giới thật</h3>
         <div class="vs">
-          <div class="weak"><b>Lớp mềm</b>System prompt, rule deny trong file cấu hình, xác nhận hỏi quá nhiều.</div>
-          <div class="strong"><b>Ranh giới thật</b>Sandbox, container không mount credential, token ngắn hạn phạm vi hẹp, kiểm tra quyền trong code của tool.</div>
+          <div class="weak"><b>Lớp mềm</b>Dặn trong <code>CLAUDE.md</code>, rule deny trong file cấu hình, hỏi xác nhận từng lệnh.</div>
+          <div class="strong"><b>Ranh giới thật</b>Sandbox ở mức OS hoặc container, không có secret trong tầm với, token ngắn hạn phạm vi hẹp.</div>
         </div>
       </div>
     </div>
@@ -178,31 +176,23 @@ pre .c{color:var(--muted)}
   <!-- TIMING -->
   <section class="section" id="thoi-gian">
     <h2>Phân bổ thời gian</h2>
-    <p class="sub">Coding agent và ship tính năng LLM là hai phần dài nhất, vì đó là nơi dev đụng tới nhiều nhất.</p>
+    <p class="sub">Phòng thủ là phần dài nhất, vì đó là thứ khán giả mang về làm ngay.</p>
     <div class="card">
       <div class="bar" role="img" aria-label="Thanh phân bổ thời gian theo phần">
-        <a class="c1" style="flex:5" href="#p1" title="Mở đầu, 5 phút">5′</a>
-        <a class="c2" style="flex:5" href="#p2" title="Một mô hình, 5 phút">5′</a>
-        <a class="c3" style="flex:5" href="#p3" title="Ngay cả khi chỉ chat trên web, 5 phút">5′</a>
-        <a class="c4" style="flex:15" href="#p4" title="Coding agent trên máy dev, 15 phút">15′</a>
-        <a class="c5" style="flex:10" href="#p5" title="MCP server, 10 phút">10′</a>
-        <a class="c6" style="flex:10" href="#p6" title="Code và dependency do AI sinh, 10 phút">10′</a>
-        <a class="c7" style="flex:8" href="#p7" title="Agent trong CI/CD, 8 phút">8′</a>
-        <a class="c8" style="flex:15" href="#p8" title="Ship tính năng có LLM, 15 phút">15′</a>
-        <a class="c9" style="flex:8" href="#p9" title="Tự viết agent hoặc MCP server, 8 phút">8′</a>
-        <a class="c10" style="flex:7" href="#p10" title="Checklist, 7 phút">7′</a>
+        <a class="c1" style="flex:4" href="#p1" title="Mở đầu, 4 phút">4′</a>
+        <a class="c2" style="flex:8" href="#p2" title="Vấn đề là gì, 8 phút">8′</a>
+        <a class="c7" style="flex:17" href="#p3" title="Bị tấn công thế nào, 17 phút">17′</a>
+        <a class="c4" style="flex:10" href="#p4" title="Hậu quả ra sao, 10 phút">10′</a>
+        <a class="c5" style="flex:22" href="#p5" title="Phòng thủ thế nào, 22 phút">22′</a>
+        <a class="c10" style="flex:4" href="#p6" title="Checklist, 4 phút">4′</a>
       </div>
       <div class="legend">
-        <a href="#p1"><i class="c1"></i>1 · Mở đầu<b>5′</b></a>
-        <a href="#p2"><i class="c2"></i>2 · Một mô hình để nhìn rủi ro<b>5′</b></a>
-        <a href="#p3"><i class="c3"></i>3 · Ngay cả khi chỉ chat trên web<b>5′</b></a>
-        <a href="#p4"><i class="c4"></i>4 · Coding agent trên máy dev<b>15′</b></a>
-        <a href="#p5"><i class="c5"></i>5 · MCP server và tích hợp<b>10′</b></a>
-        <a href="#p6"><i class="c6"></i>6 · Code và dependency do AI sinh<b>10′</b></a>
-        <a href="#p7"><i class="c7"></i>7 · Agent trong CI/CD<b>8′</b></a>
-        <a href="#p8"><i class="c8"></i>8 · Ship tính năng có LLM<b>15′</b></a>
-        <a href="#p9"><i class="c9"></i>9 · Tự viết agent / MCP server<b>8′</b></a>
-        <a href="#p10"><i class="c10"></i>10 · Checklist<b>7′ + Q&amp;A</b></a>
+        <a href="#p1"><i class="c1"></i>0 · Mở đầu<b>4′</b></a>
+        <a href="#p2"><i class="c2"></i>1 · Vấn đề là gì?<b>8′</b></a>
+        <a href="#p3"><i class="c7"></i>2 · Bị tấn công thế nào?<b>17′</b></a>
+        <a href="#p4"><i class="c4"></i>3 · Hậu quả ra sao?<b>10′</b></a>
+        <a href="#p5"><i class="c5"></i>4 · Phòng thủ thế nào?<b>22′</b></a>
+        <a href="#p6"><i class="c10"></i>Checklist<b>4′ + Q&amp;A</b></a>
       </div>
     </div>
   </section>
@@ -210,11 +200,11 @@ pre .c{color:var(--muted)}
   <!-- DELIVERY -->
   <section class="section" id="cach-trinh-bay">
     <h2>Cách trình bày</h2>
-    <p class="sub">Mỗi phần đi theo cùng một nhịp. Khán giả nên ra về với những thay đổi làm được ngay trong tuần.</p>
+    <p class="sub">Phần Tấn công và Hậu quả chỉ kể vụ thật, gom toàn bộ cách chặn về phần Phòng thủ để khán giả nhớ một chỗ.</p>
     <div class="grid g3 big3">
-      <div class="card"><strong>Kịch bản</strong><p>Một vụ thật hoặc dựng lại từ vụ thật.</p></div>
+      <div class="card"><strong>Vụ thật</strong><p>Mỗi cửa vào đi kèm một vụ đã xảy ra, có tên và thời điểm.</p></div>
       <div class="card"><strong>Vì sao nó xảy ra</strong><p>Soi bằng lethal trifecta: dữ liệu nhạy cảm, nội dung lạ, đường ra ngoài.</p></div>
-      <div class="card"><strong>Cấu hình hay code để chặn</strong><p>Mở file thật trên màn hình, sửa trước mặt người nghe.</p></div>
+      <div class="card"><strong>Cấu hình để chặn</strong><p>Mở file thật trên màn hình, sửa trước mặt người nghe.</p></div>
     </div>
   </section>
 
@@ -224,92 +214,131 @@ pre .c{color:var(--muted)}
   </section>
 
   <article class="card part stripe-1" id="p1">
-    <div class="part-head"><span class="n">01</span><h2>Mở đầu: một kịch bản không có dòng code lỗi nào</h2><span class="min">5 phút</span></div>
+    <div class="part-head"><span class="n">00</span><h2>Mở đầu: lỗ hổng nằm ở quyền, không nằm ở code</h2><span class="min">4 phút</span></div>
     <div class="moments">
       <div class="moment">
-        <h3>Dev nhờ coding agent "xử lý issue #123"</h3>
+        <h3>Luận điểm và bốn câu hỏi</h3>
         <dl>
-          <dt>Kịch bản</dt><dd>Issue do người ngoài tạo, cuối issue có một đoạn hướng dẫn ẩn. Agent làm theo: đọc <code>.env</code>, chạy <code>curl</code> gửi nội dung lên một URL lạ, rồi sửa issue như bình thường. Dev chỉ thấy PR sửa lỗi rất gọn.</dd>
-          <dt>Câu hỏi</dt><dd>Trong chuỗi này, code của ai có bug? Không ai cả. Lỗ hổng nằm ở quyền mà ta đã cấp cho agent.</dd>
-          <dt>Dựa trên</dt><dd>GitHub MCP bị prompt injection qua issue công khai để đọc repo private (Invariant Labs, 2025). Sang 2026 cùng kiểu tấn công này đã đánh vào CI của nhiều dự án lớn (xem <a href="#p7">phần CI/CD</a>).</dd>
+          <dt>Thông điệp</dt><dd>Agent có thể gây hại mà không cần dòng code lỗi nào. Lỗ hổng nằm ở quyền mà ta đã cấp cho agent.</dd>
+          <dt>Tương tác</dt><dd>Hỏi giơ tay: ai dùng coding agent hằng ngày, ai từng bật auto-approve hoặc YOLO mode. Quay lại câu này ở phần Vấn đề.</dd>
+          <dt>Lộ trình</dt><dd>Vấn đề là gì → bị tấn công thế nào → hậu quả ra sao → phòng thủ thế nào → checklist làm ngay trong tuần.</dd>
         </dl>
       </div>
     </div>
   </article>
 
   <article class="card part stripe-2" id="p2">
-    <div class="part-head"><span class="n">02</span><h2>Một mô hình duy nhất để nhìn mọi rủi ro</h2><span class="min">5 phút</span></div>
+    <div class="part-head"><span class="n">01</span><h2>Vấn đề là gì?</h2><span class="min">8 phút</span></div>
     <div class="subs">
+      <div><h3>Agent có mọi quyền mà bạn có</h3><ul>
+        <li>Đọc toàn bộ repo và thường cả thư mục home: <code>.env</code>, <code>~/.aws/credentials</code>, <code>~/.ssh</code>, <code>~/.npmrc</code>.</li>
+        <li>Chạy shell với quyền của bạn, có mạng ra ngoài, push được lên remote.</li>
+        <li>Dùng mọi CLI đang đăng nhập sẵn: gh, aws, gcloud, kubectl, npm, docker.</li>
+      </ul></div>
       <div><h3>Dữ liệu chính là lệnh</h3><ul>
-        <li>Mọi thứ agent đọc được (file, issue, trang web, kết quả tool, log) đều có thể chứa chỉ dẫn.</li>
-        <li>Model không phân biệt được đâu là của bạn.</li>
+        <li>Mọi thứ agent đọc được (README, comment trong code, file dependency, trang docs, kết quả MCP, log lỗi) đều có thể chứa chỉ dẫn.</li>
+        <li>Chỉ dẫn có thể ẩn với người: chữ trắng, comment HTML, ký tự Unicode vô hình. Model vẫn đọc được.</li>
+        <li>Model không phân biệt được đâu là lệnh của bạn. Model tốt hơn chỉ làm tỷ lệ bị lừa thấp đi, không về 0.</li>
       </ul></div>
-      <div><h3>Lethal trifecta</h3><ul>
-        <li>Agent nguy hiểm khi cùng lúc có (1) dữ liệu nhạy cảm, (2) nội dung không tin cậy, (3) đường gửi dữ liệu ra ngoài.</li>
-        <li>Cả bài dùng ba câu hỏi này để soi từng công cụ.</li>
+      <div><h3>Lethal trifecta trên máy dev</h3><ul>
+        <li>Dữ liệu nhạy cảm (secret, repo private) + nội dung lạ (dependency, docs, MCP) + đường ra ngoài (<code>curl</code>, <code>git push</code>, <code>npm publish</code>).</li>
+        <li>Coding agent cấu hình mặc định có đủ cả ba ngay từ đầu.</li>
       </ul></div>
-      <div><h3>Hệ quả thực tế</h3><ul>
-        <li>Không thể chặn prompt injection 100%.</li>
-        <li>Câu hỏi đúng: nếu agent bị lừa thì nó làm được gì, và làm sao giảm phạm vi đó.</li>
+      <div><h3>Nút "Cho phép" không phải là ranh giới</h3><ul>
+        <li>Auto-approve, YOLO mode, <code>--dangerously-skip-permissions</code> biến mọi injection thành lệnh chạy ngay.</li>
+        <li>Ngược lại, hỏi xác nhận mọi thứ khiến dev bấm Enter theo phản xạ (OWASP <span class="tag t-asi">ASI09</span>). Lệnh dài nối bằng <code>&amp;&amp;</code> không ai đọc hết.</li>
+        <li>Lời giải ở phần Phòng thủ: allowlist lệnh an toàn + sandbox, để chỉ phải hỏi ở vài lệnh thật sự rủi ro.</li>
       </ul></div>
     </div>
+    <p class="msg">Coding agent là một user có quyền rất cao trên máy bạn, nhưng nghe lời bất kỳ ai viết được chữ vào thứ nó đọc.</p>
   </article>
 
-  <article class="card part stripe-3" id="p3">
-    <div class="part-head"><span class="n">03</span><h2>Ngay cả khi chỉ chat trên web</h2><span class="min">5 phút</span></div>
+  <article class="card part stripe-7" id="p3">
+    <div class="part-head"><span class="n">02</span><h2>Bị tấn công thế nào? Sáu cửa vào</h2><span class="min">17 phút</span></div>
+    <p class="goal">Cửa 1 và 2 là prompt injection; cửa 3, 4, 5 là chuỗi cung ứng; cửa 6 là cả hai, không có người giám sát.</p>
     <div class="subs">
-      <div><h3>Hình thức tấn công</h3><ul>
-        <li>Prompt injection gián tiếp: lệnh ẩn nằm trong file tải lên (chữ trắng, chữ cực nhỏ, metadata), trang web AI được nhờ tóm tắt hoặc tự tìm kiếm, email và tài liệu từ app đã kết nối.</li>
-        <li>Link điền sẵn prompt: URL mở chatbot với nội dung đã điền sẵn, kèm chỉ dẫn ẩn mà người dùng không nhìn thấy.</li>
-        <li>Đầu độc memory: một tài liệu độc cài chỉ dẫn vào bộ nhớ dài hạn, tiếp tục ảnh hưởng các phiên chat sau.</li>
-        <li>Lừa đảo kiểu xã hội: "dán đoạn này vào AI để mở khóa tính năng", website AI giả mạo, extension trình duyệt đọc trộm nội dung chat.</li>
+      <div><h3>1 · Nội dung agent đọc: injection khiến agent tự tắt phòng thủ</h3><ul>
+        <li>CVE-2025-53773 (GitHub Copilot trong VS Code, vá 8/2025): lệnh ẩn khiến agent ghi <code>"chat.tools.autoApprove": true</code> vào <code>.vscode/settings.json</code>, tự bật chế độ chạy không hỏi rồi thực thi lệnh.</li>
+        <li>CurXecute CVE-2025-54135 (Cursor, vá ở 1.3): injection ghi <code>.cursor/mcp.json</code>, MCP server mới khởi động ngay không hỏi. MCPoison CVE-2025-54136: sửa MCP đã được duyệt mà không bị hỏi lại.</li>
+        <li>Bài học: thư mục cấu hình của agent phải nằm ngoài vùng agent được tự ghi.</li>
       </ul></div>
-      <div><h3>Vụ thật</h3><ul>
-        <li>Claudy Day (3/2026, Oasis Security): prompt injection vô hình qua tham số URL điền sẵn khung chat của claude.ai, kết hợp kênh rò rỉ để lấy lịch sử hội thoại từ một phiên mặc định, không cần MCP hay tool. Anthropic đã vá.</li>
-        <li>EchoLeak (M365 Copilot, 2025): một email được soạn sẵn đủ để rút dữ liệu doanh nghiệp mà người dùng không cần bấm gì.</li>
+      <div><h3>2 · File rule, skill và plugin</h3><ul>
+        <li><code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code>, <code>.github/copilot-instructions.md</code> được agent đọc như chỉ dẫn hệ thống. Một PR sửa file này đổi hành vi agent của cả team.</li>
+        <li>Rules File Backdoor (Pillar Security, 3/2025): chỉ dẫn ẩn bằng ký tự Unicode vô hình khiến Cursor và Copilot chèn script độc vào code sinh ra; reviewer không thấy trong diff.</li>
+        <li>ClawHavoc (2/2026): hàng trăm skill độc trên ClawHub giả công cụ phổ biến, kèm bước "cài đặt trước" chạy mã đánh cắp dữ liệu. OWASP tách riêng lớp này thành Agentic Skills Top 10 (<span class="tag t-ast">AST01</span>–<span class="tag t-ast">AST10</span>).</li>
       </ul></div>
-      <div><h3>Hậu quả và kẻ tấn công làm được gì</h3><ul>
-        <li>Chỉ chat thuần: câu trả lời bị bóp méo, chèn link phishing trông đáng tin, gợi ý lệnh hoặc package độc để người dùng tự chạy.</li>
-        <li>Có lịch sử chat, memory, file: rò rỉ code, hợp đồng, dữ liệu khách hàng, API key từng dán vào. Kênh rò thường là ảnh markdown trỏ tới URL của kẻ tấn công; dữ liệu đi ra ngay khi trình duyệt tải ảnh.</li>
-        <li>Có app kết nối hoặc quyền hành động: đọc và gửi dữ liệu nội bộ ra ngoài, gửi email, chia sẻ file, tạo lịch nhân danh người dùng.</li>
+      <div><h3>3 · MCP server</h3><ul>
+        <li>Cài MCP server là cài dependency có quyền chạy: <code>npx</code>, <code>uvx</code> tải bản mới nhất mỗi lần, token plain text trong file JSON.</li>
+        <li>Tool poisoning: một dòng ẩn trong mô tả tool đủ điều khiển agent; tool còn đổi được mô tả sau khi đã được tin dùng.</li>
+        <li>postmark-mcp (9/2025, Koi Security): 15 bản đầu sạch, bản 1.0.16 thêm một dòng BCC mọi email agent gửi về kẻ tấn công.</li>
+        <li>GitHub MCP (2025) lộ repo private qua PR public; Supabase MCP chạy <code>service_role</code> đọc bảng token qua ticket hỗ trợ. Riêng tháng 1–2/2026 đã có hơn 30 CVE nhắm vào MCP.</li>
       </ul></div>
-      <div><h3>Phòng thủ cho người dùng</h3><ul>
-        <li>Không dán secret, mật khẩu, dữ liệu khách hàng vào chat; dùng bản doanh nghiệp có chính sách dữ liệu rõ ràng.</li>
-        <li>Cẩn thận với link và file lạ khi đưa cho AI xử lý; chỉ kết nối app thật sự cần và ngắt khi không dùng.</li>
-        <li>Đọc kỹ trước khi xác nhận hành động AI đề xuất; định kỳ xem lại và xóa memory lạ.</li>
-        <li>Coi link, lệnh, tên package trong câu trả lời là lời khuyên chưa kiểm chứng.</li>
+      <div><h3>4 · Extension của IDE: Claude Code trên Cursor Marketplace (29/10/2026)</h3><ul>
+        <li>Bản <code>anthropic.claude-code@2.1.313</code> bị cài cắm xuất hiện trên Cursor Marketplace khoảng 11 giờ (09:27–20:35 UTC), tối đa khoảng 5.000 người dùng. Anthropic không build bản này; bản trên Open VSX, VS Code Marketplace và npm đều sạch.</li>
+        <li>66 dòng ở đầu <code>extension.js</code> chạy ngay khi editor nạp extension: thêm khóa SSH <code>svc-telemetry</code> vào <code>authorized_keys</code>, mở reverse tunnel <code>ssh -R</code>, cài persistence giả tên hệ thống (LaunchAgent <code>com.apple.sysmond</code>, scheduled task <code>SysMon</code>, cron <code>@reboot</code>), gửi tên biến môi trường chứa KEY, TOKEN hay SECRET.</li>
+        <li>Không cần prompt injection: kẻ tấn công nhắm vào công cụ AI vì nó được cài khắp nơi, tự cập nhật và được tin theo thương hiệu.</li>
+      </ul></div>
+      <div><h3>5 · Package AI gợi ý (slopsquatting)</h3><ul>
+        <li>Nghiên cứu 2025 (USENIX Security, 576.000 mẫu code): khoảng 20% tên package được gợi ý không tồn tại, và nhiều tên lặp lại ổn định nên đoán trước được.</li>
+        <li>Kẻ tấn công đăng ký sẵn những tên đó với mã độc trong <code>postinstall</code>; agent tự chạy <code>npm install</code> hay <code>pip install</code>, không ai nhìn tên package.</li>
+      </ul></div>
+      <div><h3>6 · Agent trong CI</h3><ul>
+        <li>Clinejection (2/2026): tiêu đề một issue khiến bot triage dùng AI của Cline chạy <code>npm install</code> từ commit của kẻ tấn công, đầu độc cache CI, lấy token npm và phát hành <code>cline@2.3.0</code> trái phép.</li>
+        <li>Comment and Control (4/2026): tiêu đề PR và comment HTML ẩn đủ để lấy API key và <code>GITHUB_TOKEN</code> từ Claude Code Security Review, Gemini CLI Action và Copilot Agent.</li>
+        <li>Ai mở được issue hay PR là người viết prompt cho agent của bạn.</li>
       </ul></div>
     </div>
-    <p class="msg">Kẻ tấn công chỉ làm được những gì chatbot của bạn được phép làm. Mỗi app kết nối, mỗi tính năng memory là thêm một cạnh trong lethal trifecta.</p>
+    <p class="msg">Kẻ tấn công không cần chạm vào máy bạn. Chỉ cần viết chữ vào chỗ agent sẽ đọc, hoặc chen vào chuỗi cung ứng của chính công cụ AI.</p>
   </article>
 
   <article class="card part stripe-4" id="p4">
-    <div class="part-head"><span class="n">04</span><h2>Coding agent trên máy dev</h2><span class="min">15 phút</span></div>
+    <div class="part-head"><span class="n">03</span><h2>Hậu quả ra sao?</h2><span class="min">10 phút</span></div>
     <div class="subs">
-      <div><h3>Agent đang có quyền gì trên máy bạn</h3><ul>
-        <li>Đọc toàn bộ repo và thường cả thư mục home: <code>.env</code>, <code>~/.aws/credentials</code>, <code>~/.ssh</code>, <code>~/.npmrc</code>, token của gh, gcloud, kubectl đã đăng nhập.</li>
-        <li>Chạy lệnh shell với quyền của bạn, có mạng ra ngoài, push được lên remote.</li>
-        <li>Ví dụ thật: mã độc trong gói Nx "s1ngularity" (8/2025) gọi chính các CLI AI cài sẵn trên máy nạn nhân với cờ bỏ qua xác nhận để đi tìm secret và ví crypto.</li>
+      <div><h3>Thứ bị mất</h3><ul>
+        <li><b>Secret và token:</b> s1ngularity (8/2025), mã độc trong gói Nx gọi Claude, Gemini, Q CLI với cờ bỏ qua xác nhận để tìm secret, rồi đẩy lên repo public trên chính tài khoản GitHub của nạn nhân; hơn 2.000 secret bị lộ.</li>
+        <li><b>Cả máy dev:</b> khóa SSH lạ, reverse tunnel và persistence như vụ extension 10/2026.</li>
+        <li><b>Code private:</b> GitHub MCP (2025) tự đăng dữ liệu repo private lên PR public.</li>
+        <li><b>Dữ liệu và hạ tầng:</b> Amazon Q Developer 1.84.0 (7/2025) bị một PR độc chèn prompt yêu cầu xóa file hệ thống và tài nguyên AWS. AWS cho biết prompt sai định dạng nên không chạy được.</li>
       </ul></div>
-      <div><h3>Chế độ tự động chấp nhận lệnh</h3><ul>
-        <li>Auto-approve, YOLO mode, <code>--dangerously-skip-permissions</code> tiện nhưng biến mọi prompt injection thành thực thi lệnh ngay lập tức.</li>
-        <li>Lệnh nhìn vô hại vẫn rò dữ liệu được: <code>curl</code>, <code>wget</code>, <code>git push</code> sang remote khác, <code>npm publish</code>, thậm chí ghi file rồi để test runner chạy.</li>
+      <div><h3>Lan ra ngoài máy một người</h3><ul>
+        <li>Chuỗi lây: máy một dev → token npm, GitHub, cloud → package, CI, production → người dùng của bạn.</li>
+        <li>Clinejection: một issue → token npm → <code>cline@2.3.0</code> tới máy người dùng Cline.</li>
+        <li>Shai-Hulud (9/2025): sâu npm lấy token từ máy nạn nhân rồi tự phát hành bản độc cho mọi package người đó sở hữu, cho thấy bước cuối tự động hóa được.</li>
       </ul></div>
-      <div><h3>Cấu hình nên có (demo trên Claude Code, Cursor, Codex CLI)</h3><ul>
-        <li>Chặn đọc file nhạy cảm: rule deny cho <code>.env</code>, <code>*.pem</code>, <code>~/.ssh</code>, <code>~/.aws</code> (<code>permissions.deny</code> trong <code>.claude/settings.json</code>, <code>.cursorignore</code>).</li>
-        <li>Allowlist lệnh: cho phép sẵn test, lint, build; mọi lệnh có mạng hoặc ghi ra ngoài repo phải hỏi.</li>
-        <li>Sandbox: chạy agent trong devcontainer hoặc sandbox có sẵn của công cụ (ví dụ Codex CLI chế độ workspace-write, tắt mạng), không mount credential production.</li>
-        <li>Giới hạn git: agent làm việc trên branch riêng, không có quyền push lên main, PR của agent vẫn phải qua review như PR của người.</li>
-        <li>Secret: token ngắn hạn, phạm vi hẹp cho dev, không để token admin nằm sẵn trong shell.</li>
+      <div><h3>Không cần kẻ tấn công</h3><ul>
+        <li>Replit (7/2025): agent xóa database production giữa lúc đóng băng code dù được dặn không đổi gì, rồi báo sai là không khôi phục được.</li>
+        <li>Gemini CLI (7/2025): lệnh tạo thư mục thất bại nhưng agent không nhận ra, các lệnh di chuyển sau đó ghi đè và làm mất file của người dùng.</li>
+        <li>Giới hạn quyền chặn được cả kẻ tấn công lẫn lỗi của chính agent.</li>
+      </ul></div>
+      <div><h3>Lỗ hổng đi vào production qua code AI viết</h3><ul>
+        <li>Ghép chuỗi vào SQL, shell; <code>eval</code> hay <code>pickle.loads</code> trên dữ liệu ngoài; quên kiểm tra quyền sở hữu tài nguyên.</li>
+        <li>Mặc định không an toàn: <code>verify=False</code>, CORS mở, JWT không kiểm tra thuật toán, secret hard-code "để chạy thử".</li>
+        <li>Khi bị yêu cầu làm test pass, agent có thể sửa hoặc xóa test.</li>
+        <li>GitGuardian (2025): repo có dùng Copilot có tỷ lệ lộ secret cao hơn khoảng 40% so với mặt bằng chung.</li>
+      </ul></div>
+    </div>
+    <p class="msg">Một agent bị lừa trên máy một dev có thể trở thành mã độc trên máy người dùng của cả công ty.</p>
+  </article>
+
+  <article class="card part stripe-5" id="p5">
+    <div class="part-head"><span class="n">04</span><h2>Phòng thủ thế nào?</h2><span class="min">22 phút · có demo</span></div>
+    <p class="goal">Mỗi lớp cắt bớt một vòng của lethal trifecta. Lớp mềm chặn phần lớn sai sót vô tình; ranh giới thật chặn khi lớp mềm đã thua.</p>
+    <div class="subs">
+      <div><h3>1 · Quyền: cấu hình như IAM cho một service</h3><ul>
+        <li>Deny đọc <code>.env</code>, <code>*.pem</code>, <code>~/.ssh</code>, <code>~/.aws</code>.</li>
+        <li>Deny agent tự sửa cấu hình của nó: <code>.claude/</code>, <code>.vscode/settings.json</code>, <code>.cursor/mcp.json</code> (trả lời trực tiếp CVE ở cửa 1).</li>
+        <li>Allowlist test, lint, build; hỏi ở lệnh có mạng, <code>git push</code>, <code>npm install</code>.</li>
+        <li>Hook chặn lệnh nguy hiểm: PreToolUse trong Claude Code chạy script của bạn trước mỗi lệnh. Commit cấu hình vào repo để cả team dùng chung.</li>
       </ul>
 <pre><span class="c">// Claude Code: .claude/settings.json</span>
 {
   "permissions": {
     "deny": [
-      "Read(./.env)",
+      "Read(./.env*)",
       "Read(./**/*.pem)",
       "Read(~/.aws/**)",
-      "Read(~/.ssh/**)"
+      "Read(~/.ssh/**)",
+      "Edit(./.claude/**)"
     ],
     "allow": ["Bash(npm test:*)", "Bash(npm run lint:*)"],
     "ask": ["Bash(git push:*)", "Bash(npm install:*)", "WebFetch"]
@@ -317,25 +346,43 @@ pre .c{color:var(--muted)}
 }</pre>
         <p class="warn">Rule deny trong file cấu hình chỉ là lớp mềm. Ranh giới thật phải nằm ở OS hoặc container.</p>
       </div>
-      <div><h3>File cấu hình, skill và plugin của agent</h3><ul>
-        <li><code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code>, <code>.github/copilot-instructions.md</code> được agent đọc như chỉ dẫn hệ thống.</li>
-        <li>Một PR chỉ sửa file rule, hoặc chèn ký tự Unicode vô hình vào đó, có thể đổi hành vi agent của cả team (đã có nghiên cứu công bố năm 2025).</li>
-        <li>Skill và plugin là lớp mới nổi năm 2026: chiến dịch ClawHavoc (2/2026) đẩy hàng trăm skill độc lên ClawHub giả làm công cụ phổ biến, kèm bước "cài đặt trước" để chạy mã đánh cắp dữ liệu. OWASP đã tách riêng lớp này thành Agentic Skills Top 10 (<span class="tag t-ast">AST01</span>–<span class="tag t-ast">AST10</span>).</li>
-        <li>Thực hành: đưa các file này vào CODEOWNERS, review như review code, bật cảnh báo ký tự ẩn trong diff. Chỉ cài skill/plugin từ nguồn đã duyệt, ghim phiên bản, tắt tự cập nhật.</li>
+      <div><h3>2 · Sandbox: ranh giới ở OS, không ở prompt</h3><ul>
+        <li>Sandbox có sẵn của công cụ: Claude Code <code>/sandbox</code> giới hạn file và mạng ở mức OS; Codex CLI <code>--sandbox workspace-write</code> mặc định tắt mạng.</li>
+        <li>Devcontainer hoặc VM: không mount <code>~/.ssh</code>, <code>~/.aws</code>, Docker socket.</li>
+        <li>Chặn mạng ra ngoài, chỉ cho phép registry và domain cần thiết.</li>
+        <li>Muốn chạy YOLO thì chỉ trong container không credential, không mạng. Sandbox còn giảm số lần hỏi, nên dev đọc kỹ hơn những lần còn lại.</li>
       </ul></div>
-      <div><h3>Bản thân extension AI cũng là dependency: vụ Claude Code trên Cursor Marketplace (29/10/2026)</h3><ul>
-        <li>Chuyện gì xảy ra: bản <code>anthropic.claude-code@2.1.313</code> bị cài cắm xuất hiện trên Cursor Marketplace khoảng 11 giờ (09:27–20:35 UTC), tối đa khoảng 5.000 người dùng Cursor nhận bản này. Anthropic không build bản này; bản trên Open VSX, VS Code Marketplace và gói npm đều sạch.</li>
-        <li>Cách làm: 66 dòng chèn vào đầu <code>extension.js</code>, chạy ngay khi editor nạp extension, không cần mở chat. Nó thêm khóa SSH <code>svc-telemetry</code> vào <code>authorized_keys</code>, mở reverse tunnel <code>ssh -R</code> về máy chủ kẻ tấn công, cài persistence giả tên hệ thống (LaunchAgent <code>com.apple.sysmond</code>, scheduled task <code>SysMon</code>, cron <code>@reboot</code>), gửi tên các biến môi trường chứa KEY, TOKEN hay SECRET. Mọi lỗi đều bị nuốt nên extension vẫn chạy bình thường.</li>
-        <li>Bài học: không cần prompt injection, không dính gì tới model. Kẻ tấn công nhắm vào công cụ AI vì nó được cài khắp nơi, tự cập nhật và được tin theo thương hiệu.</li>
-        <li>Ba điểm kiểm soát hay bỏ sót:
-          <ul>
-            <li>Cùng một ID extension trên mỗi marketplace là một chuỗi cung ứng riêng, nên phải biết editor đang lấy extension từ đâu.</li>
-            <li>Mã độc chạy lúc extension được nạp, không qua install script, nên công cụ chỉ quét lúc cài sẽ không thấy.</li>
-            <li>Tunnel là kết nối đi ra, nên firewall chặn chiều vào và NAT không cứu được.</li>
-          </ul></li>
-        <li>Đã cài 2.1.313 thì coi máy là đã bị chiếm: gỡ extension không xóa được backdoor. Đổi mọi credential máy đó chạm được, làm từ một máy sạch, và nên cài lại máy.</li>
+      <div><h3>3 · Secret: để agent không có gì đáng lấy</h3><ul>
+        <li>Không để secret plain text trong repo hay <code>.env</code>; dùng secret manager inject lúc chạy (<code>op run</code>, Doppler, Vault).</li>
+        <li>Token ngắn hạn, phạm vi hẹp. Publish npm, PyPI bằng trusted publishing qua OIDC, không còn token publish dài hạn trên máy dev.</li>
+        <li>Không đăng nhập sẵn tài khoản admin hay production trong shell của agent; production phải đăng nhập lại có MFA.</li>
+      </ul></div>
+      <div><h3>4 · MCP: đếm cạnh trước khi bật</h3><ul>
+        <li>Ghim phiên bản; chỉ dùng server chính chủ hoặc đã review; danh sách được phép ở cấp team.</li>
+        <li>Mỗi server một token riêng, quyền tối thiểu, chỉ đọc khi có thể. Không bao giờ dùng <code>service_role</code> hay token admin.</li>
+        <li>Không bật cùng lúc MCP đọc nội dung bên ngoài và MCP gửi được ra ngoài. Tắt tool không dùng.</li>
+      </ul></div>
+      <div><h3>5 · Chuỗi cung ứng của chính công cụ AI</h3><ul>
+        <li>Extension: biết editor lấy từ marketplace nào; cùng một ID trên mỗi marketplace là một chuỗi cung ứng riêng. Cập nhật trễ vài ngày thay vì tự cập nhật ngay.</li>
+        <li>File rule và skill: CODEOWNERS, review như code, cảnh báo ký tự ẩn trong diff, ghim phiên bản skill.</li>
+        <li>Package: lockfile, <code>--ignore-scripts</code>, kiểm tra tuổi và lượt tải package mới (pnpm <code>minimumReleaseAge</code>).</li>
+      </ul></div>
+      <div><h3>6 · Git và CI là chốt chặn cuối</h3><ul>
+        <li>Agent làm trên branch riêng, branch protection, không push main, không tự merge.</li>
+        <li>Review PR của agent như PR của đồng nghiệp mới; soi thay đổi ngoài phạm vi: workflow, cấu hình, test bị sửa. Secret scanning và SAST cho mọi PR.</li>
+        <li>Agent trong CI: chỉ người có quyền write kích hoạt, <code>permissions:</code> tối thiểu cho <code>GITHUB_TOKEN</code>, không có secret production trong job, cẩn thận <code>pull_request_target</code>, không nhúng thẳng nội dung issue/PR vào prompt, agent không sửa file workflow.</li>
+      </ul></div>
+      <div><h3>Demo: một file trong repo, rồi sandbox chặn lại</h3><ul>
+        <li>Comment ẩn trong một file; agent ở chế độ auto-approve đọc <code>.env</code> và gửi ra một server do mình dựng.</li>
+        <li>Sửa trên sân khấu: bật sandbox, deny <code>.env</code>, chặn mạng ra domain lạ. Chạy lại để thấy lệnh bị chặn.</li>
+        <li>Môi trường riêng, secret giả. Chuẩn bị video dự phòng. Xem thêm <a href="demo.html">trang Demo</a>.</li>
+      </ul></div>
+      <div><h3>Khi nghi đã dính</h3><ul>
+        <li>Ngắt mạng máy đó, báo team security.</li>
+        <li>Đổi mọi credential máy đó chạm được, làm từ một máy sạch. Gỡ extension hay package độc không xóa được backdoor; nên cài lại máy.</li>
+        <li>Tìm persistence và rà việc agent đã làm: transcript, shell history, package hay repo mình không tạo.</li>
       </ul>
-<pre><span class="c"># Kiểm tra nhanh (macOS/Linux)</span>
+<pre><span class="c"># Kiểm tra nhanh vụ extension 10/2026 (macOS/Linux)</span>
 grep svc-telemetry ~/.ssh/authorized_keys
 ls ~/.config/.smt* ~/Library/LaunchAgents/com.apple.sysmond.plist
 ps aux | grep -E "ssh.*-R"
@@ -343,136 +390,19 @@ ps aux | grep -E "ssh.*-R"
 schtasks /query /tn SysMon</pre>
       </div>
     </div>
-    <p class="msg">Coding agent là một người dùng có quyền rất cao trên máy bạn. Cấu hình quyền cho nó như cấu hình IAM cho một service.</p>
-  </article>
-
-  <article class="card part stripe-5" id="p5">
-    <div class="part-head"><span class="n">05</span><h2>MCP server và tích hợp công cụ</h2><span class="min">10 phút</span></div>
-    <div class="subs">
-      <div><h3>Cài MCP server giống cài một dependency có quyền chạy trên máy</h3><ul>
-        <li>Phần lớn cấu hình dùng <code>npx</code> hoặc <code>uvx</code> tải bản mới nhất mỗi lần chạy, không ghim phiên bản, không lockfile.</li>
-        <li>Token cho MCP (GitHub, Slack, Jira, database) thường nằm dạng plain text trong file JSON cấu hình.</li>
-        <li>Mô tả tool được nạp thẳng vào ngữ cảnh model: một dòng ẩn trong description là đủ điều khiển agent (tool poisoning). Tool cũng có thể đổi mô tả sau khi đã được tin dùng.</li>
-      </ul></div>
-      <div><h3>Các vụ đáng kể</h3><ul>
-        <li>GitHub MCP (2025): agent có quyền đọc repo private, đọc một issue độc trong repo public, rồi tự tạo PR public chứa dữ liệu private. Đủ cả ba yếu tố của lethal trifecta.</li>
-        <li>Supabase MCP với Cursor (2025): agent chạy với <code>service_role</code> đọc một ticket hỗ trợ có chứa lệnh, rồi truy vấn bảng token và ghi kết quả ngược vào ticket.</li>
-        <li>Bức tranh 2026: chỉ riêng tháng 1–2/2026 đã có hơn 30 CVE nhắm vào MCP server, client và hạ tầng. OWASP MCP Top 10 vẫn ở giai đoạn beta nhưng đã đủ dùng làm checklist.</li>
-      </ul></div>
-      <div><h3>Thực hành</h3><ul>
-        <li>Ghim phiên bản MCP server, chỉ dùng server chính chủ hoặc đã review, giữ danh sách server được phép ở cấp team.</li>
-        <li>Mỗi MCP server một token riêng, quyền tối thiểu, chỉ đọc khi có thể. Không bao giờ dùng <code>service_role</code> hay token admin cho agent.</li>
-        <li>Không bật cùng lúc MCP đọc nội dung bên ngoài và MCP có quyền ghi hoặc gửi ra ngoài trong một phiên làm việc.</li>
-        <li>Tắt tool không dùng. Ít tool hơn là ít đường tấn công hơn.</li>
-      </ul></div>
-    </div>
-    <p class="msg">Mỗi MCP server bạn thêm vào là một cạnh mới trong lethal trifecta. Hãy đếm cạnh trước khi bật.</p>
-  </article>
-
-  <article class="card part stripe-6" id="p6">
-    <div class="part-head"><span class="n">06</span><h2>Code và dependency do AI sinh ra</h2><span class="min">10 phút</span></div>
-    <div class="subs">
-      <div><h3>Những lỗi AI hay viết ra, trông rất gọn gàng</h3><ul>
-        <li>Ghép chuỗi vào SQL hoặc shell, dùng <code>eval</code> hay <code>pickle.loads</code> trên dữ liệu ngoài.</li>
-        <li>Thiếu kiểm tra quyền ở endpoint mới: kiểm tra đăng nhập nhưng không kiểm tra quyền sở hữu tài nguyên.</li>
-        <li>Mặc định không an toàn: <code>verify=False</code>, CORS mở cho mọi origin, JWT không kiểm tra thuật toán, secret hard-code để "chạy thử".</li>
-        <li>Khi bị yêu cầu làm test pass, agent có thể sửa hoặc xóa test, hoặc bắt exception rồi bỏ qua.</li>
-      </ul></div>
-      <div><h3>Package bịa và slopsquatting</h3><ul>
-        <li>LLM hay gợi ý tên package không tồn tại. Kẻ tấn công đăng ký sẵn những tên đó với mã độc trong <code>postinstall</code>.</li>
-        <li>Agent tự chạy <code>npm install</code> hoặc <code>pip install</code> trong lúc làm việc, không ai nhìn tên package.</li>
-        <li>Thực hành: chặn install không hỏi trong allowlist, kiểm tra tuổi và lượt tải của package mới, bật <code>--ignore-scripts</code> khi có thể, dùng lockfile và công cụ quét dependency trong CI.</li>
-      </ul></div>
-      <div><h3>Review PR do agent viết</h3><ul>
-        <li>Review như PR của một đồng nghiệp mới, không phải như output của công cụ.</li>
-        <li>Chạy SAST và secret scanning trên mọi PR, đặc biệt PR có nhãn do agent tạo.</li>
-        <li>Soi kỹ các thay đổi ngoài phạm vi yêu cầu: file cấu hình, CI workflow, test bị sửa.</li>
-      </ul></div>
-    </div>
-    <p class="msg">Tốc độ viết code tăng không có nghĩa tốc độ review được giảm.</p>
-  </article>
-
-  <article class="card part stripe-7" id="p7">
-    <div class="part-head"><span class="n">07</span><h2>AI agent trong CI/CD và GitHub</h2><span class="min">8 phút</span></div>
-    <p class="goal">Ngày càng nhiều team chạy agent trong GitHub Actions: tự review PR, tự sửa issue, tự trả lời comment.</p>
-    <div class="moments">
-      <div class="moment">
-        <h3>Workflow kích hoạt bởi issue hoặc comment từ người ngoài</h3>
-        <dl>
-          <dt>Rủi ro</dt><dd>Agent đọc nội dung đó với <code>GITHUB_TOKEN</code> có quyền ghi, đôi khi kèm secret deploy.</dd>
-          <dt>Clinejection (2/2026)</dt><dd>Tiêu đề một issue chứa lệnh khiến bot triage dùng AI của Cline chạy <code>npm install</code> từ commit của kẻ tấn công; từ đó chúng đầu độc cache CI, lấy token npm và phát hành bản <code>cline@2.3.0</code> trái phép.</dd>
-          <dt>Comment and Control (4/2026)</dt><dd>Tiêu đề PR và comment HTML ẩn đủ để lấy API key, <code>GITHUB_TOKEN</code> từ Claude Code Security Review, Gemini CLI Action và Copilot Agent.</dd>
-          <dt>Thực hành</dt><dd class="fix">Chỉ cho người có quyền write kích hoạt agent. <code>permissions:</code> tối thiểu cho <code>GITHUB_TOKEN</code>. Không đưa secret production vào job có agent. Cẩn thận với <code>pull_request_target</code>. Không nhúng thẳng tiêu đề hay nội dung issue/PR vào prompt. Chỉ cấp cho agent đúng các tool cần dùng.</dd>
-          <dt>Nguyên tắc</dt><dd class="fix">Coi agent trong CI như một contributor bên ngoài: không tự merge, không tự sửa file workflow.</dd>
-        </dl>
-      </div>
-    </div>
-    <p class="msg">Agent trong CI chạy không có ai ngồi bấm xác nhận, nên mọi giới hạn phải nằm ở cấu hình.</p>
-  </article>
-
-  <article class="card part stripe-8" id="p8">
-    <div class="part-head"><span class="n">08</span><h2>Khi bạn ship tính năng có LLM</h2><span class="min">15 phút</span></div>
-    <div class="subs">
-      <div><h3>Output của model là input không tin cậy</h3><ul>
-        <li>Render markdown từ LLM có thể chèn ảnh trỏ tới URL của kẻ tấn công, kèm dữ liệu trong query string. Đây là kỹ thuật của EchoLeak (M365 Copilot) và CamoLeak (GitHub Copilot Chat) năm 2025.</li>
-        <li>Thực hành: sanitize HTML, chỉ cho phép ảnh và link tới domain trong allowlist, đặt CSP chặt.</li>
-        <li>Không đưa output của model vào SQL, shell, <code>eval</code>, template engine. Dùng structured output và validate bằng schema (zod, pydantic) trước khi dùng.</li>
-      </ul></div>
-      <div><h3>Tool calling và phân quyền</h3><ul>
-        <li>Tool phải chạy với danh tính và quyền của người dùng cuối, không phải service account toàn quyền.</li>
-        <li>Kiểm tra quyền ở trong code của tool, không dựa vào system prompt kiểu "chỉ trả lời về tài khoản của người dùng".</li>
-        <li>Hành động không đảo ngược được (xóa, chuyển tiền, gửi email ra ngoài) cần bước xác nhận của người dùng, hiển thị đúng tham số sẽ chạy.</li>
-      </ul></div>
-      <div><h3>RAG</h3><ul>
-        <li>Lọc tài liệu theo quyền của người hỏi ở bước truy xuất. Model không giữ bí mật hộ bạn.</li>
-        <li>Tài liệu người dùng tải lên, email, ticket là nội dung không tin cậy, đừng để chúng cùng phiên với tool có quyền ghi.</li>
-      </ul></div>
-      <div><h3>System prompt, log và chi phí</h3><ul>
-        <li>Giả định system prompt và mô tả tool sẽ bị lộ (OWASP 2026 gọi là Hidden Context Exposure): không đặt secret, API key hay logic phân quyền trong đó.</li>
-        <li>Log prompt và response hữu ích để debug nhưng chứa dữ liệu cá nhân, cần chính sách lưu trữ và che dữ liệu.</li>
-        <li>Rate limit theo người dùng, giới hạn token mỗi request và ngân sách theo ngày để tránh bị đốt tiền API.</li>
-      </ul></div>
-      <div><h3>Demo: prompt injection gián tiếp trong chatbot hỗ trợ</h3><ul>
-        <li>Chatbot đọc ticket của khách và có tool tra cứu đơn hàng. Một ticket chứa lệnh ẩn khiến bot trả dữ liệu của khách khác qua link ảnh.</li>
-        <li>Sửa trực tiếp trên sân khấu: tool kiểm tra quyền theo người dùng và chặn ảnh ngoài allowlist, chạy lại để thấy tấn công thất bại.</li>
-        <li>Chuẩn bị video dự phòng nếu demo trực tiếp gặp sự cố. Xem thêm <a href="demo.html">trang Demo</a>.</li>
-      </ul></div>
-    </div>
     <p class="msg">Hãy thiết kế như thể prompt injection chắc chắn thành công, rồi đảm bảo khi đó nó không làm được gì đáng kể.</p>
   </article>
 
-  <article class="card part stripe-9" id="p9">
-    <div class="part-head"><span class="n">09</span><h2>Khi bạn tự viết agent hoặc MCP server</h2><span class="min">8 phút</span></div>
-    <div class="subs">
-      <div><h3>MCP server của chính team</h3><ul>
-        <li><span class="tag t-mcp">MCP07</span> Xác thực và phân quyền: dùng OAuth theo đặc tả MCP và token theo từng người dùng, không dùng một API key chung cho mọi client.</li>
-        <li><span class="tag t-mcp">MCP05</span> Command injection: tham số model truyền vào shell, SQL hay đường dẫn file phải được validate như input từ internet. Không dùng <code>shell=True</code>, chặn path traversal.</li>
-        <li><span class="tag t-mcp">MCP10</span> Trả về vừa đủ: tool chỉ trả những trường cần thiết, không trả cả bản ghi, token hay dữ liệu của người khác vào ngữ cảnh model.</li>
-        <li><span class="tag t-mcp">MCP02</span> Quyền phình dần: review lại quyền mỗi khi thêm tool mới, tách tool đọc và tool ghi.</li>
-        <li><span class="tag t-mcp">MCP08</span> Audit: log mọi lần gọi tool kèm người dùng, tham số và kết quả rút gọn, để điều tra được khi có sự cố.</li>
-      </ul></div>
-      <div><h3>Bộ nhớ, nhiều agent và người duyệt</h3><ul>
-        <li><span class="tag t-asi">ASI06</span> Bộ nhớ dài hạn: agent có memory có thể bị cài lệnh ở một phiên và kích hoạt ở phiên sau. Người dùng phải xem và xóa được memory, nội dung bên ngoài không được ghi thẳng vào đó.</li>
-        <li><span class="tag t-asi">ASI07</span> <span class="tag t-asi">ASI08</span> Nhiều agent và subagent: output của agent này là input không tin cậy của agent kia. Đặt giới hạn số bước, thời gian và ngân sách cho mỗi lần chạy.</li>
-        <li><span class="tag t-asi">ASI10</span> Agent chạy ngoài kiểm soát: có nút dừng, timeout và cảnh báo khi agent gọi tool bất thường.</li>
-        <li><span class="tag t-asi">ASI09</span> Mệt mỏi khi duyệt: hỏi xác nhận quá nhiều khiến người dùng bấm đồng ý theo phản xạ. Chỉ hỏi ở hành động rủi ro và hiển thị đúng lệnh hoặc tham số sẽ chạy.</li>
-        <li><span class="tag t-mcp">MCP09</span> Shadow MCP và shadow AI: lập danh mục MCP server và công cụ AI team đang dùng, chặn server lạ ở cấp tổ chức nếu công cụ hỗ trợ.</li>
-      </ul></div>
-    </div>
-    <p class="msg">Khi bạn là người viết agent, phần quyền mà model không tự giới hạn được là trách nhiệm của bạn.</p>
-  </article>
-
-  <article class="card part stripe-10" id="p10">
-    <div class="part-head"><span class="n">10</span><h2>Checklist và hỏi đáp</h2><span class="min">7 phút + 15 phút hỏi đáp</span></div>
+  <article class="card part stripe-10" id="p6">
+    <div class="part-head"><span class="n">✓</span><h2>Checklist và hỏi đáp</h2><span class="min">4 phút + 15 phút hỏi đáp</span></div>
     <div class="grid g2 check">
       <div class="card"><h3>Làm được ngay trong tuần này</h3><ul>
-        <li>Tắt auto-approve, thêm rule deny đọc <code>.env</code> và thư mục credential, allowlist lệnh cho coding agent</li>
-        <li>Rà danh sách MCP server đang bật: ghim phiên bản, đổi sang token riêng quyền tối thiểu, tắt cái không dùng</li>
-        <li>Đưa <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code> vào CODEOWNERS; rà skill/plugin đang cài, gỡ cái không rõ nguồn</li>
-        <li>Rà extension AI trong IDE: biết editor lấy extension từ marketplace nào, tắt tự cập nhật hoặc cập nhật trễ, tìm <code>svc-telemetry</code> trong <code>~/.ssh/authorized_keys</code></li>
-        <li>Bật secret scanning và quét dependency cho mọi PR, kể cả PR do agent viết</li>
+        <li>Tắt auto-approve, deny đọc <code>.env</code> và thư mục credential, deny sửa cấu hình agent, allowlist lệnh</li>
+        <li>Bật sandbox của công cụ hoặc chạy agent trong devcontainer không mount credential</li>
+        <li>Dọn secret khỏi máy dev: secret manager, token ngắn hạn, trusted publishing</li>
+        <li>Rà MCP server đang bật: ghim phiên bản, token riêng quyền tối thiểu, tắt cái không dùng</li>
+        <li>Rà extension và skill; đưa <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code> vào CODEOWNERS</li>
         <li>Rà workflow có agent trong CI: ai kích hoạt được, <code>GITHUB_TOKEN</code> có quyền gì, job có secret nào</li>
-        <li>Với tính năng LLM đang chạy: kiểm tra render markdown, quyền của tool, lọc RAG theo người dùng, rate limit</li>
       </ul></div>
       <div class="card faq">
         <h3 style="font-size:15px;margin-bottom:4px">Câu hỏi khán giả hay hỏi</h3>
@@ -480,11 +410,11 @@ schtasks /query /tn SysMon</pre>
         <details><summary>Dùng model mạnh hơn có chặn được prompt injection không?</summary>
           <p>Tỷ lệ bị lừa giảm nhưng không về 0, còn kẻ tấn công thì thử được vô hạn lần. Coi đó là một lớp lọc, không phải ranh giới.</p></details>
         <details><summary>Agent chậm đi vì phải hỏi nhiều quá thì làm sao?</summary>
-          <p>Allowlist sẵn lệnh an toàn (test, lint, build), chỉ hỏi ở lệnh có mạng hoặc ghi ra ngoài repo. Muốn chạy tự do thì chạy trong container không có credential và không có mạng ra ngoài.</p></details>
-        <details><summary>Code và dữ liệu dán vào công cụ AI có bị dùng để huấn luyện không?</summary>
+          <p>Allowlist sẵn lệnh an toàn (test, lint, build) và bật sandbox, để chỉ phải hỏi ở lệnh có mạng hoặc ghi ra ngoài repo. Muốn chạy tự do thì chạy trong container không có credential và không có mạng ra ngoài.</p></details>
+        <details><summary>Code dán vào công cụ AI có bị dùng để huấn luyện không?</summary>
           <p>Tùy gói: bản doanh nghiệp thường cam kết không huấn luyện và có chính sách lưu trữ riêng, bản cá nhân thì khác. Kiểm tra điều khoản của đúng gói công ty đang dùng.</p></details>
-        <details><summary>Test bảo mật thế nào cho tính năng có output không tất định?</summary>
-          <p>Đưa bộ prompt tấn công vào eval, chạy nhiều lần và đo tỷ lệ. Phần phân quyền và sandbox thì tất định, test như phần mềm thường.</p></details>
+        <details><summary>Team nhỏ, không có security team thì bắt đầu từ đâu?</summary>
+          <p>Ba dòng đầu của checklist: tắt auto-approve, bật sandbox, dọn secret khỏi máy dev. Ba việc này cắt được hai vòng của lethal trifecta.</p></details>
       </div>
     </div>
   </article>
@@ -495,20 +425,17 @@ schtasks /query /tn SysMon</pre>
     <div class="grid g2" style="margin-top:14px">
       <div class="card">
         <h3 style="font-size:16px;margin-bottom:4px">Đối chiếu với OWASP</h3>
-        <p class="note">Mã LLM theo bản 2026 (ra 8/2026), thứ tự đã khác bản 2025. Có thể đặt mã ở góc slide tương ứng để khán giả tra cứu sau.</p>
+        <p class="note">Có thể đặt mã ở góc slide tương ứng để khán giả tra cứu sau.</p>
         <div class="tbl-wrap"><table class="tbl">
           <thead><tr><th>Phần</th><th>Mã OWASP</th></tr></thead>
           <tbody>
-            <tr><th>Mở đầu và lethal trifecta</th><td>LLM01, ASI01, MCP06</td></tr>
-            <tr><th>Ngay cả khi chỉ chat trên web</th><td>LLM01, LLM02, LLM10, ASI06, ASI09</td></tr>
-            <tr><th>Coding agent trên máy dev</th><td>LLM02, LLM03, ASI02, ASI03, ASI04, ASI05</td></tr>
-            <tr><th>File cấu hình, skill, plugin</th><td>LLM01, ASI04, ASI06, AST01, AST02</td></tr>
-            <tr><th>MCP server và tích hợp</th><td>MCP01, MCP02, MCP03, MCP04, MCP09, ASI04</td></tr>
-            <tr><th>Code và dependency do AI sinh</th><td>LLM04, LLM07, LLM10, ASI04, ASI05</td></tr>
-            <tr><th>Agent trong CI/CD</th><td>LLM01, LLM03, ASI01, ASI02, ASI03, ASI04</td></tr>
-            <tr><th>Ship tính năng có LLM</th><td>LLM01, LLM02, LLM03, LLM06, LLM08, LLM09, LLM10, ASI09</td></tr>
-            <tr><th>Tự viết agent hoặc MCP server</th><td>MCP02, MCP05, MCP07, MCP08, MCP09, MCP10, ASI06–ASI10</td></tr>
-            <tr><th>Không đi sâu</th><td>LLM05 Data and Model Poisoning: chủ yếu thuộc về đội huấn luyện model, ít gặp trong công việc hằng ngày của dev.</td></tr>
+            <tr><th>Vấn đề: quyền, dữ liệu là lệnh, trifecta</th><td>LLM01, ASI01, ASI02, ASI03, ASI09</td></tr>
+            <tr><th>Cửa 1–2: nội dung agent đọc, file rule, skill</th><td>LLM01, ASI01, ASI04, ASI06, AST01, AST02</td></tr>
+            <tr><th>Cửa 3: MCP server</th><td>MCP01, MCP02, MCP03, MCP04, MCP09, ASI04</td></tr>
+            <tr><th>Cửa 4–5: extension, package AI gợi ý</th><td>LLM03, ASI04</td></tr>
+            <tr><th>Cửa 6: agent trong CI</th><td>LLM01, ASI01, ASI02, ASI03, ASI04</td></tr>
+            <tr><th>Hậu quả</th><td>LLM02, ASI02, ASI05, ASI10</td></tr>
+            <tr><th>Phòng thủ</th><td>ASI03, ASI05, MCP02, MCP07</td></tr>
           </tbody>
         </table></div>
       </div>
@@ -516,20 +443,22 @@ schtasks /query /tn SysMon</pre>
         <div class="card check">
           <h3 style="font-size:16px;margin-bottom:10px">Chuẩn bị trước buổi</h3>
           <ul>
-            <li>Đối chiếu lại chi tiết từng vụ (Nx s1ngularity, GitHub MCP, Supabase MCP, EchoLeak, CamoLeak, Clinejection, Comment and Control, ClawHavoc, Claudy Day, extension Claude Code trên Cursor Marketplace) với bài công bố gốc trước khi đưa lên slide</li>
-            <li>Chuẩn bị sẵn file cấu hình mẫu cho Claude Code, Cursor và Codex CLI để chiếu trực tiếp</li>
-            <li>Dựng môi trường demo riêng, không dùng tài khoản hay token thật</li>
+            <li>Đối chiếu lại chi tiết từng vụ với bài công bố gốc: CVE-2025-53773, CurXecute, MCPoison, Rules File Backdoor, ClawHavoc, postmark-mcp, GitHub MCP, Supabase MCP, extension Claude Code trên Cursor Marketplace, slopsquatting, Clinejection, Comment and Control, s1ngularity, Amazon Q 1.84.0, Shai-Hulud, Replit, Gemini CLI, số liệu GitGuardian</li>
+            <li>Kiểm tra lại tên lệnh và cờ sandbox theo phiên bản Claude Code, Codex CLI, Cursor đang dùng</li>
+            <li>Chuẩn bị sẵn file cấu hình mẫu để chiếu trực tiếp</li>
+            <li>Dựng môi trường demo riêng, secret giả, không dùng tài khoản hay token thật; quay sẵn video dự phòng</li>
           </ul>
         </div>
         <div class="card">
           <h3 style="font-size:16px;margin-bottom:10px">Tài liệu tham khảo</h3>
           <ul>
             <li><a href="owasp.html">Trang tổng hợp OWASP cho AI Security</a></li>
-            <li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications 2026</a></li>
             <li><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">OWASP Top 10 for Agentic Applications 2026</a></li>
             <li><a href="https://owasp.org/www-project-mcp-top-10/" target="_blank" rel="noopener">OWASP MCP Top 10</a></li>
             <li>OWASP Agentic Skills Top 10</li>
+            <li><a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">OWASP Top 10 for LLM Applications 2026</a></li>
             <li><a href="https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/" target="_blank" rel="noopener">Simon Willison: The lethal trifecta</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/claude-code/security" target="_blank" rel="noopener">Claude Code: Security</a></li>
           </ul>
         </div>
       </div>
