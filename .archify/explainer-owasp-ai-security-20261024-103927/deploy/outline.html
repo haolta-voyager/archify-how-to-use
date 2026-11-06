@@ -351,9 +351,10 @@ pre .c{color:var(--muted)}
         <li>Devcontainer hoặc VM: không mount <code>~/.ssh</code>, <code>~/.aws</code>, Docker socket.</li>
         <li>Chặn mạng ra ngoài, chỉ cho phép registry và domain cần thiết.</li>
         <li>Muốn chạy YOLO thì chỉ trong container không credential, không mạng. Sandbox còn giảm số lần hỏi, nên dev đọc kỹ hơn những lần còn lại.</li>
+        <li>Giải thích sandbox là gì và cơ chế trên từng hệ điều hành: xem <a href="#ghi-chu-sandbox">ghi chú ở Phụ lục</a>.</li>
       </ul></div>
       <div><h3>3 · Secret: để agent không có gì đáng lấy</h3><ul>
-        <li>Không để secret plain text trong repo hay <code>.env</code>; dùng secret manager inject lúc chạy (<code>op run</code>, Doppler, Vault).</li>
+        <li>Không để secret plain text trong repo; dùng secret manager inject lúc chạy (<code>op run</code>, Doppler, Vault).</li>
         <li>Token ngắn hạn, phạm vi hẹp. Publish npm, PyPI bằng trusted publishing qua OIDC, không còn token publish dài hạn trên máy dev.</li>
         <li>Không đăng nhập sẵn tài khoản admin hay production trong shell của agent; production phải đăng nhập lại có MFA.</li>
       </ul></div>
@@ -422,6 +423,36 @@ schtasks /query /tn SysMon</pre>
   <!-- APPENDIX -->
   <section class="section" id="phu-luc">
     <h2>Phụ lục cho người trình bày</h2>
+
+    <div class="card" id="ghi-chu-sandbox" style="margin-top:14px">
+      <h3 style="font-size:16px;margin-bottom:4px">Ghi chú: sandbox là gì, hoạt động thế nào</h3>
+      <p class="note">Dùng khi khán giả hỏi "sandbox cụ thể là cái gì" ở phần Phòng thủ.</p>
+      <div class="subs">
+        <div><h3>Sandbox là gì</h3><ul>
+          <li>Môi trường bị rào lại để chạy chương trình: bên trong muốn làm gì cũng được, ra ngoài rào thì không chạm tới được gì.</li>
+          <li>Với coding agent, sandbox quyết định agent <b>đọc, ghi file nào</b>, <b>gọi mạng tới đâu</b>, <b>chạy được tiến trình gì</b>.</li>
+          <li>Điểm mấu chốt: giới hạn do <b>hệ thống áp đặt</b>, không do AI tự giác tuân theo. Dặn trong prompt thì injection có thể lừa được; kernel từ chối thì không lừa được.</li>
+        </ul></div>
+        <div><h3>Hoạt động thế nào</h3><ul>
+          <li><b>File:</b> chỉ thấy hoặc chỉ ghi được thư mục project; đọc <code>~/.ssh</code>, <code>~/.aws</code> thì kernel trả về "Permission denied".</li>
+          <li><b>Mạng:</b> chặn hẳn, hoặc đi qua proxy chỉ cho phép vài domain như registry npm, PyPI.</li>
+          <li><b>Tiến trình con kế thừa giới hạn:</b> agent chạy <code>bash</code>, <code>curl</code>, <code>python</code> thì các lệnh đó cũng bị rào y như agent.</li>
+          <li><b>Hai mức:</b> sandbox tiến trình (OS rào một tiến trình trên máy thật) hoặc container, VM (agent có hẳn một "máy riêng", máy thật nằm bên ngoài).</li>
+        </ul></div>
+      </div>
+      <h3 class="h3">Trên từng hệ điều hành</h3>
+      <div class="tbl-wrap"><table class="tbl">
+        <thead><tr><th>Nền tảng</th><th>Cơ chế của OS</th><th>Công cụ agent đang dùng</th></tr></thead>
+        <tbody>
+          <tr><th>macOS</th><td>Seatbelt (<code>sandbox-exec</code>): profile khai báo được phép đọc, ghi, gọi mạng gì; kernel thực thi.</td><td>Claude Code <code>/sandbox</code>, Codex CLI đều dùng Seatbelt.</td></tr>
+          <tr><th>Linux</th><td>Namespaces (tách file, mạng, tiến trình), seccomp (lọc system call), Landlock (giới hạn file); bubblewrap gói các cơ chế này lại.</td><td>Claude Code dùng bubblewrap; Codex CLI dùng Landlock và seccomp.</td></tr>
+          <tr><th>Windows</th><td>AppContainer, Windows Sandbox, Hyper-V VM. Chưa có cách gọn như Seatbelt cho CLI agent.</td><td>Thực tế: chạy agent trong WSL2 để dùng sandbox Linux, hoặc trong devcontainer, VM.</td></tr>
+          <tr><th>Container, VM (mọi OS)</th><td>Docker, devcontainer, VM. Trên macOS và Windows, Docker thực chất chạy trong một VM Linux.</td><td>Devcontainer không mount credential; cloud sandbox như Claude Code on the web, Codex cloud.</td></tr>
+        </tbody>
+      </table></div>
+      <p class="warn">Container chỉ an toàn khi không mount <code>~/.ssh</code>, <code>~/.aws</code>, Docker socket và không truyền secret qua biến môi trường. Mount nhầm thì rào cũng như không.</p>
+    </div>
+
     <div class="grid g2" style="margin-top:14px">
       <div class="card">
         <h3 style="font-size:16px;margin-bottom:4px">Đối chiếu với OWASP</h3>
