@@ -36,14 +36,6 @@ section[id],article[id]{scroll-margin-top:64px}
 .vs .weak{background:var(--bad-soft)}.vs .strong{background:var(--good-soft)}
 .vs b{display:block;margin-bottom:4px}
 
-.bar{display:flex;height:40px;border-radius:8px;overflow:hidden;border:1px solid var(--rule)}
-.bar a{display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700;text-decoration:none;min-width:0;overflow:hidden;white-space:nowrap}
-.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:8px 18px;margin-top:14px;font-size:14px}
-.legend a{display:flex;align-items:center;gap:8px;color:var(--secondary);text-decoration:none}
-.legend a:hover{color:var(--accent-ink)}
-.legend i{width:12px;height:12px;border-radius:3px;flex:none}
-.legend b{margin-left:auto;font-family:var(--mono);font-weight:600;color:var(--muted)}
-.c1{background:#6a707c}.c2{background:#2457d6}.c3{background:#7b5e3b}.c4{background:#b26a00}.c5{background:#13834b}.c6{background:#6a4fc8}.c7{background:#c4321f}.c8{background:#0e7c86}.c9{background:#a1366e}.c10{background:#45556c}
 
 .part{margin-top:18px}
 .part-head{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-bottom:6px}
@@ -112,12 +104,10 @@ pre .c{color:var(--muted)}
     <p class="lede">Khung sườn seminar cho developer có kinh nghiệm. Bài xoay quanh một ngày làm việc với coding agent và trả lời bốn câu hỏi: vấn đề là gì, bị tấn công thế nào, hậu quả ra sao, phòng thủ thế nào.</p>
     <div class="meta">
       <span class="chip">👥 Dev đang dùng Claude Code, Cursor, Copilot, Codex CLI và MCP</span>
-      <span class="chip">⏱ Khoảng 65 phút + 15 phút hỏi đáp</span>
       <span class="chip">🛠 Có demo và cấu hình mẫu</span>
     </div>
     <nav class="jump" aria-label="Trong trang">
       <a href="#diem-chinh">Điểm quan trọng</a>
-      <a href="#thoi-gian">Thời gian</a>
       <a href="#cach-trinh-bay">Cách trình bày</a>
       <a href="#p1">0 Mở đầu</a>
       <a href="#p2">1 Vấn đề</a>
@@ -173,30 +163,6 @@ pre .c{color:var(--muted)}
     </div>
   </section>
 
-  <!-- TIMING -->
-  <section class="section" id="thoi-gian">
-    <h2>Phân bổ thời gian</h2>
-    <p class="sub">Phòng thủ là phần dài nhất, vì đó là thứ khán giả mang về làm ngay.</p>
-    <div class="card">
-      <div class="bar" role="img" aria-label="Thanh phân bổ thời gian theo phần">
-        <a class="c1" style="flex:4" href="#p1" title="Mở đầu, 4 phút">4′</a>
-        <a class="c2" style="flex:8" href="#p2" title="Vấn đề là gì, 8 phút">8′</a>
-        <a class="c7" style="flex:17" href="#p3" title="Bị tấn công thế nào, 17 phút">17′</a>
-        <a class="c4" style="flex:10" href="#p4" title="Hậu quả ra sao, 10 phút">10′</a>
-        <a class="c5" style="flex:22" href="#p5" title="Phòng thủ thế nào, 22 phút">22′</a>
-        <a class="c10" style="flex:4" href="#p6" title="Checklist, 4 phút">4′</a>
-      </div>
-      <div class="legend">
-        <a href="#p1"><i class="c1"></i>0 · Mở đầu<b>4′</b></a>
-        <a href="#p2"><i class="c2"></i>1 · Vấn đề là gì?<b>8′</b></a>
-        <a href="#p3"><i class="c7"></i>2 · Bị tấn công thế nào?<b>17′</b></a>
-        <a href="#p4"><i class="c4"></i>3 · Hậu quả ra sao?<b>10′</b></a>
-        <a href="#p5"><i class="c5"></i>4 · Phòng thủ thế nào?<b>22′</b></a>
-        <a href="#p6"><i class="c10"></i>Checklist<b>4′ + Q&amp;A</b></a>
-      </div>
-    </div>
-  </section>
-
   <!-- DELIVERY -->
   <section class="section" id="cach-trinh-bay">
     <h2>Cách trình bày</h2>
@@ -214,7 +180,7 @@ pre .c{color:var(--muted)}
   </section>
 
   <article class="card part stripe-1" id="p1">
-    <div class="part-head"><span class="n">00</span><h2>Mở đầu: lỗ hổng nằm ở quyền, không nằm ở code</h2><span class="min">4 phút</span></div>
+    <div class="part-head"><span class="n">00</span><h2>Mở đầu: lỗ hổng nằm ở quyền, không nằm ở code</h2></div>
     <div class="moments">
       <div class="moment">
         <h3>Luận điểm và bốn câu hỏi</h3>
@@ -228,7 +194,7 @@ pre .c{color:var(--muted)}
   </article>
 
   <article class="card part stripe-2" id="p2">
-    <div class="part-head"><span class="n">01</span><h2>Vấn đề là gì?</h2><span class="min">8 phút</span></div>
+    <div class="part-head"><span class="n">01</span><h2>Vấn đề là gì?</h2></div>
     <div class="subs">
       <div><h3>Agent có mọi quyền mà bạn có</h3><ul>
         <li>Đọc toàn bộ repo và thường cả thư mục home: <code>.env</code>, <code>~/.aws/credentials</code>, <code>~/.ssh</code>, <code>~/.npmrc</code>.</li>
@@ -254,7 +220,7 @@ pre .c{color:var(--muted)}
   </article>
 
   <article class="card part stripe-7" id="p3">
-    <div class="part-head"><span class="n">02</span><h2>Bị tấn công thế nào? Sáu cửa vào</h2><span class="min">17 phút</span></div>
+    <div class="part-head"><span class="n">02</span><h2>Bị tấn công thế nào? Sáu cửa vào</h2></div>
     <p class="goal">Cửa 1 và 2 là prompt injection; cửa 3, 4, 5 là chuỗi cung ứng; cửa 6 là cả hai, không có người giám sát.</p>
     <div class="subs">
       <div><h3>1 · Nội dung agent đọc: injection khiến agent tự tắt phòng thủ</h3><ul>
@@ -292,7 +258,7 @@ pre .c{color:var(--muted)}
   </article>
 
   <article class="card part stripe-4" id="p4">
-    <div class="part-head"><span class="n">03</span><h2>Hậu quả ra sao?</h2><span class="min">10 phút</span></div>
+    <div class="part-head"><span class="n">03</span><h2>Hậu quả ra sao?</h2></div>
     <div class="subs">
       <div><h3>Thứ bị mất</h3><ul>
         <li><b>Secret và token:</b> s1ngularity (8/2025), mã độc trong gói Nx gọi Claude, Gemini, Q CLI với cờ bỏ qua xác nhận để tìm secret, rồi đẩy lên repo public trên chính tài khoản GitHub của nạn nhân; hơn 2.000 secret bị lộ.</li>
@@ -321,7 +287,7 @@ pre .c{color:var(--muted)}
   </article>
 
   <article class="card part stripe-5" id="p5">
-    <div class="part-head"><span class="n">04</span><h2>Phòng thủ thế nào?</h2><span class="min">22 phút · có demo</span></div>
+    <div class="part-head"><span class="n">04</span><h2>Phòng thủ thế nào?</h2><span class="min">có demo</span></div>
     <p class="goal">Mỗi lớp cắt bớt một vòng của lethal trifecta. Lớp mềm chặn phần lớn sai sót vô tình; ranh giới thật chặn khi lớp mềm đã thua.</p>
     <div class="subs">
       <div><h3>1 · Quyền: cấu hình như IAM cho một service</h3><ul>
@@ -395,7 +361,7 @@ schtasks /query /tn SysMon</pre>
   </article>
 
   <article class="card part stripe-10" id="p6">
-    <div class="part-head"><span class="n">✓</span><h2>Checklist và hỏi đáp</h2><span class="min">4 phút + 15 phút hỏi đáp</span></div>
+    <div class="part-head"><span class="n">✓</span><h2>Checklist và hỏi đáp</h2></div>
     <div class="grid g2 check">
       <div class="card"><h3>Làm được ngay trong tuần này</h3><ul>
         <li>Tắt auto-approve, deny đọc <code>.env</code> và thư mục credential, deny sửa cấu hình agent, allowlist lệnh</li>

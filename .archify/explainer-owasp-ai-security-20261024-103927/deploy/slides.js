@@ -139,23 +139,6 @@
 
   channel?.addEventListener('message', ({ data }) => go(data.index, data.step, { silent: true }));
 
-  const startTimer = () => {
-    const started = Date.now();
-    const pad = (n) => String(n).padStart(2, '0');
-    let offset = 0;
-    const tick = () => {
-      const sec = Math.floor((Date.now() - started) / 1000) - offset;
-      $('.pv .timer').textContent = `${pad(Math.floor(sec / 60))}:${pad(sec % 60)}`;
-      $('.pv .clock').textContent = new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' });
-    };
-    $('.pv [data-reset]').addEventListener('click', () => {
-      offset = Math.floor((Date.now() - started) / 1000);
-      tick();
-    });
-    tick();
-    setInterval(tick, 1000);
-  };
-
   window.addEventListener('resize', () => {
     fitStage(deck, innerWidth, innerHeight);
     if (isPresenter) renderPresenter();
@@ -163,7 +146,6 @@
 
   if (isPresenter) {
     document.body.classList.add('presenter');
-    startTimer();
   }
   fitStage(deck, innerWidth, innerHeight);
   const fromHash = parseInt(location.hash.slice(1), 10);

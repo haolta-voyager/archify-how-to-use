@@ -135,7 +135,6 @@ body:hover .hud,.hud:focus-within{opacity:1}
 .pv{display:none}
 .presenter .pv{display:grid;position:fixed;inset:0;grid-template-columns:1.6fr 1fr;grid-template-rows:auto 1fr;gap:16px;padding:16px;background:#050c18;font-family:var(--sans)}
 .pv .bar{grid-column:1/-1;display:flex;gap:24px;align-items:center;font:600 18px var(--mono);color:var(--muted)}
-.pv .bar .timer{font-size:30px;color:var(--ink)}
 .pv .bar button{font:600 14px var(--sans);background:var(--panel);color:var(--ink);border:1px solid var(--panel2);border-radius:8px;padding:6px 12px;cursor:pointer}
 .pv .col{display:flex;flex-direction:column;gap:16px;min-height:0}
 .pv .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
