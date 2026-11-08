@@ -175,12 +175,13 @@ Bài học: thư mục cấu hình của agent (.vscode, .cursor, .claude) phả
 <!-- 12 -->
 <section class="slide">
   <div class="kicker">02 · Cửa 2 · File rule và skill</div>
-  <h2>CLAUDE.md và skill chính là system prompt của team</h2>
+  <h2 class="h-sm">CLAUDE.md và skill chính là system prompt của team</h2>
   <div class="body"><div class="cards c3">
     <div class="card f"><div class="ic">&lt;/&gt;</div><h3>File rule</h3><p><code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code>: một PR sửa file này đổi hành vi agent của cả team.</p></div>
     <div class="card f"><div class="ic r">!</div><h3>Ký tự vô hình</h3><p>Rules File Backdoor (2025): chỉ dẫn ẩn bằng Unicode, reviewer không thấy trong diff.</p></div>
     <div class="card f"><div class="ic r">!</div><h3>Skill và plugin</h3><p>ClawHavoc (2/2026): hàng trăm skill độc trên ClawHub giả công cụ phổ biến.</p></div>
-  </div></div>
+  </div>
+  <p class="punch f">Vô hại trong mắt người, là lệnh trong mắt agent.</p></div>
   <aside class="notes">Rules File Backdoor do Pillar Security công bố 3/2025, ảnh hưởng Cursor và Copilot: chỉ dẫn ẩn khiến agent chèn script độc vào code nó sinh ra.
 ClawHavoc: skill độc kèm bước "cài đặt trước" chạy mã đánh cắp dữ liệu. OWASP đã tách riêng lớp này thành Agentic Skills Top 10 (AST01–AST10).
 Điểm chung: file text vô hại trong mắt người, là lệnh trong mắt agent.</aside>
