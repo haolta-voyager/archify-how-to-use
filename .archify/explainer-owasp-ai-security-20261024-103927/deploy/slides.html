@@ -445,14 +445,8 @@ Package mới: tuổi, lượt tải, repo nguồn. pnpm có minimumReleaseAge �
 </section>
 
 <!-- 30 -->
-<section class="slide">
-  <div class="kicker">04 · Demo</div>
-  <h2>Một file trong repo lấy được secret, sandbox chặn lại</h2>
-  <div class="body"><div class="steps">
-    <div class="card f"><div class="ic r">1</div><h3>Không có sandbox</h3><p>Comment ẩn trong file ra lệnh cho agent. Agent đang auto-approve nên đọc <code>.env</code> và gửi lên server lạ.</p></div>
-    <div class="card f"><div class="ic">2</div><h3>Bật phòng thủ</h3><p>Sandbox bật, <code>.env</code> bị deny, mạng chỉ ra được domain trong allowlist.</p></div>
-    <div class="card f"><div class="ic g">3</div><h3>Chạy lại</h3><p>Cùng file, cùng agent: lệnh bị chặn, secret ở lại trên máy.</p></div>
-  </div></div>
+<section class="slide statement">
+  <h1>DEMO</h1>
   <aside class="notes">[DEMO TRỰC TIẾP] Môi trường demo riêng, secret giả, server nhận dữ liệu do mình dựng. Mở sẵn terminal.
 DỰ PHÒNG: demo lỗi quá 60 giây thì chuyển ngay sang video quay sẵn, đừng debug trên sân khấu.</aside>
 </section>
