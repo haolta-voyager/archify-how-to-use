@@ -441,74 +441,23 @@ Câu chốt: "Mỗi MCP server bạn thêm vào là một cạnh mới trong let
   <p class="punch f" style="font-family:var(--mono);font-size:28px">grep svc-telemetry ~/.ssh/authorized_keys</p></div>
   <aside class="notes">Cùng một ID extension trên mỗi marketplace là một chuỗi cung ứng riêng. Mã độc chạy lúc nạp, nên công cụ chỉ quét lúc cài sẽ không thấy. Tunnel là kết nối đi ra, firewall chiều vào không cứu được.
 Package mới: tuổi, lượt tải, repo nguồn. pnpm có minimumReleaseAge để chỉ cài bản đã ra đủ lâu.
-Đã cài extension 2.1.313: coi máy là đã bị chiếm (slide 32).</aside>
+Đã cài extension 2.1.313: coi máy là đã bị chiếm. Ngắt mạng, đổi credential từ một máy sạch, cài lại máy.</aside>
 </section>
 
 <!-- 30 -->
 <section class="slide">
-  <div class="kicker">04 · Phòng thủ · Git và CI</div>
-  <h2>Git và CI là chốt chặn cuối</h2>
-  <div class="body"><div class="cards c3">
-    <div class="card f"><div class="ic g">✓</div><h3>Branch riêng cho agent</h3><p>Branch protection, agent không push main, không tự merge.</p></div>
-    <div class="card f"><div class="ic g">✓</div><h3>Review như đồng nghiệp mới</h3><p>Soi thay đổi ngoài phạm vi: workflow, cấu hình, test bị sửa.</p></div>
-    <div class="card f"><div class="ic g">✓</div><h3>Agent trong CI</h3><p>Chỉ người có quyền write kích hoạt, <code>permissions:</code> tối thiểu.</p></div>
-  </div>
-  <p class="punch f">Secret scanning và SAST cho mọi PR, nhất là PR do agent viết.</p></div>
-  <aside class="notes">CI: không có secret production trong job có agent; cẩn thận pull_request_target; không nhúng thẳng tiêu đề hay nội dung issue/PR vào prompt; chỉ cấp đúng tool cần dùng; agent không được sửa file workflow.
-Coi agent trong CI như một contributor bên ngoài.</aside>
-</section>
-
-<!-- 31 -->
-<section class="slide">
   <div class="kicker">04 · Demo</div>
-  <h2>Demo: một file trong repo, rồi sandbox chặn lại</h2>
+  <h2>Một file trong repo lấy được secret, sandbox chặn lại</h2>
   <div class="body"><div class="steps">
-    <div class="card f"><div class="ic r">1</div><h3>Tấn công</h3><p>Comment ẩn trong file, agent ở auto-approve đọc <code>.env</code> và gửi ra ngoài.</p></div>
-    <div class="card f"><div class="ic">2</div><h3>Sửa trên sân khấu</h3><p>Bật sandbox, deny <code>.env</code>, chặn mạng ra domain lạ.</p></div>
-    <div class="card f"><div class="ic g">3</div><h3>Chạy lại</h3><p>Lệnh bị chặn, secret không rời máy.</p></div>
+    <div class="card f"><div class="ic r">1</div><h3>Không có sandbox</h3><p>Comment ẩn trong file ra lệnh cho agent. Agent đang auto-approve nên đọc <code>.env</code> và gửi lên server lạ.</p></div>
+    <div class="card f"><div class="ic">2</div><h3>Bật phòng thủ</h3><p>Sandbox bật, <code>.env</code> bị deny, mạng chỉ ra được domain trong allowlist.</p></div>
+    <div class="card f"><div class="ic g">3</div><h3>Chạy lại</h3><p>Cùng file, cùng agent: lệnh bị chặn, secret ở lại trên máy.</p></div>
   </div></div>
   <aside class="notes">[DEMO TRỰC TIẾP] Môi trường demo riêng, secret giả, server nhận dữ liệu do mình dựng. Mở sẵn terminal.
 DỰ PHÒNG: demo lỗi quá 60 giây thì chuyển ngay sang video quay sẵn, đừng debug trên sân khấu.</aside>
 </section>
 
-<!-- 32 -->
-<section class="slide">
-  <div class="kicker">04 · Phòng thủ · Khi đã dính</div>
-  <h2>Nghi máy đã bị chiếm thì làm gì?</h2>
-  <div class="body"><ul class="checklist">
-    <li class="f">Ngắt mạng máy đó, báo team security</li>
-    <li class="f">Đổi mọi credential máy đó chạm được, từ một máy sạch</li>
-    <li class="f">Tìm persistence: <code>authorized_keys</code>, LaunchAgents, cron, scheduled task</li>
-    <li class="f">Rà việc agent đã làm: transcript, shell history, package đã publish</li>
-  </ul></div>
-  <aside class="notes">Gỡ extension hay package độc không xóa được backdoor đã cài. Nên cài lại máy.
-Đổi credential từ máy sạch: làm trên máy bị chiếm thì token mới lộ tiếp.
-Rà npm, PyPI, GitHub: có phiên bản hay repo nào mình không tạo không.</aside>
-</section>
-
-<!-- 33 -->
-<section class="slide statement">
-  <h1>Thiết kế như thể injection chắc chắn thành công</h1>
-  <p class="lead f green">Rồi đảm bảo khi đó nó không làm được gì đáng kể.</p>
-  <aside class="notes">Thông điệp chốt. Bước ra giữa sân khấu, nói CHẬM, dừng sau mỗi vế.
-Nhắc lại bốn câu hỏi: agent có quyền của bạn · sáu cửa vào · hậu quả lan ra ngoài máy bạn · cắt bớt vòng trifecta bằng sandbox và secret.</aside>
-</section>
-
-<!-- 34 -->
-<section class="slide">
-  <h2>Làm ngay trong tuần này</h2>
-  <div class="body"><ul class="checklist">
-    <li class="f">Tắt auto-approve, deny <code>.env</code> và cấu hình agent, allowlist lệnh</li>
-    <li class="f">Bật sandbox của công cụ hoặc chạy trong devcontainer</li>
-    <li class="f">Dọn secret khỏi máy dev: secret manager, token ngắn hạn</li>
-    <li class="f">Rà MCP: ghim phiên bản, token riêng, tắt cái không dùng</li>
-    <li class="f">Rà extension, skill; đưa <code>CLAUDE.md</code>, <code>AGENTS.md</code> vào CODEOWNERS</li>
-    <li class="f">Rà workflow có agent: ai kích hoạt, <code>GITHUB_TOKEN</code> có quyền gì</li>
-  </ul></div>
-  <aside class="notes">Mời khán giả chụp ảnh slide này. Bấm từng dòng, mỗi dòng gắn với một slide phòng thủ đã nói.</aside>
-</section>
-
-<!-- 35 -->
+<!-- 31 -->
 <section class="slide statement">
   <h1>Hỏi đáp</h1>
   <p class="lead blue">owaspseminar.vercel.app</p>
@@ -516,10 +465,10 @@ Nhắc lại bốn câu hỏi: agent có quyền của bạn · sáu cửa vào 
 Model mạnh hơn có chặn được injection? → Giảm tỷ lệ, không về 0. Là lớp lọc, không phải ranh giới.
 Agent chậm vì hỏi nhiều? → Allowlist lệnh an toàn + sandbox; muốn chạy tự do thì container không credential, không mạng.
 Code dán vào agent có bị dùng để huấn luyện? → Tùy gói, kiểm tra điều khoản đúng gói công ty dùng.
-Team nhỏ, không có security team thì bắt đầu từ đâu? → Ba dòng đầu của checklist: tắt auto-approve, bật sandbox, dọn secret.</aside>
+Team nhỏ, không có security team thì bắt đầu từ đâu? → Tắt auto-approve, bật sandbox, dọn secret.</aside>
 </section>
 
-<!-- 36 -->
+<!-- 32 -->
 <section class="slide">
   <h2>Tài liệu tham khảo</h2>
   <div class="body"><ul class="refs">
