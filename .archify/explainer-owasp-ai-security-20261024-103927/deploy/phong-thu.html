@@ -38,6 +38,9 @@ section[id],article[id]{scroll-margin-top:64px}
 .moment dt{font-weight:600;color:var(--muted);font-size:13px;padding-top:1px}
 .moment dd{margin:0;color:var(--secondary)}
 .moments{grid-template-columns:minmax(0,1fr)}
+.demo-video{margin:0 0 16px}
+.demo-video video{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--rule);background:#0b0e14}
+.demo-video figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
 .moment dd code,.tbl code{white-space:normal;overflow-wrap:anywhere}
 @media(max-width:560px){.moment dl{grid-template-columns:1fr;gap:2px}.moment dd{margin-bottom:8px}}
 
@@ -214,6 +217,13 @@ pre .c{color:var(--muted)}
   <article class="card part stripe-4" id="sandbox">
     <div class="part-head"><span class="n">S</span><h2>Thử sandbox: cùng một chuỗi lệnh, chạy hai lần</h2></div>
     <p class="goal">Không gọi model, nên lần nào chạy cũng ra cùng kết quả. Script đóng vai một agent đã bị lừa; việc của bạn chỉ là xem OS chặn được gì. Bộ script nằm ở <code>demos/sandbox-demo</code> trong repo ai-security. Sandbox ở đây là một container Docker, chạy được trên Windows, macOS và Linux; script viết bằng PowerShell nên macOS và Linux cần cài <code>pwsh</code>. Muốn bật sandbox cho agent thật, xem <a href="#cai-sandbox">phần tiếp theo</a>.</p>
+    <figure class="demo-video">
+      <video controls preload="metadata" playsinline poster="media/sandbox-demo-poster.jpg" aria-label="Video demo sandbox: chạy không sandbox rồi có sandbox">
+        <source src="media/sandbox-demo.mp4" type="video/mp4">
+        <a href="media/sandbox-demo.mp4">Tải video demo sandbox (MP4, 1 phút)</a>
+      </video>
+      <figcaption>Xem trước khi tự chạy: hai lần chạy, terminal trái là agent, terminal phải là máy kẻ tấn công. Output lấy từ một lần chạy thật; phần gõ lệnh được làm chậm để dễ theo dõi.</figcaption>
+    </figure>
     <div class="moments">
       <div class="moment">
         <h3>Chuẩn bị</h3>
@@ -255,6 +265,13 @@ pre .c{color:var(--muted)}
   <article class="card part stripe-5" id="cai-sandbox">
     <div class="part-head"><span class="n">S2</span><h2>Bật sandbox trên máy của bạn</h2></div>
     <p class="goal">Có hai cách. Cách nhẹ là bật sandbox có sẵn trong công cụ: các lệnh agent chạy bị hệ điều hành giới hạn, không cần Docker. Muốn cách ly mạnh hơn thì chạy cả agent trong container, giống demo ở trên. Bảng dưới cho biết mỗi loại máy dùng được cách nào.</p>
+    <figure class="demo-video">
+      <video controls preload="metadata" playsinline poster="media/claude-sandbox-poster.jpg" aria-label="Video: cài, bật và kiểm tra sandbox của Claude Code trong WSL2">
+        <source src="media/claude-sandbox.mp4" type="video/mp4">
+        <a href="media/claude-sandbox.mp4">Tải video (MP4, 2 phút 28 giây)</a>
+      </video>
+      <figcaption>Claude Code thật trong WSL2: cài đặt, rồi giao cùng một việc "chạy test" ba lần với một dependency bị cài cắm. Lần 1 tắt sandbox, lần 2 bật sandbox mặc định, lần 3 thêm danh sách chặn đọc. Output lấy từ lần chạy thật; phần gõ lệnh được làm chậm để dễ theo dõi.</figcaption>
+    </figure>
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>Máy</th><th>Claude Code <code>/sandbox</code></th><th>Codex CLI <code>--sandbox</code></th><th>Container</th></tr></thead>
       <tbody>
@@ -270,7 +287,8 @@ pre .c{color:var(--muted)}
           <dt>Cài đặt</dt><dd>macOS không cần cài gì thêm. Linux và WSL2 cài hai gói <code>bubblewrap</code> và <code>socat</code>: <code>sudo apt-get install bubblewrap socat</code> (Ubuntu, Debian) hoặc <code>sudo dnf install bubblewrap socat</code> (Fedora). Cài xong thì mở lại Claude Code.</dd>
           <dt>Bật</dt><dd>Gõ <code>/sandbox</code> trong phiên làm việc rồi chọn chế độ. Muốn lần nào cũng bật thì thêm khối <code>sandbox</code> vào <code>~/.claude/settings.json</code> như mẫu bên dưới.</dd>
           <dt>Mặc định chặn</dt><dd>Ghi file ngoài thư mục dự án, và mạng đi tới những domain chưa được cho phép (bạn sẽ được hỏi, hoặc lệnh bị từ chối, tùy chế độ quyền).</dd>
-          <dt>Cần tự chặn</dt><dd>Mặc định agent <b>vẫn đọc được</b> gần như mọi file trên máy, kể cả <code>~/.ssh</code> và <code>~/.aws</code>. Hãy liệt kê những file cần giấu trong mục <code>credentials</code>.</dd>
+          <dt>Cần tự chặn</dt><dd>Mặc định agent <b>vẫn đọc được</b> gần như mọi file trên máy, kể cả <code>~/.ssh</code> và <code>~/.aws</code>. Video ở trên cho thấy điều này ở lần 2: không gửi ra ngoài được, nhưng secret đã bị đọc và in vào output, tức là đã vào ngữ cảnh của model. Hãy liệt kê những file cần giấu trong mục <code>credentials</code>.</dd>
+          <dt>Bật một lần</dt><dd>Cấu hình được lưu lại, không phải bật lại mỗi lần. <code>/sandbox</code> lưu cho dự án hiện tại trên máy bạn; <code>~/.claude/settings.json</code> áp dụng mọi dự án; <code>.claude/settings.json</code> commit vào repo thì áp dụng cho cả nhóm. Trên Windows, Claude Code trong WSL2 và Claude Code chạy thẳng trên Windows là hai bản riêng, cấu hình riêng.</dd>
           <dt>Phạm vi</dt><dd>Sandbox chỉ áp dụng cho các lệnh shell agent chạy. Công cụ đọc và sửa file, MCP server và hook nằm ngoài sandbox, nên vẫn cần rule deny ở <a href="#b3">bước 3</a>. Hai lớp này bổ sung cho nhau.</dd>
         </dl>
       </div>
@@ -280,6 +298,7 @@ pre .c{color:var(--muted)}
   "sandbox": {
     "enabled": true,
     "allowUnsandboxedCommands": false,
+    "failIfUnavailable": true,
     "credentials": {
       "files": [
         { "path": "~/.ssh", "mode": "deny" },
@@ -291,7 +310,7 @@ pre .c{color:var(--muted)}
     }
   }
 }</pre>
-    <p class="goal" style="margin-top:8px"><code>allowUnsandboxedCommands: false</code> không cho agent tự chạy lại một lệnh bên ngoài sandbox khi lệnh đó bị chặn. <code>allowedDomains</code> là những domain được đi tới mà không cần hỏi; chỉ thêm những gì dự án thật sự cần.</p>
+    <p class="goal" style="margin-top:8px"><code>allowUnsandboxedCommands: false</code> không cho agent tự chạy lại một lệnh bên ngoài sandbox khi lệnh đó bị chặn. <code>failIfUnavailable: true</code> báo lỗi khi máy thiếu <code>bubblewrap</code> hoặc đang chạy WSL1, thay vì lặng lẽ chạy lệnh mà không có sandbox. <code>allowedDomains</code> là những domain được đi tới mà không cần hỏi; chỉ thêm những gì dự án thật sự cần.</p>
     <div class="moments">
       <div class="moment">
         <h3>Claude Code trên Windows</h3>

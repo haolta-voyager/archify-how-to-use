@@ -470,8 +470,8 @@ schtasks /query /tn SysMon</pre>
         <thead><tr><th>Nền tảng</th><th>Cơ chế của OS</th><th>Công cụ agent đang dùng</th></tr></thead>
         <tbody>
           <tr><th>macOS</th><td>Seatbelt (<code>sandbox-exec</code>): profile khai báo được phép đọc, ghi, gọi mạng gì; kernel thực thi.</td><td>Claude Code <code>/sandbox</code>, Codex CLI đều dùng Seatbelt.</td></tr>
-          <tr><th>Linux</th><td>Namespaces (tách file, mạng, tiến trình), seccomp (lọc system call), Landlock (giới hạn file); bubblewrap gói các cơ chế này lại.</td><td>Claude Code dùng bubblewrap; Codex CLI dùng Landlock và seccomp.</td></tr>
-          <tr><th>Windows</th><td>AppContainer, Windows Sandbox, Hyper-V VM. Chưa có cách gọn như Seatbelt cho CLI agent.</td><td>Thực tế: chạy agent trong WSL2 để dùng sandbox Linux, hoặc trong devcontainer, VM.</td></tr>
+          <tr><th>Linux</th><td>Namespaces (tách file, mạng, tiến trình), seccomp (lọc system call), Landlock (giới hạn file); bubblewrap gói các cơ chế này lại.</td><td>Claude Code và Codex CLI đều dùng bubblewrap; Codex thêm seccomp.</td></tr>
+          <tr><th>Windows</th><td>Có sẵn AppContainer (rào ứng dụng đóng gói), Windows Sandbox (máy Windows dùng xong vứt), Hyper-V (máy ảo). Không cái nào bọc gọn một lệnh CLI như Seatbelt, nên công cụ agent phải tự làm sandbox riêng.</td><td>Codex CLI có sandbox native: MXC trên Windows 11 24H2/25H2, hoặc chạy lệnh dưới tài khoản Windows ít quyền. Claude Code chưa có bản native: chạy trong WSL2 để dùng bubblewrap. Hoặc chạy agent trong devcontainer. Cách bật: <a href="phong-thu.html#cai-sandbox">trang Phòng thủ</a>.</td></tr>
           <tr><th>Container, VM (mọi OS)</th><td>Docker, devcontainer, VM. Trên macOS và Windows, Docker thực chất chạy trong một VM Linux.</td><td>Devcontainer không mount credential; cloud sandbox như Claude Code on the web, Codex cloud.</td></tr>
         </tbody>
       </table></div>
