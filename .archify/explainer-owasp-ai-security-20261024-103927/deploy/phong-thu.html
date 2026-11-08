@@ -37,6 +37,8 @@ section[id],article[id]{scroll-margin-top:64px}
 .moment dl{margin:0;display:grid;grid-template-columns:118px 1fr;gap:6px 14px;font-size:14.5px}
 .moment dt{font-weight:600;color:var(--muted);font-size:13px;padding-top:1px}
 .moment dd{margin:0;color:var(--secondary)}
+.moments{grid-template-columns:minmax(0,1fr)}
+.moment dd code,.tbl code{white-space:normal;overflow-wrap:anywhere}
 @media(max-width:560px){.moment dl{grid-template-columns:1fr;gap:2px}.moment dd{margin-bottom:8px}}
 
 .tbl{width:100%;border-collapse:collapse;font-size:14.5px}
@@ -87,6 +89,7 @@ pre .c{color:var(--muted)}
       <a href="#b4">4 Ranh giới thật</a>
       <a href="#b5">5 Lần chạy 2</a>
       <a href="#sandbox">Thử sandbox</a>
+      <a href="#cai-sandbox">Bật sandbox</a>
       <a href="#tu-thu">Tự thử lại</a>
       <a href="#tiep-theo">Các lớp tiếp theo</a>
     </nav>
@@ -178,7 +181,7 @@ pre .c{color:var(--muted)}
           <dt>Cách làm</dt><dd>Bật sandbox của công cụ (<code>/sandbox</code> trong Claude Code, hoặc <code>--sandbox workspace-write</code> trong Codex CLI), hoặc chạy agent trong devcontainer chặn mạng ra ngoài.</dd>
           <dt>Kết quả</dt><dd>Agent chỉ ghi được trong thư mục repo, mạng chỉ mở cho registry cần thiết, <code>.env</code> giả không còn trong tầm với.</dd>
           <dt>Lợi ích phụ</dt><dd>Sandbox giảm số lần agent phải hỏi xác nhận, nên những lần còn lại bạn sẽ đọc kỹ hơn.</dd>
-          <dt>Xem rõ hơn</dt><dd>Muốn thấy OS chặn từng thao tác, xem phần <a href="#sandbox">Thử sandbox</a> bên dưới.</dd>
+          <dt>Xem rõ hơn</dt><dd>Muốn thấy OS chặn từng thao tác, xem phần <a href="#sandbox">Thử sandbox</a>. Cách bật cho từng loại máy nằm ở phần <a href="#cai-sandbox">Bật sandbox</a>.</dd>
         </dl>
       </div>
     </div>
@@ -210,7 +213,7 @@ pre .c{color:var(--muted)}
 
   <article class="card part stripe-4" id="sandbox">
     <div class="part-head"><span class="n">S</span><h2>Thử sandbox: cùng một chuỗi lệnh, chạy hai lần</h2></div>
-    <p class="goal">Không gọi model, nên lần nào chạy cũng ra cùng kết quả. Script đóng vai một agent đã bị lừa; việc của bạn chỉ là xem OS chặn được gì. Bộ script nằm ở <code>demos/sandbox-demo</code> trong repo ai-security, chạy bằng Docker trên Windows.</p>
+    <p class="goal">Không gọi model, nên lần nào chạy cũng ra cùng kết quả. Script đóng vai một agent đã bị lừa; việc của bạn chỉ là xem OS chặn được gì. Bộ script nằm ở <code>demos/sandbox-demo</code> trong repo ai-security. Sandbox ở đây là một container Docker, chạy được trên Windows, macOS và Linux; script viết bằng PowerShell nên macOS và Linux cần cài <code>pwsh</code>. Muốn bật sandbox cho agent thật, xem <a href="#cai-sandbox">phần tiếp theo</a>.</p>
     <div class="moments">
       <div class="moment">
         <h3>Chuẩn bị</h3>
@@ -247,6 +250,83 @@ pre .c{color:var(--muted)}
       </tbody>
     </table></div>
     <p class="warn">Khi chạy agent thật trong container thì không dùng được <code>--network none</code>, vì agent cần gọi API của model. Khi đó dùng firewall chỉ cho phép một số domain, như devcontainer tham khảo của Claude Code.</p>
+  </article>
+
+  <article class="card part stripe-5" id="cai-sandbox">
+    <div class="part-head"><span class="n">S2</span><h2>Bật sandbox trên máy của bạn</h2></div>
+    <p class="goal">Có hai cách. Cách nhẹ là bật sandbox có sẵn trong công cụ: các lệnh agent chạy bị hệ điều hành giới hạn, không cần Docker. Muốn cách ly mạnh hơn thì chạy cả agent trong container, giống demo ở trên. Bảng dưới cho biết mỗi loại máy dùng được cách nào.</p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th>Máy</th><th>Claude Code <code>/sandbox</code></th><th>Codex CLI <code>--sandbox</code></th><th>Container</th></tr></thead>
+      <tbody>
+        <tr><th>macOS</th><td>Có sẵn (Seatbelt), chỉ cần bật</td><td>Có sẵn (Seatbelt)</td><td>Docker Desktop hoặc OrbStack</td></tr>
+        <tr><th>Linux</th><td>Cài thêm <code>bubblewrap</code> và <code>socat</code></td><td>Dùng bubblewrap và seccomp của Linux</td><td>Docker Engine</td></tr>
+        <tr><th>Windows</th><td>Không chạy trực tiếp trên Windows. Cài trong WSL2 rồi làm như Linux</td><td>Có sandbox riêng cho Windows, hoặc dùng WSL2</td><td>Docker Desktop (chạy trên WSL2)</td></tr>
+      </tbody>
+    </table></div>
+    <div class="moments" style="margin-top:14px">
+      <div class="moment">
+        <h3>Claude Code trên macOS, Linux và WSL2</h3>
+        <dl>
+          <dt>Cài đặt</dt><dd>macOS không cần cài gì thêm. Linux và WSL2 cài hai gói <code>bubblewrap</code> và <code>socat</code>: <code>sudo apt-get install bubblewrap socat</code> (Ubuntu, Debian) hoặc <code>sudo dnf install bubblewrap socat</code> (Fedora). Cài xong thì mở lại Claude Code.</dd>
+          <dt>Bật</dt><dd>Gõ <code>/sandbox</code> trong phiên làm việc rồi chọn chế độ. Muốn lần nào cũng bật thì thêm khối <code>sandbox</code> vào <code>~/.claude/settings.json</code> như mẫu bên dưới.</dd>
+          <dt>Mặc định chặn</dt><dd>Ghi file ngoài thư mục dự án, và mạng đi tới những domain chưa được cho phép (bạn sẽ được hỏi, hoặc lệnh bị từ chối, tùy chế độ quyền).</dd>
+          <dt>Cần tự chặn</dt><dd>Mặc định agent <b>vẫn đọc được</b> gần như mọi file trên máy, kể cả <code>~/.ssh</code> và <code>~/.aws</code>. Hãy liệt kê những file cần giấu trong mục <code>credentials</code>.</dd>
+          <dt>Phạm vi</dt><dd>Sandbox chỉ áp dụng cho các lệnh shell agent chạy. Công cụ đọc và sửa file, MCP server và hook nằm ngoài sandbox, nên vẫn cần rule deny ở <a href="#b3">bước 3</a>. Hai lớp này bổ sung cho nhau.</dd>
+        </dl>
+      </div>
+    </div>
+<pre><span class="c">// ~/.claude/settings.json: bật sandbox cho mọi dự án</span>
+{
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false,
+    "credentials": {
+      "files": [
+        { "path": "~/.ssh", "mode": "deny" },
+        { "path": "~/.aws/credentials", "mode": "deny" }
+      ]
+    },
+    "network": {
+      "allowedDomains": ["github.com", "*.npmjs.org"]
+    }
+  }
+}</pre>
+    <p class="goal" style="margin-top:8px"><code>allowUnsandboxedCommands: false</code> không cho agent tự chạy lại một lệnh bên ngoài sandbox khi lệnh đó bị chặn. <code>allowedDomains</code> là những domain được đi tới mà không cần hỏi; chỉ thêm những gì dự án thật sự cần.</p>
+    <div class="moments">
+      <div class="moment">
+        <h3>Claude Code trên Windows</h3>
+        <dl>
+          <dt>Vì sao</dt><dd>Khi chạy trực tiếp trên Windows, Claude Code không đặt lệnh vào sandbox.</dd>
+          <dt>Cách làm</dt><dd>Mở PowerShell bằng quyền admin, chạy <code>wsl --install</code>, khởi động lại máy. Mở Ubuntu, cài Claude Code bên trong WSL2 rồi làm như phần Linux ở trên. WSL1 không hỗ trợ sandbox.</dd>
+        </dl>
+      </div>
+      <div class="moment">
+        <h3>Codex CLI</h3>
+        <dl>
+          <dt>Chạy</dt><dd><code>codex --sandbox workspace-write --ask-for-approval on-request</code>. Agent chỉ ghi được trong dự án, không có mạng, và hỏi bạn khi cần làm gì vượt ra ngoài.</dd>
+          <dt>Mạng</dt><dd>Mặc định tắt. Chỉ bật khi thật sự cần, bằng <code>network_access = true</code> trong mục <code>[sandbox_workspace_write]</code> của <code>~/.codex/config.toml</code>.</dd>
+          <dt>Windows</dt><dd>Codex có sandbox riêng cho Windows. Trên Windows 11 bản 24H2 hoặc 25H2 đã cập nhật, thêm <code>prefer_mxc = true</code> vào mục <code>[features]</code>. Máy không đủ điều kiện thì dùng <code>sandbox = "elevated"</code> trong mục <code>[windows]</code>; lần cài đầu cần quyền admin. Dùng WSL2 cũng được.</dd>
+          <dt>Tránh</dt><dd><code>--sandbox danger-full-access</code> và <code>--yolo</code>: tắt cả sandbox lẫn bước hỏi xác nhận.</dd>
+        </dl>
+      </div>
+      <div class="moment">
+        <h3>Chạy agent trong container (mọi loại máy)</h3>
+        <dl>
+          <dt>Khi nào</dt><dd>Khi muốn cách ly mạnh hơn, hoặc muốn cả nhóm dùng chung một môi trường.</dd>
+          <dt>Cách làm</dt><dd>Cài Docker Desktop (Windows, macOS) hoặc Docker Engine (Linux), cài extension Dev Containers trong VS Code, rồi bắt đầu từ <a href="https://code.claude.com/docs/en/devcontainer" target="_blank" rel="noopener">devcontainer tham khảo của Claude Code</a>. Bản này có sẵn script firewall chỉ cho agent đi tới những domain cần thiết.</dd>
+          <dt>Đừng mount</dt><dd><code>~/.ssh</code>, <code>~/.aws</code>, file credential cloud hay Docker socket vào container.</dd>
+          <dt>Giới hạn</dt><dd>Agent vẫn đọc và gửi đi được mọi thứ nằm trong container, kể cả token đăng nhập của chính nó. Vì vậy vẫn cần firewall, và chỉ dùng với repo bạn tin.</dd>
+        </dl>
+      </div>
+      <div class="moment">
+        <h3>Kiểm tra sau khi bật</h3>
+        <dl>
+          <dt>Thử ba việc</dt><dd>Tạo một file giả ngoài dự án và thêm nó vào danh sách chặn đọc. Sau đó nhờ agent đọc file đó, ghi một file vào thư mục home, và chạy <code>curl https://example.com</code>.</dd>
+          <dt>Kết quả đúng</dt><dd>Cả ba bị chặn hoặc phải hỏi bạn trước. Việc trong dự án, như chạy test, vẫn chạy bình thường.</dd>
+        </dl>
+      </div>
+    </div>
+    <p class="warn">Tra cứu từ tài liệu chính thức vào tháng 11/2026. Tên lệnh và cấu hình thay đổi khá nhanh, nên đối chiếu lại trước khi dùng: <a href="https://code.claude.com/docs/en/sandboxing" target="_blank" rel="noopener">Claude Code sandboxing</a>, <a href="https://learn.chatgpt.com/docs/agent-approvals-security" target="_blank" rel="noopener">Codex approvals &amp; security</a>, <a href="https://learn.chatgpt.com/docs/windows/windows-sandbox" target="_blank" rel="noopener">Codex Windows sandbox</a>.</p>
   </article>
 
   <section class="section" id="tu-thu">
