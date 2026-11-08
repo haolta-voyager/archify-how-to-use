@@ -5,16 +5,16 @@
   "status": "pass",
   "type": "explainer",
   "quality": "showcase",
-  "startedAt": "2026-10-24T03:40:52.117Z",
+  "startedAt": "2026-11-08T04:30:05.059Z",
   "specification": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\candidate.archify.md",
-    "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
-    "bytes": 15130
+    "sha256": "d37897cfa6ce0f5eed03cee0339a64c696dd7ce58ac98d79e0a2bbae030fedb4",
+    "bytes": 14618
   },
   "artifact": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
-    "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
-    "bytes": 640883
+    "sha256": "bc04b68a574a6339d3976d83d4a9f5009830a788e1c26b010c515e5a6f0c5c95",
+    "bytes": 638005
   },
   "stages": {
     "browser-check": {
@@ -42,8 +42,8 @@
         "ok": true,
         "command": "validate",
         "specification": {
-          "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
-          "bytes": 15130
+          "sha256": "d37897cfa6ce0f5eed03cee0339a64c696dd7ce58ac98d79e0a2bbae030fedb4",
+          "bytes": 14618
         },
         "validation": {
           "checksPassed": 4,
@@ -58,7 +58,7 @@
     "deliver": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 1178,
+      "durationMs": 1345,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
@@ -72,14 +72,14 @@
       ],
       "receipt": {
         "schemaVersion": 1,
-        "receiptId": "72de1194-3925-4527-b927-e3c16460d4fe",
+        "receiptId": "04f14d88-b438-40fa-a96e-6b1fa02e02af",
         "ok": true,
         "command": "deliver",
         "type": "explainer",
         "input": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\candidate.archify.md",
         "output": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
         "explainer": {
-          "preparedSha256": "46ce82f9671746dfc131b37b1830a52188365aa3b1c040a628aa604ce57d8548",
+          "preparedSha256": "b2ba6f8b2c2bf9fc2e7cd000a869adc7493712ac506c16050829435178a84356",
           "dependencies": [
             {
               "kind": "diagram-spec",
@@ -91,12 +91,12 @@
           ]
         },
         "specification": {
-          "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
-          "bytes": 15130
+          "sha256": "d37897cfa6ce0f5eed03cee0339a64c696dd7ce58ac98d79e0a2bbae030fedb4",
+          "bytes": 14618
         },
         "artifact": {
-          "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
-          "bytes": 640883
+          "sha256": "bc04b68a574a6339d3976d83d4a9f5009830a788e1c26b010c515e5a6f0c5c95",
+          "bytes": 638005
         },
         "validation": {
           "checksPassed": 4,
@@ -122,7 +122,7 @@
     "check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 464,
+      "durationMs": 488,
       "command": [
         "C:\\Program Files\\nodejs\\node.exe",
         "C:\\Users\\PC\\.claude\\skills\\archify\\bin\\archify.mjs",
@@ -135,15 +135,15 @@
         "file": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
         "family": "explainer",
         "artifact": {
-          "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
-          "bytes": 640883
+          "sha256": "bc04b68a574a6339d3976d83d4a9f5009830a788e1c26b010c515e5a6f0c5c95",
+          "bytes": 638005
         },
         "checks": [
           {
             "name": "explainer_structure",
             "ok": true,
             "details": [
-              "116 unique DOM IDs"
+              "114 unique DOM IDs"
             ]
           },
           {
@@ -180,7 +180,7 @@
               "id": "ai-surface",
               "receipt": {
                 "ok": true,
-                "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\archify-explainer-check-WRkcSb\\child.html",
+                "file": "C:\\Users\\PC\\AppData\\Local\\Temp\\archify-explainer-check-Nf7lKN\\child.html",
                 "artifact": {
                   "sha256": "212c4ed48dc9ce4bd182132356a41ce6697656e12309cd924c6c429284a8e711",
                   "bytes": 821648
@@ -316,7 +316,7 @@
         },
         "diagnostics": [],
         "provenance": "current",
-        "deliveryReceiptId": "72de1194-3925-4527-b927-e3c16460d4fe"
+        "deliveryReceiptId": "04f14d88-b438-40fa-a96e-6b1fa02e02af"
       }
     }
   },
@@ -330,8 +330,8 @@
     "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.finalize-summary.json"
   },
   "visualReview": "not-requested",
-  "finishedAt": "2026-10-24T03:40:54.283Z",
-  "durationMs": 2166,
+  "finishedAt": "2026-11-08T04:30:07.686Z",
+  "durationMs": 2626,
   "update": {
     "status": "unavailable",
     "installedVersion": null,
@@ -341,6 +341,6 @@
     "source": null,
     "noticeRequired": false,
     "noticeText": null,
-    "reason": "timeout"
+    "reason": "check-failed"
   }
 }

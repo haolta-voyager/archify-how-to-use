@@ -7,9 +7,8 @@ OWASP có **ba bộ Top 10 cho AI**: LLM Applications 2025, Agentic Applications
 - MCP Top 10 tập trung vào MCP server, token và tool poisoning; bản hiện tại là v0.1, đang thử nghiệm.[](source:mcp-top10)
 - Agent cũng là ứng dụng LLM, nên một hệ thống agent phải xét cả ba bộ cùng lúc.
 
-@answer scope="Tổng hợp từ dàn ý seminar AI Security (file nháp) và trang chính thức OWASP · trạng thái cuối 2026 · MCP Top 10 còn ở bản beta, thứ hạng có thể đổi"
+@answer scope="Tổng hợp từ trang chính thức OWASP · trạng thái cuối 2026 · MCP Top 10 còn ở bản beta, thứ hạng có thể đổi"
 @meta locale=en
-@source draft title="Dàn ý seminar AI Security (FILE NHÁP)" url=https://docs.google.com/document/d/10sR9X-nVKb5lt8T7F-ZRfCF0FjCb5pF2OG8k129IehA/edit
 @source llm-top10 title="OWASP Top 10 for LLM Applications 2025" url=https://genai.owasp.org/llm-top-10/
 @source agentic-top10 title="OWASP Top 10 for Agentic Applications for 2026" url=https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
 @source mcp-top10 title="OWASP MCP Top 10" url=https://owasp.org/www-project-mcp-top-10/
@@ -118,9 +117,6 @@ Mỗi kỹ thuật cũng có mã tương ứng trong MITRE ATLAS; dùng ATLAS kh
 | Slopsquatting | Kẻ tấn công đăng ký trước tên package mà LLM hay bịa. | LLM09, LLM03 | Kiểm tra package trước khi cài. |
 | Tool poisoning và rug pull | Mô tả tool chứa lệnh ẩn hoặc tool đổi hành vi sau khi được tin. | MCP03, ASI04 | Ghim phiên bản, duyệt mô tả tool. |
 | Backdoor bằng vài trăm tài liệu (Anthropic và UK AISI, 2025) | Vài trăm tài liệu độc đủ cài backdoor, bất kể kích thước model. | LLM04 | Kiểm soát nguồn dữ liệu huấn luyện. |
-
-@callout level=warning title="Kiểm tra lại số liệu"
-Dàn ý gốc ghi chú: kiểm tra lại chi tiết và số liệu từng sự cố từ nguồn gốc trước khi đưa lên slide.[](source:draft)
 
 ## Phòng thủ theo tầng giảm những rủi ro nào? {#defense}
 

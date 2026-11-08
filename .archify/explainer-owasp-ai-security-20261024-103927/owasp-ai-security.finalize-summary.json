@@ -7,13 +7,13 @@
   "quality": "showcase",
   "specification": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\candidate.archify.md",
-    "sha256": "94929f5472e2dcb902a2fbf9821d38aa42224d0b7a70be4cf267f7ea98596f0b",
-    "bytes": 15130
+    "sha256": "d37897cfa6ce0f5eed03cee0339a64c696dd7ce58ac98d79e0a2bbae030fedb4",
+    "bytes": 14618
   },
   "artifact": {
     "path": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.html",
-    "sha256": "565d7da23a05c3a4af40c65fc0ffb94910573ff031a0b0718dbb190839724db8",
-    "bytes": 640883
+    "sha256": "bc04b68a574a6339d3976d83d4a9f5009830a788e1c26b010c515e5a6f0c5c95",
+    "bytes": 638005
   },
   "gates": {
     "validate": "pass",
@@ -32,7 +32,7 @@
     "summaryReceipt": "C:\\HaoLe\\.work\\archify\\.archify\\explainer-owasp-ai-security-20261024-103927\\owasp-ai-security.finalize-summary.json"
   },
   "visualReview": "not-requested",
-  "durationMs": 2166,
+  "durationMs": 2626,
   "browserCheck": {
     "requested": false,
     "ran": false
