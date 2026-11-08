@@ -161,10 +161,11 @@ Chuyển: "Vậy kẻ tấn công vào bằng đường nào?"</aside>
   <h2>Injection khiến agent tự tắt phòng thủ của chính nó</h2>
   <div class="body"><div class="steps">
     <div class="card f"><div class="ic r">1</div><h3>Lệnh ẩn trong file agent đọc</h3><p>Comment trong code, README, trang web.</p></div>
-    <div class="card f"><div class="ic r">2</div><h3>Agent sửa file cấu hình của nó</h3><p><code>"chat.tools.autoApprove": true</code> hoặc thêm MCP server mới.</p></div>
-    <div class="card f"><div class="ic r">3</div><h3>Từ đó chạy lệnh tùy ý</h3><p>Không còn hỏi xác nhận.</p></div>
+    <div class="card f"><div class="ic r">2</div><h3>Agent sửa file cấu hình của nó</h3><p><code>.vscode/settings.json</code><br>→ bật autoApprove<br><code>.cursor/mcp.json</code><br>→ thêm MCP server mới</p></div>
+    <div class="card f"><div class="ic r">3</div><h3>Từ đó chạy lệnh tùy ý</h3><p>Không còn hỏi xác nhận. Bạn không bấm "Cho phép" lần nào.</p></div>
   </div>
-  <p class="punch f">CVE-2025-53773 (Copilot, VS Code) · CurXecute CVE-2025-54135 (Cursor) · 8/2025</p></div>
+  <p class="punch f">Agent ghi được vào cấu hình của nó thì cấu hình đó không bảo vệ được gì.</p></div>
+  <div class="foot"><span>CVE-2025-53773 (Copilot, VS Code) · CurXecute CVE-2025-54135 (Cursor) · vá 8/2025</span></div>
   <aside class="notes">Copilot: injection khiến agent ghi chat.tools.autoApprove vào .vscode/settings.json, bật chế độ tự chạy rồi thực thi lệnh (Johann Rehberger, Microsoft vá 8/2025).
 Cursor: injection ghi .cursor/mcp.json, server mới khởi động ngay không hỏi (Aim Security, vá ở 1.3). MCPoison CVE-2025-54136: sửa MCP đã được duyệt mà không bị hỏi lại.
 Bài học: thư mục cấu hình của agent (.vscode, .cursor, .claude) phải nằm ngoài vùng agent được tự ghi.
