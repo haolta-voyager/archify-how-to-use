@@ -77,11 +77,17 @@ Agent kế thừa tất cả, vì nó chạy dưới user của bạn.</aside>
   <div class="kicker">01 · Vấn đề</div>
   <h2>Với LLM, dữ liệu chính là lệnh</h2>
   <div class="body">
-    <div class="flow">
-      <div class="node f">File trong repo</div><div class="arrow f"></div>
-      <div class="node f">Trang docs</div><div class="arrow f"></div>
-      <div class="node f">Kết quả MCP</div><div class="arrow f"></div>
-      <div class="node f">Log, output lệnh</div><div class="arrow f"></div>
+    <div class="fanin">
+      <div class="srcs">
+        <div class="node f f-left">File trong repo</div>
+        <div class="node f f-left">Trang docs</div>
+        <div class="node f f-left">Kết quả MCP</div>
+        <div class="node f f-left">Log, output lệnh</div>
+      </div>
+      <svg class="links f f-fade" viewBox="0 0 160 420" aria-hidden="true">
+        <defs><marker id="fanin-head" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--blue)"/></marker></defs>
+        <path class="wire" d="M0 45C80 45 80 210 150 210M0 155C80 155 80 210 150 210M0 265C80 265 80 210 150 210M0 375C80 375 80 210 150 210" marker-end="url(#fanin-head)"/>
+      </svg>
       <div class="node hot f f-zoom">Agent làm theo</div>
     </div>
     <p class="punch f">Giống SQL injection, nhưng không có prepared statement.</p>

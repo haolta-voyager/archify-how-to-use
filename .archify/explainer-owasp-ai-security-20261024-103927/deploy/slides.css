@@ -107,7 +107,15 @@ pre .c{color:var(--faint)}pre .k{color:var(--green)}pre .s{color:var(--amber)}
 .flow .node.hot{background:var(--red)}
 .flow .arrow{width:70px;height:4px;background:var(--blue);position:relative;flex:none}
 .flow .arrow::after{content:"";position:absolute;right:-2px;top:-8px;border:10px solid transparent;border-left:14px solid var(--blue)}
-.punch{margin-top:60px;font-size:34px;color:var(--green);text-align:center}
+.slide .punch{margin-top:48px;font-size:34px;color:var(--green);text-align:center}
+
+/* Fan-in: parallel sources converging on one target */
+.fanin{display:grid;grid-template-columns:1fr 160px 1fr;align-items:center}
+.fanin .srcs{display:flex;flex-direction:column;gap:20px}
+.fanin .node{height:90px;display:grid;place-items:center;background:var(--panel2);border-radius:18px;text-align:center;font-size:30px;font-weight:700}
+.fanin .node.hot{height:160px;background:var(--red)}
+.fanin .links{width:160px;height:420px}
+.fanin .links .wire{fill:none;stroke:var(--blue);stroke-width:4}
 
 /* Checklist */
 .checklist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:24px}
