@@ -409,15 +409,20 @@ Tách profile cloud: dev mặc định, production phải đăng nhập lại c�
 <!-- 28 -->
 <section class="slide">
   <div class="kicker">04 · Phòng thủ · MCP</div>
-  <h2>Đếm cạnh trước khi bật MCP</h2>
+  <h2>Đếm vòng trifecta trước khi bật MCP</h2>
   <div class="body">
     <div class="flow">
-      <div class="node f">Nội dung ngoài</div><div class="arrow f"></div>
+      <div class="node v-amber f">Nội dung ngoài</div><div class="arrow f"></div>
       <div class="node f">MCP server</div><div class="arrow f"></div>
-      <div class="node hot f">Secret / dữ liệu</div><div class="arrow f"></div>
-      <div class="node f">Kênh ra</div>
+      <div class="node v-blue f">Secret / dữ liệu</div><div class="arrow f"></div>
+      <div class="node hot f">Kênh ra</div>
     </div>
-    <p class="punch f">Ghim phiên bản · mỗi server một token tối thiểu · không bật MCP đọc ngoài cùng MCP gửi ra ngoài</p>
+    <ul class="checklist sm">
+      <li class="f">Ghim phiên bản server</li>
+      <li class="f">Mỗi server một token, quyền tối thiểu</li>
+      <li class="f">Không bật cùng lúc MCP đọc nội dung ngoài và MCP gửi ra ngoài</li>
+    </ul>
+    <p class="punch f">Mỗi MCP server là một vòng mới trong lethal trifecta.</p>
   </div>
   <aside class="notes">Chỉ dùng server chính chủ hoặc đã review, giữ danh sách được phép ở cấp team.
 Không bao giờ dùng service_role hay token admin cho agent. Chỉ đọc khi có thể. Tắt tool không dùng.
