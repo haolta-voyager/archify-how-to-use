@@ -28,6 +28,7 @@ svg .f{transform-box:fill-box;transform-origin:center}
 .kicker{font-size:22px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:18px}
 .slide h1{font-size:62px;line-height:1.12;margin:0;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
 .slide h2{font-size:56px;line-height:1.15;margin:0 0 56px;font-weight:800;letter-spacing:-.01em;text-wrap:balance}
+.slide h2.h-sm{font-size:46px}
 .slide p{margin:0}
 .lead{font-size:30px;line-height:1.45;color:var(--muted);max-width:1150px}
 .body{flex:1;display:flex;flex-direction:column;justify-content:center}
