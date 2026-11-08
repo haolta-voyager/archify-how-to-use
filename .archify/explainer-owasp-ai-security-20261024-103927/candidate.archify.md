@@ -152,11 +152,11 @@ OWASP Top 10 không phải khung tuân thủ; nó là danh sách rủi ro để 
 
 ## Cần làm gì ngay? {#checklist}
 
-- [ ] Dev: liệt kê mọi tool và quyền của từng agent, bỏ quyền không cần (LLM06, ASI02).
-- [ ] Dev: coi output của model là input không tin cậy trước khi render hoặc chạy (LLM05).
-- [ ] Dev: kiểm tra package do AI gợi ý tồn tại và đúng nguồn trước khi cài (LLM09).
-- [ ] Đội bảo mật: rà từng agent theo lethal trifecta, cắt ít nhất một trong ba thứ.
-- [ ] Đội bảo mật: lập danh mục MCP server được phép, ghim phiên bản, bật log gọi tool (MCP03, MCP08, MCP09).
-- [ ] Đội bảo mật: red team prompt injection gián tiếp qua email, web và tài liệu RAG (LLM01, ASI01).
-- [ ] Lãnh đạo: ban hành chính sách dùng AI và danh mục công cụ được phép để giảm shadow AI.
-- [ ] Lãnh đạo: xác định hệ thống nào chịu EU AI Act hoặc cần ISO/IEC 42001.
+- [ ] Liệt kê mọi tool và quyền của từng agent, bỏ quyền không cần (LLM06, ASI02).
+- [ ] Coi output của model là input không tin cậy trước khi render hoặc chạy (LLM05).
+- [ ] Kiểm tra package do AI gợi ý tồn tại và đúng nguồn trước khi cài (LLM09).
+- [ ] Rà từng agent theo lethal trifecta, cắt ít nhất một trong ba thứ.
+- [ ] Lập danh mục MCP server được phép, ghim phiên bản, bật log gọi tool (MCP03, MCP08, MCP09).
+- [ ] Red team prompt injection gián tiếp qua email, web và tài liệu RAG (LLM01, ASI01).
+- [ ] Ban hành chính sách dùng AI và danh mục công cụ được phép để giảm shadow AI.
+- [ ] Xác định hệ thống nào chịu EU AI Act hoặc cần ISO/IEC 42001.
