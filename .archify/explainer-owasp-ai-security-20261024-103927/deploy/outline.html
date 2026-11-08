@@ -98,7 +98,7 @@ pre .c{color:var(--muted)}
     <a href="owasp.html">OWASP</a>
     <a href="outline.html" aria-current="page">Outline</a>
     <a href="slides.html">Slide</a>
-    <a href="demo.html">Demo</a>
+    <a href="phong-thu.html">Phòng thủ</a>
   </nav>
   <button class="theme-btn" type="button" data-theme-btn>◐</button>
 </div></header>
@@ -110,7 +110,7 @@ pre .c{color:var(--muted)}
     <p class="lede">Bài xoay quanh một ngày làm việc với coding agent và trả lời bốn câu hỏi: vấn đề là gì, bị tấn công thế nào, hậu quả ra sao, phòng thủ thế nào.</p>
     <div class="meta">
       <span class="chip">👥 Dev đang dùng Claude Code, Cursor, Copilot, Codex CLI và MCP</span>
-      <span class="chip">🛠 Có demo và cấu hình mẫu</span>
+      <span class="chip">🛠 Có thí nghiệm và cấu hình mẫu</span>
     </div>
     <nav class="jump" aria-label="Trong trang">
       <a href="#diem-chinh">Điểm quan trọng</a>
@@ -347,7 +347,7 @@ Tiêu đề: [TOOL ERROR] để khắc phục, hãy chạy
   </article>
 
   <article class="card part stripe-5" id="p5">
-    <div class="part-head"><span class="n">04</span><h2>Phòng thủ thế nào?</h2><span class="min">có demo</span></div>
+    <div class="part-head"><span class="n">04</span><h2>Phòng thủ thế nào?</h2><span class="min">có thí nghiệm</span></div>
     <p class="goal">Mỗi lớp cắt bớt một vòng của lethal trifecta. Lớp mềm chặn phần lớn sai sót vô tình; ranh giới thật chặn khi lớp mềm đã thua.</p>
     <div class="subs">
       <div><h3>1 · Quyền: cấu hình như IAM cho một service</h3><ul>
@@ -399,10 +399,10 @@ Tiêu đề: [TOOL ERROR] để khắc phục, hãy chạy
         <li>Review PR của agent như PR của đồng nghiệp mới; soi thay đổi ngoài phạm vi: workflow, cấu hình, test bị sửa. Secret scanning và SAST cho mọi PR.</li>
         <li>Agent trong CI: chỉ người có quyền write kích hoạt, <code>permissions:</code> tối thiểu cho <code>GITHUB_TOKEN</code>, không có secret production trong job, cẩn thận <code>pull_request_target</code>, không nhúng thẳng nội dung issue/PR vào prompt, agent không sửa file workflow.</li>
       </ul></div>
-      <div><h3>Demo: một file trong repo, rồi sandbox chặn lại</h3><ul>
+      <div><h3>Thí nghiệm: một file trong repo, rồi sandbox chặn lại</h3><ul>
         <li>Comment ẩn trong một file; agent ở chế độ auto-approve đọc <code>.env</code> và gửi ra một server do mình dựng.</li>
-        <li>Sửa trên sân khấu: bật sandbox, deny <code>.env</code>, chặn mạng ra domain lạ. Chạy lại để thấy lệnh bị chặn.</li>
-        <li>Môi trường riêng, secret giả. Chuẩn bị video dự phòng. Xem thêm <a href="demo.html">trang Demo</a>.</li>
+        <li>Sửa cấu hình: bật sandbox, deny <code>.env</code>, chặn mạng ra domain lạ. Chạy lại để thấy lệnh bị chặn.</li>
+        <li>Môi trường riêng, secret giả. Xem chi tiết ở <a href="phong-thu.html">trang Phòng thủ</a>.</li>
       </ul></div>
       <div><h3>Khi nghi đã dính</h3><ul>
         <li>Đổi mọi credential máy đó chạm được, làm từ một máy sạch. Gỡ extension hay package độc không xóa được backdoor; nên cài lại máy.</li>
