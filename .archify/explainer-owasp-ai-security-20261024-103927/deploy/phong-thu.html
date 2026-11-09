@@ -38,6 +38,7 @@ section[id],article[id]{scroll-margin-top:64px}
 .moment dt{font-weight:600;color:var(--muted);font-size:13px;padding-top:1px}
 .moment dd{margin:0;color:var(--secondary)}
 .moments{grid-template-columns:minmax(0,1fr)}
+.moment dd{min-width:0}
 .demo-video{margin:0 0 16px}
 .demo-video video{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--rule);background:#0b0e14}
 .demo-video figcaption{margin-top:6px;font-size:13px;color:var(--muted)}
@@ -154,7 +155,7 @@ pre .c{color:var(--muted)}
             <li>Deny agent tự sửa <code>.claude/</code>.</li>
             <li>Allow test và lint; ask ở <code>git push</code>, <code>npm install</code> và lệnh có mạng.</li>
           </ul></dd>
-          <dt>Giới hạn</dt><dd>Đây là lớp mềm. Nó chặn phần lớn sai sót, nhưng nằm ngay trong công cụ mà injection đang nhắm tới.</dd>
+          <dt>Giới hạn</dt><dd>Đây là lớp mềm. Nó chặn phần lớn sai sót, nhưng nằm ngay trong công cụ mà injection đang nhắm tới, và chỉ nhìn tên lệnh chứ không nhìn bên trong lệnh. Xem ví dụ ở phần <a href="#rule-va-sandbox">Rule và sandbox khác nhau thế nào</a>.</dd>
         </dl>
       </div>
     </div>
@@ -312,6 +313,22 @@ pre .c{color:var(--muted)}
 }</pre>
     <p class="goal" style="margin-top:8px"><code>allowUnsandboxedCommands: false</code> không cho agent tự chạy lại một lệnh bên ngoài sandbox khi lệnh đó bị chặn. <code>failIfUnavailable: true</code> báo lỗi khi máy thiếu <code>bubblewrap</code> hoặc đang chạy WSL1, thay vì lặng lẽ chạy lệnh mà không có sandbox. <code>allowedDomains</code> là những domain được đi tới mà không cần hỏi; chỉ thêm những gì dự án thật sự cần.</p>
     <div class="moments">
+      <div class="moment" id="rule-va-sandbox">
+        <h3>Permission rule và sandbox khác nhau thế nào</h3>
+        <dl>
+          <dt>Rule</dt><dd>Claude Code kiểm tra trước mỗi lần agent gọi tool, dựa vào <b>tên tool và chuỗi lệnh</b>, ví dụ <code>Read(./.env)</code> hay <code>Bash(npm test:*)</code>. Áp dụng cho mọi tool, kể cả đọc và sửa file.</dd>
+          <dt>Sandbox</dt><dd>Hệ điều hành chặn dựa vào <b>việc tiến trình thật sự làm</b>: mở file nào, ghi vào đâu, gọi mạng tới đâu. Chỉ áp dụng cho lệnh shell, nhưng áp dụng luôn cho mọi chương trình mà lệnh đó gọi tới.</dd>
+          <dt>Ví dụ</dt><dd>Giả sử dự án đã có các rule hợp lý như dưới đây. Agent chỉ chạy <code>python3 -m unittest -q</code>, lệnh nằm trong <code>allow</code> nên được chạy luôn. Bên trong, dependency bị cài cắm tự mở <code>.env</code> và <code>~/.aws/credentials</code>, rồi gửi ra ngoài. Rule không thấy việc này, vì <code>deny Read(...)</code> chỉ áp dụng khi agent gọi tool Read, không áp dụng cho file mà một chương trình tự mở. Đó là lần 1 trong video. Sandbox chặn được vì không cần biết lệnh tên gì: đó là lần 3.
+<pre>"permissions": {
+  "deny":  ["Read(./.env*)", "Read(~/.aws/**)"],
+  "allow": ["Bash(python3 -m unittest:*)"]
+}</pre></dd>
+          <dt>Ngược lại</dt><dd>Sandbox không bọc tool đọc và sửa file của Claude Code, MCP server và hook. Nó cũng không biết "hỏi trước". Vẫn cần rule <code>deny</code> cho file secret và rule <code>ask</code> cho <code>git push</code>, <code>npm install</code>.</dd>
+          <dt>Kết luận</dt><dd>Dùng cả hai: rule quyết định agent <b>được gọi</b> gì, sandbox giới hạn những gì lệnh <b>thật sự làm được</b>. Còn <code>CLAUDE.md</code> chỉ là lời dặn cho model, không phải ranh giới bảo mật.</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="moments" style="margin-top:12px">
       <div class="moment">
         <h3>Claude Code trên Windows</h3>
         <dl>
