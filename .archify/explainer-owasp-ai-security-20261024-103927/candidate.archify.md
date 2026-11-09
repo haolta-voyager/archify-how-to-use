@@ -145,14 +145,3 @@ Chưa có cách chặn prompt injection 100%, nên cắt bớt một trong ba th
 | Luật An ninh mạng, Nghị định 13/2023 | Pháp luật Việt Nam về an ninh mạng và dữ liệu cá nhân | Hệ thống AI xử lý dữ liệu người dùng Việt Nam |
 
 OWASP Top 10 không phải khung tuân thủ; nó là danh sách rủi ro để đội kỹ thuật ưu tiên kiểm tra.[](source:agentic-top10) NIST AI RMF và ISO/IEC 42001 lo phần quản trị.[](source:nist-rmf)
-
-## Cần làm gì ngay? {#checklist}
-
-- [ ] Liệt kê mọi tool và quyền của từng agent, bỏ quyền không cần (LLM06, ASI02).
-- [ ] Coi output của model là input không tin cậy trước khi render hoặc chạy (LLM05).
-- [ ] Kiểm tra package do AI gợi ý tồn tại và đúng nguồn trước khi cài (LLM09).
-- [ ] Rà từng agent theo lethal trifecta, cắt ít nhất một trong ba thứ.
-- [ ] Lập danh mục MCP server được phép, ghim phiên bản, bật log gọi tool (MCP03, MCP08, MCP09).
-- [ ] Red team prompt injection gián tiếp qua email, web và tài liệu RAG (LLM01, ASI01).
-- [ ] Ban hành chính sách dùng AI và danh mục công cụ được phép để giảm shadow AI.
-- [ ] Xác định hệ thống nào chịu EU AI Act hoặc cần ISO/IEC 42001.
