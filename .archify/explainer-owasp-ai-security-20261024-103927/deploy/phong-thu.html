@@ -217,7 +217,7 @@ pre .c{color:var(--muted)}
 
   <article class="card part stripe-4" id="sandbox">
     <div class="part-head"><span class="n">S</span><h2>Thử sandbox: cùng một chuỗi lệnh, chạy hai lần</h2></div>
-    <p class="goal">Không gọi model, nên lần nào chạy cũng ra cùng kết quả. Script đóng vai một agent đã bị lừa; việc của bạn chỉ là xem OS chặn được gì. Bộ script nằm ở <code>demos/sandbox-demo</code> trong repo ai-security. Sandbox ở đây là một container Docker, chạy được trên Windows, macOS và Linux; script viết bằng PowerShell nên macOS và Linux cần cài <code>pwsh</code>. Muốn bật sandbox cho agent thật, xem <a href="#cai-sandbox">phần tiếp theo</a>.</p>
+    <p class="goal">Không gọi model, nên lần nào chạy cũng ra cùng kết quả. Script đóng vai một agent đã bị lừa; việc của bạn chỉ là xem OS chặn được gì. <a href="media/sandbox-demo.zip" download>Tải bộ script (sandbox-demo.zip, 8 KB)</a>, giải nén, rồi mở PowerShell trong thư mục <code>sandbox-demo</code> để chạy các lệnh bên dưới. Sandbox ở đây là một container Docker, chạy được trên Windows, macOS và Linux; script viết bằng PowerShell nên macOS và Linux cần cài <code>pwsh</code>. Muốn bật sandbox cho agent thật, xem <a href="#cai-sandbox">phần tiếp theo</a>.</p>
     <figure class="demo-video">
       <video controls preload="metadata" playsinline poster="media/sandbox-demo-poster.jpg" aria-label="Video demo sandbox: chạy không sandbox rồi có sandbox">
         <source src="media/sandbox-demo.mp4" type="video/mp4">
@@ -229,7 +229,7 @@ pre .c{color:var(--muted)}
       <div class="moment">
         <h3>Chuẩn bị</h3>
         <dl>
-          <dt>Cài đặt</dt><dd>Chạy <code>.\demo.ps1 setup</code> để build image và kéo sẵn <code>python:3.12-alpine</code>. Bước này cần mạng; các bước sau chạy được khi không có mạng.</dd>
+          <dt>Cài đặt</dt><dd>Chạy <code>.\demo.ps1 setup</code> để build image và kéo sẵn <code>python:3.12-alpine</code>. Bước này cần mạng; các bước sau chạy được khi không có mạng. Nếu PowerShell báo không cho chạy script, gõ <code>Set-ExecutionPolicy -Scope Process Bypass</code> trước; lệnh này chỉ có hiệu lực trong cửa sổ đang mở.</dd>
           <dt>Hai terminal</dt><dd>Một terminal chạy script, terminal còn lại chạy <code>.\demo.ps1 attacker-log</code> để thấy "máy kẻ tấn công" nhận được gì.</dd>
         </dl>
       </div>
@@ -271,7 +271,7 @@ pre .c{color:var(--muted)}
         <source src="media/claude-sandbox.mp4" type="video/mp4">
         <a href="media/claude-sandbox.mp4">Tải video (MP4, 2 phút 28 giây)</a>
       </video>
-      <figcaption>Claude Code thật trong WSL2: cài đặt, rồi giao cùng một việc "chạy test" ba lần với một dependency bị cài cắm. Lần 1 tắt sandbox, lần 2 bật sandbox mặc định, lần 3 thêm danh sách chặn đọc. Output lấy từ lần chạy thật; phần gõ lệnh được làm chậm để dễ theo dõi.</figcaption>
+      <figcaption>Claude Code thật trong WSL2: cài đặt, rồi giao cùng một việc "chạy test" ba lần với một dependency bị cài cắm. Lần 1 tắt sandbox, lần 2 bật sandbox mặc định, lần 3 thêm danh sách chặn đọc. Output lấy từ lần chạy thật; phần gõ lệnh được làm chậm để dễ theo dõi. Muốn tự chạy lại: <a href="media/claude-sandbox-demo.zip" download>tải script (claude-sandbox-demo.zip)</a>, chạy <code>bash run-demo.sh</code> trong Linux, WSL2 hoặc macOS đã cài Claude Code.</figcaption>
     </figure>
     <div class="tbl-wrap"><table class="tbl">
       <thead><tr><th>Máy</th><th>Claude Code <code>/sandbox</code></th><th>Codex CLI <code>--sandbox</code></th><th>Container</th></tr></thead>
