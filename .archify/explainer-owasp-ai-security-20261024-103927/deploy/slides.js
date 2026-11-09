@@ -2,12 +2,9 @@
   const W = 1600;
   const H = 900;
   const SWIPE_MIN = 50;
-  const CHANNEL = 'seminar-deck';
   const root = document.documentElement;
   const deck = document.querySelector('.deck');
   const slides = [...deck.querySelectorAll('.slide')];
-  const isPresenter = new URLSearchParams(location.search).has('presenter');
-  const channel = 'BroadcastChannel' in window ? new BroadcastChannel(CHANNEL) : null;
   const $ = (sel) => document.querySelector(sel);
 
   let index = 0;
@@ -44,34 +41,11 @@
     history.replaceState(null, '', `${location.search}#${index + 1}`);
   };
 
-  const mountMini = (box, slide, count) => {
-    box.innerHTML = '';
-    if (!slide) return;
-    const copy = slide.cloneNode(true);
-    copy.classList.add('is-active');
-    copy.classList.remove('go-next', 'go-prev');
-    box.append(copy);
-    applyFragments(copy, count);
-    fitStage(box, box.clientWidth, box.clientHeight);
-  };
-
-  const renderPresenter = () => {
-    const next = slides[index + 1];
-    const hasMoreSteps = step < stepCount(index);
-    mountMini($('.pv .now'), slides[index], step);
-    mountMini($('.pv .next'), hasMoreSteps ? slides[index] : next, hasMoreSteps ? step + 1 : 0);
-    $('.pv .notes-box').textContent = slides[index].querySelector('.notes')?.textContent.trim() || '(Không có ghi chú)';
-    $('.pv .pos').textContent = `Slide ${index + 1} / ${slides.length} · bước ${step}/${stepCount(index)}`;
-  };
-
-  const render = (dir) => (isPresenter ? renderPresenter() : renderDeck(dir));
-
-  const go = (i, s, { silent = false } = {}) => {
+  const go = (i, s) => {
     const dir = i > index ? 'go-next' : i < index ? 'go-prev' : null;
     index = Math.max(0, Math.min(slides.length - 1, i));
     step = Math.max(0, Math.min(stepCount(index), s));
-    render(dir);
-    if (!silent) channel?.postMessage({ index, step });
+    renderDeck(dir);
   };
 
   const next = () => {
@@ -82,10 +56,6 @@
   const prev = () => {
     if (step > 0) go(index, step - 1);
     else if (index > 0) go(index - 1, stepCount(index - 1));
-  };
-
-  const openPresenter = () => {
-    window.open(`${location.pathname}?presenter#${index + 1}`, 'deck-presenter', 'width=1280,height=760');
   };
 
   const toggleFullscreen = () => {
@@ -99,7 +69,6 @@
     Home: () => go(0, 0),
     End: () => go(slides.length - 1, stepCount(slides.length - 1)),
     f: toggleFullscreen, F: toggleFullscreen,
-    s: openPresenter, S: openPresenter,
     b: () => document.body.classList.toggle('blackout'),
     B: () => document.body.classList.toggle('blackout'),
     '?': () => $('.help').classList.toggle('open'),
@@ -124,7 +93,6 @@
     if (action === 'prev') prev();
     else if (action === 'next') next();
     else if (action === 'full') toggleFullscreen();
-    else if (action === 'presenter') openPresenter();
     else if (action === 'help') $('.help').classList.toggle('open');
   });
 
@@ -137,17 +105,11 @@
     if (Math.abs(dx) >= SWIPE_MIN) (dx < 0 ? next : prev)();
   });
 
-  channel?.addEventListener('message', ({ data }) => go(data.index, data.step, { silent: true }));
-
   window.addEventListener('resize', () => {
     fitStage(deck, innerWidth, innerHeight);
-    if (isPresenter) renderPresenter();
   });
 
-  if (isPresenter) {
-    document.body.classList.add('presenter');
-  }
   fitStage(deck, innerWidth, innerHeight);
   const fromHash = parseInt(location.hash.slice(1), 10);
-  go(Number.isNaN(fromHash) ? 0 : fromHash - 1, 0, { silent: true });
+  go(Number.isNaN(fromHash) ? 0 : fromHash - 1, 0);
 })();

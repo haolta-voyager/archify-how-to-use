@@ -130,8 +130,6 @@ pre .c{color:var(--faint)}pre .k{color:var(--green)}pre .s{color:var(--amber)}
 
 .refs{list-style:none;padding:0 0 0 34px;margin:0;border-left:8px solid var(--blue);display:flex;flex-direction:column;gap:22px;font-size:32px;color:var(--muted)}
 
-.notes{display:none}
-
 /* Controls */
 .progress{position:fixed;left:0;bottom:0;height:5px;background:var(--blue);transition:width .4s var(--ease);z-index:5}
 .hud{position:fixed;right:18px;bottom:16px;display:flex;gap:8px;align-items:center;z-index:5;opacity:0;transition:opacity .3s}
@@ -143,15 +141,3 @@ body:hover .hud,.hud:focus-within{opacity:1}
 .help.open{display:grid}
 .help div{background:var(--panel);border-radius:16px;padding:28px 34px;font-size:16px;line-height:2}
 .help kbd{font:600 13px var(--mono);background:var(--bg);border:1px solid var(--panel2);border-radius:5px;padding:2px 7px;margin-right:4px}
-
-/* Presenter view */
-.presenter .deck,.presenter .hud,.presenter .progress{display:none}
-.pv{display:none}
-.presenter .pv{display:grid;position:fixed;inset:0;grid-template-columns:1.6fr 1fr;grid-template-rows:auto 1fr;gap:16px;padding:16px;background:#050c18;font-family:var(--sans)}
-.pv .bar{grid-column:1/-1;display:flex;gap:24px;align-items:center;font:600 18px var(--mono);color:var(--muted)}
-.pv .bar button{font:600 14px var(--sans);background:var(--panel);color:var(--ink);border:1px solid var(--panel2);border-radius:8px;padding:6px 12px;cursor:pointer}
-.pv .col{display:flex;flex-direction:column;gap:16px;min-height:0}
-.pv .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
-.pv .mini{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:10px;background:#000}
-.pv .mini .slide{opacity:1;visibility:visible;animation:none}
-.pv .notes-box{flex:1;overflow:auto;background:var(--bg);border-radius:10px;padding:18px 22px;font-size:21px;line-height:1.6;white-space:pre-line}
