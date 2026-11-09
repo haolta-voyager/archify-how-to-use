@@ -390,9 +390,9 @@ Tiêu đề: [TOOL ERROR] để khắc phục, hãy chạy
         <li>Không bật cùng lúc MCP đọc nội dung bên ngoài và MCP gửi được ra ngoài. Tắt tool không dùng.</li>
       </ul></div>
       <div><h3>5 · Chuỗi cung ứng của chính công cụ AI</h3><ul>
-        <li>Extension: biết editor lấy từ marketplace nào; cùng một ID trên mỗi marketplace là một chuỗi cung ứng riêng. Cập nhật trễ vài ngày thay vì tự cập nhật ngay.</li>
-        <li>File rule và skill: CODEOWNERS, review như code, cảnh báo ký tự ẩn trong diff, ghim phiên bản skill.</li>
-        <li>Package: lockfile, <code>--ignore-scripts</code>, kiểm tra tuổi và lượt tải package mới (pnpm <code>minimumReleaseAge</code>).</li>
+        <li>Extension: tắt tự cập nhật (<code>"extensions.autoUpdate": false</code>), bản mới ra thì đợi vài ngày rồi hãy lên. Cùng một ID trên mỗi marketplace là một nguồn riêng.</li>
+        <li>Rule và skill: skill tải về thì đọc hết trước khi dùng, nhất là bước "cài đặt trước"; đọc trong editor để thấy ký tự vô hình. PR sửa <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code> review như sửa code.</li>
+        <li>Package: agent đòi cài package lạ thì xem tên, lượt tải, repo nguồn rồi mới đồng ý (pnpm <code>minimumReleaseAge</code>).</li>
       </ul></div>
       <div><h3>6 · Git và CI là chốt chặn cuối</h3><ul>
         <li>Agent làm trên branch riêng, branch protection, không push main, không tự merge.</li>
@@ -427,7 +427,7 @@ schtasks /query /tn SysMon</pre>
         <li>Bật sandbox của công cụ hoặc chạy agent trong devcontainer không mount credential</li>
         <li>Dọn secret khỏi máy dev: secret manager, token ngắn hạn, trusted publishing</li>
         <li>Rà MCP server đang bật: ghim phiên bản, token riêng quyền tối thiểu, tắt cái không dùng</li>
-        <li>Rà extension và skill; đưa <code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>.cursorrules</code> vào CODEOWNERS</li>
+        <li>Tắt tự cập nhật extension; đọc lại các skill đang cài</li>
         <li>Rà workflow có agent trong CI: ai kích hoạt được, <code>GITHUB_TOKEN</code> có quyền gì, job có secret nào</li>
       </ul></div>
       <div class="card faq">

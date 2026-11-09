@@ -432,16 +432,17 @@ Câu chốt: "Mỗi MCP server bạn thêm vào là một cạnh mới trong let
 <!-- 29 -->
 <section class="slide">
   <div class="kicker">04 · Phòng thủ · Chuỗi cung ứng</div>
-  <h2>Rà chuỗi cung ứng của chính công cụ AI</h2>
+  <h2>Đồ cài thêm cho AI cũng là đường vào máy bạn</h2>
   <div class="body"><div class="cards c3">
-    <div class="card f"><div class="ic a">1</div><h3>Extension</h3><p>Biết editor lấy từ marketplace nào; cập nhật trễ vài ngày.</p></div>
-    <div class="card f"><div class="ic a">2</div><h3>File rule và skill</h3><p>CODEOWNERS, cảnh báo ký tự ẩn trong diff, ghim phiên bản skill.</p></div>
-    <div class="card f"><div class="ic a">3</div><h3>Package</h3><p>Lockfile, <code>--ignore-scripts</code>, kiểm tra package mới trước khi cài.</p></div>
+    <div class="card f"><div class="ic a">1</div><h3>Extension</h3><p>Tắt tự cập nhật.<br>Bản mới: đợi vài ngày rồi lên.</p></div>
+    <div class="card f"><div class="ic a">2</div><h3>Rule và skill</h3><p>Đọc hết skill trước khi dùng.<br>Review kỹ PR sửa <code>CLAUDE.md</code>.</p></div>
+    <div class="card f"><div class="ic a">3</div><h3>Package</h3><p>Agent đòi cài package lạ:<br>kiểm tra tên, lượt tải, repo.</p></div>
   </div>
   <p class="punch f" style="font-family:var(--mono);font-size:28px">grep svc-telemetry ~/.ssh/authorized_keys</p></div>
-  <aside class="notes">Cùng một ID extension trên mỗi marketplace là một chuỗi cung ứng riêng. Mã độc chạy lúc nạp, nên công cụ chỉ quét lúc cài sẽ không thấy. Tunnel là kết nối đi ra, firewall chiều vào không cứu được.
-Package mới: tuổi, lượt tải, repo nguồn. pnpm có minimumReleaseAge để chỉ cài bản đã ra đủ lâu.
-Đã cài extension 2.1.313: coi máy là đã bị chiếm. Ngắt mạng, đổi credential từ một máy sạch, cài lại máy.</aside>
+  <aside class="notes">Extension: VS Code và Cursor đặt "extensions.autoUpdate": false. Bản 2.1.313 độc chỉ có trên Cursor Marketplace và tồn tại 11 giờ, ai đợi vài ngày mới cập nhật là thoát. Mã độc chạy lúc editor nạp extension, tunnel là kết nối đi ra nên firewall chiều vào không chặn được.
+Rule và skill: skill tải từ marketplace hay kèm bước "cài đặt trước" chạy script, như vụ ClawHavoc; đọc kỹ đoạn đó. Mở file trong editor để đọc, VS Code tô sáng ký tự Unicode vô hình mà trang web dễ giấu. PR sửa CLAUDE.md, AGENTS.md, .cursorrules đổi hành vi agent của cả team, review kỹ như sửa code.
+Package: model hay gợi ý tên package nghe hợp lý nhưng không tồn tại, kẻ tấn công đăng ký sẵn đúng tên đó. Package mới ra vài ngày, ít lượt tải, không có repo: dừng lại. pnpm có minimumReleaseAge để chỉ cài bản đã ra đủ lâu.
+Dòng lệnh cuối: kiểm tra ngay máy mình. Có kết quả nghĩa là đã cài bản 2.1.313: coi máy là đã bị chiếm. Ngắt mạng, đổi credential từ một máy sạch, cài lại máy.</aside>
 </section>
 
 <!-- 30 -->
